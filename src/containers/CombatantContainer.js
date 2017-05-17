@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Combatant from '../components/Combatant';
 import PropTypes from 'prop-types';
+import CombatantPropType from '../proptypes/CombatantPropType';
 
 class CombatantContainer extends Component {
 
@@ -17,7 +18,7 @@ class CombatantContainer extends Component {
 }
 
 CombatantContainer.propTypes = {
-    combatant: PropTypes.object.isRequired
+    combatant: CombatantPropType
 };
 
 export default CombatantContainer;
