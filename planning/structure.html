@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="structure.css">
+</head>
+<body>
+<div id="combat-tab" class="tab">
+    <div id="init-tracker" class="combat-pane">
+        <p class="combat-pane__title">Initiative Tracker</p>
+        <div class="button-panel">
+            <button class="button" style="flex-grow: 1">Roll Initiative</button>
+            <div style="display: flex; flex-direction: column; flex-basis: content">
+                <button class="button">Sort</button>
+                <button class="button">Reset</button>
+            </div>
+        </div>
+        <div class="combatant-list">
+            <ul>
+                <li class="combatant-list__element">
+                    <div class="combatant__turn-arrow" style="display: none;">=></div>
+                    <div class="combatant">
+                        <div class="combatant__info combatant__info--space-between">
+                            <span class="combatant__name">Johnny</span>
+                            <div class="combatant__info">
+                                <div class="combatant__info combatant__info--hp">
+                                    <span class="combatant__combat-stats-label">HP:</span>
+                                    <button class="button button--hp">20</button>
+                                </div>
+                                <div class="combatant__info">
+                                    <span class="combatant__combat-stats-label">Init:</span>
+                                    <input title="initiative" class="input input--initiative" value="13" size="2"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="combatant__info combantant__info&#45;&#45;extras combatant__info&#45;&#45;vertical combatant__info&#45;&#45;hidden">-->
+                        <div class="combatant__info combatant__info--extras combatant__info--vertical">
+                            <div class="combatant__info combatant__info--space-around">
+                                <div class="combatant__info">
+                                    <span class="combatant__combat-stats-label">Temp HP:</span>
+                                    <button class="button button--hp">0</button>
+                                </div>
+                                <div class="combatant__info">
+                                    <span class="combatant__combat-stats-label">Nonlethal Damage:</span>
+                                    <button class="button button--hp">0</button>
+                                </div>
+                            </div>
+                            <div class="combatant_info combatant__info--vertical">
+                                <span>Conditions</span>
+                                <div class="combatant__info combatant__info--space-around">
+                                    <span class="combatant__condition-label">Blinded</span>
+                                    <span class="combatant__condition-label">Confused</span>
+                                    <span class="combatant__condition-label">Grappled</span>
+                                    <span class="combatant__condition-label">Dazed</span>
+                                </div>
+                            </div>
+                            <button class="button">Edit Combatant</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="button-panel" style="display: flex;">
+            <button class="button" style="flex-basis: content;">Prev Turn</button>
+            <button class="button" style="flex-grow: 1;">Next Turn</button>
+        </div>
+    </div>
+    <div id="party-editor" class="combat-pane">
+        <p class="combat-pane__title">Party Editor</p>
+        <div class="button-panel">
+            <button class="button" style="flex-grow: 2">New Party Member</button>
+            <button class="button" style="flex-grow: 1">Save</button>
+            <button class="button" style="flex-grow: 1">Load</button>
+        </div>
+        <div class="combatant-list">
+            <ul>
+                <li class="combatant-list__element combatant-list__element--party">
+                    <div class="combatant">
+                        <div class="combatant__info combatant__info--vertical">
+                            <div class="combatant__info">
+                                <input title="creature name" class="input" value="Johnny" style="flex-grow: 1;" />
+                                <div class="combatant__info" style="flex-basis: content;">
+                                    <span class="combatant__combat-stats-label">Init:</span>
+                                    <input title="initiative" class="input input--initiative" value="13" size="2"/>
+                                </div>
+                                <button class="button">X</button>
+                            </div>
+                            <div class="combatant__info">
+                                <div class="combatant__info">
+                                    <span class="combatant__combat-stats-label">HP:</span>
+                                    <button class="button button--hp">20</button>
+                                </div>
+                                <div class="combatant__info">
+                                    <span class="combatant__combat-stats-label">Max HP:</span>
+                                    <input title="max hp" class="input input--max-hp" value="40" size="4"/>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--<div class="combatant__info combantant__info&#45;&#45;extras combatant__info&#45;&#45;vertical combatant__info&#45;&#45;hidden">-->
+                        <div class="combatant__info combatant__info--extras combatant__info--vertical">
+                            <div class="combatant__info combatant__info--space-around">
+                                <div class="combatant__info">
+                                    <span class="combatant__combat-stats-label">Temp HP:</span>
+                                    <button class="button button--hp">0</button>
+                                </div>
+                                <div class="combatant__info">
+                                    <span class="combatant__combat-stats-label">Nonlethal Damage:</span>
+                                    <button class="button button--hp">0</button>
+                                </div>
+                            </div>
+                            <div class="combatant_info combatant__info--vertical">
+                                <span>Conditions</span>
+                                <div class="combatant__info combatant__info--space-around">
+                                    <span class="combatant__condition-label">Blinded</span>
+                                    <span class="combatant__condition-label">Confused</span>
+                                    <span class="combatant__condition-label">Grappled</span>
+                                    <span class="combatant__condition-label">Dazed</span>
+                                </div>
+                            </div>
+                            <button class="button">Edit Combatant</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="button-panel" style="display: flex;">
+            <button class="button" style="flex-basis: content;">Prev Turn</button>
+            <button class="button" style="flex-grow: 1;">Next Turn</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
