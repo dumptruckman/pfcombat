@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Combatant from '../components/Combatant';
 import PropTypes from 'prop-types';
-import CombatantPropType from '../proptypes/CombatantPropType';
+import CombatantPropType from '../models/CombatantModel';
 
 class CombatantContainer extends Component {
 
