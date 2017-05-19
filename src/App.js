@@ -3,6 +3,7 @@ import './App.css';
 import {ENEMY, INITIATIVE, PARTY} from "./CombatantType";
 import CombatantList from "./components/CombatantList";
 import CombatantModel from "./models/CombatantModel";
+import CombatantListContainer from "./containers/CombatantListContainer";
 
 class App extends Component {
     render() {
@@ -20,7 +21,7 @@ class App extends Component {
                             <button className="button">Reset</button>
                         </div>
                     </div>
-                    <CombatantList combatants={combatants} combatantType={INITIATIVE} />
+                    <CombatantListContainer combatants={combatants} combatantType={INITIATIVE} />
                     <div className="button-panel" style={{display: "flex"}}>
                         <button className="button" style={{flexBasis: "content"}}>Prev Turn</button>
                         <button className="button" style={{flexGrow: 1}}>Next Turn</button>
@@ -34,7 +35,7 @@ class App extends Component {
                         <button className="button" style={{flexGrow: 1}}>Save</button>
                         <button className="button" style={{flexGrow: 1}}>Load</button>
                     </div>
-                    <CombatantList combatants={party} combatantType={PARTY} />
+                    <CombatantListContainer combatants={party} combatantType={PARTY} />
                     <div className="button-panel" style={{display: "flex"}}>
                         <button className="button">Clear</button>
                     </div>
@@ -47,7 +48,7 @@ class App extends Component {
                         <button className="button" style={{flexGrow: 1}}>Save</button>
                         <button className="button" style={{flexGrow: 1}}>Load</button>
                     </div>
-                    <CombatantList combatants={enemies} combatantType={ENEMY} />
+                    <CombatantListContainer combatants={enemies} combatantType={ENEMY} />
                     <div className="button-panel" style={{display: "flex"}}>
                         <button className="button">Clear</button>
                     </div>
