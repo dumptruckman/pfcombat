@@ -41,18 +41,6 @@ const Combatant = ({combatant, combatantType, selected}) => {
             elementClass += " combatant-list__element--selected-editor";
         }
     }
-    switch (combatantType) {
-        case INITIATIVE:
-
-            break;
-        case PARTY:
-            elementClass += " combatant-list__element--party";
-            break;
-        case ENEMY:
-            elementClass += " combatant-list__element--enemy";
-            break;
-        default:
-    }
 
     return (
         <li className={elementClass}>
