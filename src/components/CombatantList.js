@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CombatantModel from "../models/CombatantModel";
-import {CombatantType} from "../CombatantType";
+import {CombatantType, ENEMY, INITIATIVE, PARTY} from "../CombatantType";
 import CombatantContainer from "../containers/CombatantContainer";
 
 const CombatantList = ({combatants, combatantType, selected}) => {
     return (
         <div className="combatant-list">
             <ul>
-                {combatants.map((combatant, i) => {
+                {combatants.filter((combatant) => {
+                    return (combatantType === INITIATIVE && combatant.inCombat)
+                        || (combatantType === ENEMY && !combatant.isParty)
+                        || (combatantType === PARTY && combatant.isParty);
+                }).map((combatant, i) => {
                     return (
                         <CombatantContainer
                             key={combatant.name}

@@ -1,7 +1,7 @@
 class CombatantModel {
     constructor(name, party) {
         this.name = name;
-        this.partyMember = party;
+        this.isParty = party;
         this.initMod = 0;
         this.initiative = 0;
         this.maxHp = 5;

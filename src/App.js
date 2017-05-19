@@ -11,8 +11,8 @@ class App extends Component {
         super();
         this.state = {
             combatants: [new CombatantModel("Johnny", true), new CombatantModel("Linus", true),
-                new CombatantModel("Orc 1", true), new CombatantModel("Orc 2", true),
-                new CombatantModel("Orc Chieftan", true)]
+                new CombatantModel("Orc 1", false), new CombatantModel("Orc 2", false),
+                new CombatantModel("Orc Chieftan", false)]
         }
     }
 
