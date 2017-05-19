@@ -6,7 +6,8 @@ const ValueButton = ({text, value}) => {
     return (
         <div className="combatant__info">
             <span className="combatant__combat-stats-label">{text}</span>
-            <button className="button button--hp">{value}</button>
+            <button className="button button--hp"
+                    onClick={(e) => {e.stopPropagation()}}>{value}</button>
         </div>
     );
 };

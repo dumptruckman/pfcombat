@@ -12,9 +12,12 @@ const Combatant = ({index, combatant, combatantType, selected, onClick}) => {
     let topSection = (
         <div className="combatant__info combatant__info--vertical">
             <div className="combatant__info">
-                <input title="creature name" className="input" defaultValue={combatant.name} style={{flexGrow: 1}} />
+                <input title="creature name" className="input"
+                       defaultValue={combatant.name} style={{flexGrow: 1}}
+                       onClick={(e) => {e.stopPropagation()}} />
                 <ValueBox text="Init Mod:" value={combatant.initMod} size={3} title="init mod" />
-                <button title="Remove" className="button">X</button>
+                <button title="Remove" className="button"
+                        onClick={(e) => {e.stopPropagation()}}>X</button>
             </div>
             <div className="combatant__info">
                 <ValueButton text="HP:" value={combatant.currentHp} />
