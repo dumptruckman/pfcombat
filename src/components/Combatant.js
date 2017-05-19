@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CombatantExtraInfo from "./CombatantExtraInfo";
 import "../composite.css";
-import {CombatantType, ENEMY, INITIATIVE, PARTY} from "../CombatantType";
+import {CombatantType, INITIATIVE} from "../CombatantType";
 import CombatantModel from "../models/CombatantModel";
 import ValueButton from "./ValueButton";
 import ValueBox from "./ValueBox";
