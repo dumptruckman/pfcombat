@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CombatantModel from "../models/CombatantModel";
 import {CombatantType} from "../CombatantType";
-import CombatantContainer from "./Combatant";
+import CombatantContainer from "../containers/CombatantContainer";
 
 const CombatantList = ({combatants, combatantType, selected}) => {
     return (
