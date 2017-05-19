@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import "../composite.css";
 import CombatantModel from "../models/CombatantModel";
-import ValueButtonComponent from "./ValueButton";
+import ValueButton from "./ValueButton";
 
 const CombatantExtraInfo = ({combatant, selected}) => {
     return (

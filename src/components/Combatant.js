@@ -4,8 +4,8 @@ import CombatantExtraInfo from "./CombatantExtraInfo";
 import "../composite.css";
 import {CombatantType, ENEMY, INITIATIVE, PARTY} from "../CombatantType";
 import CombatantModel from "../models/CombatantModel";
-import ValueButtonComponent from "./ValueButton";
-import ValueBoxComponent from "./ValueBox";
+import ValueButton from "./ValueButton";
+import ValueBox from "./ValueBox";
 
 const Combatant = ({combatant, combatantType, selected}) => {
     let elementClass = "combatant-list__element";
