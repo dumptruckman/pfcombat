@@ -25,6 +25,7 @@ class CombatantListContainer extends Component {
                 combatantType={this.props.combatantType}
                 selected={this.state.selected}
                 onClick={this.changeSelection}
+                updateCombatant={this.props.updateCombatant}
             />
         );
     }
@@ -32,7 +33,8 @@ class CombatantListContainer extends Component {
 
 CombatantListContainer.propTypes = {
     combatants: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired,
-    combatantType: PropTypes.instanceOf(CombatantType).isRequired
+    combatantType: PropTypes.instanceOf(CombatantType).isRequired,
+    updateCombatant: PropTypes.func.isRequired
 };
 
 export default CombatantListContainer;

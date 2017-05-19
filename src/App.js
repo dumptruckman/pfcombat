@@ -14,15 +14,26 @@ class App extends Component {
                 new CombatantModel("Orc 1", false), new CombatantModel("Orc 2", false),
                 new CombatantModel("Orc Chieftan", false)]
         }
+        this.updateCombatant = this.updateCombatant.bind(this);
+    }
+
+    updateCombatant(index, combatant) {
+        this.setState({
+            ...this.state,
+            combatants: [
+                ...this.state.combatants.slice(0, index),
+                combatant,
+                ...this.state.combatants.slice(index+1)
+            ]
+        });
     }
 
     render() {
-
         return (
             <div id="combat-tab" className="tab">
-                <InitiativeTracker combatants={this.state.combatants} />
-                <PartyEditor party={this.state.combatants} />
-                <EnemyEditor enemies={this.state.combatants} />
+                <InitiativeTracker combatants={this.state.combatants} updateCombatant={this.updateCombatant} />
+                <PartyEditor party={this.state.combatants} updateCombatant={this.updateCombatant} />
+                <EnemyEditor enemies={this.state.combatants} updateCombatant={this.updateCombatant} />
             </div>
         );
     }

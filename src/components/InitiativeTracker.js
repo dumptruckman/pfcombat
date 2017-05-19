@@ -6,7 +6,7 @@ import {INITIATIVE} from "../CombatantType";
 import CombatantModel from "../models/CombatantModel";
 import Button from "./Button";
 
-const InitiativeTracker = ({combatants}) => {
+const InitiativeTracker = ({combatants, updateCombatant}) => {
     return (
         <div id="init-tracker" className="combat-pane">
             <p className="combat-pane__title">Initiative Tracker</p>
@@ -17,7 +17,10 @@ const InitiativeTracker = ({combatants}) => {
                     <Button className="button">Reset</Button>
                 </div>
             </div>
-            <CombatantListContainer combatants={combatants} combatantType={INITIATIVE} />
+            <CombatantListContainer
+                combatants={combatants}
+                combatantType={INITIATIVE}
+                updateCombatant={updateCombatant} />
             <div className="button-panel" style={{display: "flex"}}>
                 <Button className="button" style={{flexBasis: "content"}}>Prev Turn</Button>
                 <Button className="button" style={{flexGrow: 1}}>Next Turn</Button>
@@ -27,7 +30,8 @@ const InitiativeTracker = ({combatants}) => {
 };
 
 InitiativeTracker.propTypes = {
-    combatants: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired
+    combatants: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired,
+    updateCombatant: PropTypes.func.isRequired
 };
 
 export default InitiativeTracker;

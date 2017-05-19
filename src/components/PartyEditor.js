@@ -6,7 +6,7 @@ import {PARTY} from "../CombatantType";
 import CombatantModel from "../models/CombatantModel";
 import Button from "./Button";
 
-const PartyEditor = ({party}) => {
+const PartyEditor = ({party, updateCombatant}) => {
     return (
         <div id="party-editor" className="combat-pane">
             <p className="combat-pane__title">Party Editor</p>
@@ -15,7 +15,10 @@ const PartyEditor = ({party}) => {
                 <Button className="button" style={{flexGrow: 1}}>Save</Button>
                 <Button className="button" style={{flexGrow: 1}}>Load</Button>
             </div>
-            <CombatantListContainer combatants={party} combatantType={PARTY} />
+            <CombatantListContainer
+                combatants={party}
+                combatantType={PARTY}
+                updateCombatant={updateCombatant} />
             <div className="button-panel" style={{display: "flex"}}>
                 <Button className="button">Clear</Button>
             </div>
@@ -24,7 +27,8 @@ const PartyEditor = ({party}) => {
 };
 
 PartyEditor.propTypes = {
-    party: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired
+    party: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired,
+    updateCombatant: PropTypes.func.isRequired
 };
 
 export default PartyEditor;

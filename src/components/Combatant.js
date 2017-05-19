@@ -8,14 +8,20 @@ import ValueButton from "./ValueButton";
 import ValueBox from "./ValueBox";
 import Button from "./Button";
 
-const Combatant = ({index, combatant, combatantType, selected, onClick}) => {
+const Combatant = ({index, combatant, combatantType, selected, onClick, updateCombatant}) => {
     let elementClass = "combatant-list__element";
     let topSection = (
         <div className="combatant__info combatant__info--vertical">
             <div className="combatant__info">
                 <input title="creature name" className="input"
                        defaultValue={combatant.name} style={{flexGrow: 1}}
-                       onClick={(e) => {e.stopPropagation()}} />
+                       onClick={(e) => {e.stopPropagation()}}
+                       onChange={(e) => {
+                           let newCombatant = new CombatantModel(combatant);
+                           newCombatant.name = e.target.value;
+                           updateCombatant(index, newCombatant);
+                           e.stopPropagation();
+                       }} />
                 <ValueBox text="Init Mod:" value={combatant.initMod} size={3} title="init mod" />
                 <Button title="Remove" className="button">X</Button>
             </div>
@@ -61,7 +67,8 @@ Combatant.propTypes = {
     combatant: PropTypes.instanceOf(CombatantModel).isRequired,
     combatantType: PropTypes.instanceOf(CombatantType).isRequired,
     selected: PropTypes.bool,
-    onClick: PropTypes.func.isRequired
+    onClick: PropTypes.func.isRequired,
+    updateCombatant: PropTypes.func.isRequired
 };
 
 export default Combatant;

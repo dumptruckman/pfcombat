@@ -6,7 +6,7 @@ import {ENEMY} from "../CombatantType";
 import CombatantModel from "../models/CombatantModel";
 import Button from "./Button";
 
-const EnemyEditor = ({enemies}) => {
+const EnemyEditor = ({enemies, updateCombatant}) => {
     return (
         <div id="enemy-editor" className="combat-pane">
             <p className="combat-pane__title">Enemy Editor</p>
@@ -15,7 +15,10 @@ const EnemyEditor = ({enemies}) => {
                 <Button className="button" style={{flexGrow: 1}}>Save</Button>
                 <Button className="button" style={{flexGrow: 1}}>Load</Button>
             </div>
-            <CombatantListContainer combatants={enemies} combatantType={ENEMY} />
+            <CombatantListContainer
+                combatants={enemies}
+                combatantType={ENEMY}
+                updateCombatant={updateCombatant} />
             <div className="button-panel" style={{display: "flex"}}>
                 <Button className="button">Clear</Button>
             </div>
@@ -24,7 +27,8 @@ const EnemyEditor = ({enemies}) => {
 };
 
 EnemyEditor.propTypes = {
-    enemies: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired
+    enemies: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired,
+    updateCombatant: PropTypes.func.isRequired
 };
 
 export default EnemyEditor;
