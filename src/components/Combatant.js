@@ -56,7 +56,7 @@ const Combatant = ({combatant, combatantType, selected}) => {
 
     return (
         <li className={elementClass}>
-            {(combatantType === INITIATIVE && <div className="combatant__turn-arrow">=></div>)}
+            {(combatantType === INITIATIVE && <div className="combatant__turn-arrow">{selected ? "=>" : ""}</div>)}
             <div className="combatant">
                 {topSection}
                 <CombatantExtraInfo combatant={combatant} selected={selected} />
