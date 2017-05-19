@@ -10,7 +10,12 @@ class CombatantListContainer extends Component {
         super(props);
         this.state = {
             selected: -1
-        }
+        };
+        this.changeSelection = this.changeSelection.bind(this);
+    }
+
+    changeSelection(index) {
+        this.setState({selected: (this.state.selected === index ? -1 : index)});
     }
 
     render() {
@@ -18,7 +23,9 @@ class CombatantListContainer extends Component {
             <CombatantList
                 combatants={this.props.combatants}
                 combatantType={this.props.combatantType}
-                selected={this.state.selected} />
+                selected={this.state.selected}
+                onClick={this.changeSelection}
+            />
         );
     }
 }

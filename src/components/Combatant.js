@@ -7,7 +7,7 @@ import CombatantModel from "../models/CombatantModel";
 import ValueButton from "./ValueButton";
 import ValueBox from "./ValueBox";
 
-const Combatant = ({combatant, combatantType, selected}) => {
+const Combatant = ({index, combatant, combatantType, selected, onClick}) => {
     let elementClass = "combatant-list__element";
     let topSection = (
         <div className="combatant__info combatant__info--vertical">
@@ -45,7 +45,7 @@ const Combatant = ({combatant, combatantType, selected}) => {
     return (
         <li className={elementClass}>
             {(combatantType === INITIATIVE && <div className="combatant__turn-arrow">{selected ? "=>" : ""}</div>)}
-            <div className="combatant">
+            <div className="combatant" onClick={() => {onClick(index)}}>
                 {topSection}
                 <CombatantExtraInfo combatant={combatant} selected={selected} />
             </div>
@@ -54,9 +54,11 @@ const Combatant = ({combatant, combatantType, selected}) => {
 };
 
 Combatant.propTypes = {
+    index: PropTypes.number.isRequired,
     combatant: PropTypes.instanceOf(CombatantModel).isRequired,
     combatantType: PropTypes.instanceOf(CombatantType).isRequired,
-    selected: PropTypes.bool
+    selected: PropTypes.bool,
+    onClick: PropTypes.func.isRequired
 };
 
 export default Combatant;

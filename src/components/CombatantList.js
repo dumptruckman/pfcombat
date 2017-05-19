@@ -4,7 +4,7 @@ import CombatantModel from "../models/CombatantModel";
 import {CombatantType, ENEMY, INITIATIVE, PARTY} from "../CombatantType";
 import CombatantContainer from "../containers/CombatantContainer";
 
-const CombatantList = ({combatants, combatantType, selected}) => {
+const CombatantList = ({combatants, combatantType, selected, onClick}) => {
     return (
         <div className="combatant-list">
             <ul>
@@ -16,9 +16,11 @@ const CombatantList = ({combatants, combatantType, selected}) => {
                     return (
                         <CombatantContainer
                             key={combatant.name}
+                            index={i}
                             combatant={combatant}
                             combatantType={combatantType}
-                            selected={selected === i} />
+                            selected={selected === i}
+                            onClick={onClick} />
                     );
                 })}
             </ul>
@@ -29,7 +31,8 @@ const CombatantList = ({combatants, combatantType, selected}) => {
 CombatantList.propTypes = {
     combatants: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired,
     combatantType: PropTypes.instanceOf(CombatantType).isRequired,
-    selected: PropTypes.number.isRequired
+    selected: PropTypes.number.isRequired,
+    onClick: PropTypes.func.isRequired
 };
 
 export default CombatantList;
