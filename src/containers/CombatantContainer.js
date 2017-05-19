@@ -6,10 +6,6 @@ import {CombatantType} from "../CombatantType";
 
 class CombatantContainer extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <Combatant

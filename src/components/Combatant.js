@@ -6,6 +6,7 @@ import {CombatantType, INITIATIVE} from "../CombatantType";
 import CombatantModel from "../models/CombatantModel";
 import ValueButton from "./ValueButton";
 import ValueBox from "./ValueBox";
+import Button from "./Button";
 
 const Combatant = ({index, combatant, combatantType, selected, onClick}) => {
     let elementClass = "combatant-list__element";
@@ -16,8 +17,7 @@ const Combatant = ({index, combatant, combatantType, selected, onClick}) => {
                        defaultValue={combatant.name} style={{flexGrow: 1}}
                        onClick={(e) => {e.stopPropagation()}} />
                 <ValueBox text="Init Mod:" value={combatant.initMod} size={3} title="init mod" />
-                <button title="Remove" className="button"
-                        onClick={(e) => {e.stopPropagation()}}>X</button>
+                <Button title="Remove" className="button">X</Button>
             </div>
             <div className="combatant__info">
                 <ValueButton text="HP:" value={combatant.currentHp} />

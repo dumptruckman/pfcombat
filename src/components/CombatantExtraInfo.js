@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import "../composite.css";
 import CombatantModel from "../models/CombatantModel";
 import ValueButton from "./ValueButton";
+import Button from "./Button";
 
 const CombatantExtraInfo = ({combatant, selected}) => {
     return (
@@ -21,7 +22,7 @@ const CombatantExtraInfo = ({combatant, selected}) => {
                     <span className="combatant__condition-label">Dazed</span>
                 </div>
             </div>
-            <button className="button">Edit Combatant</button>
+            <Button className="button">Edit Combatant</Button>
         </div>
     );
 };
