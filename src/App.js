@@ -10,14 +10,10 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            party: [new CombatantModel("Johnny"), new CombatantModel("Linus")],
-            enemies: [new CombatantModel("Orc 1"), new CombatantModel("Orc 2"), new CombatantModel("Orc Chieftan")],
-            combatants: []
+            combatants: [new CombatantModel("Johnny", true), new CombatantModel("Linus", true),
+                new CombatantModel("Orc 1", true), new CombatantModel("Orc 2", true),
+                new CombatantModel("Orc Chieftan", true)]
         }
-    }
-
-    componentWillMount() {
-        this.setState({combatants: this.state.party.concat(this.state.enemies)});
     }
 
     render() {
@@ -25,8 +21,8 @@ class App extends Component {
         return (
             <div id="combat-tab" className="tab">
                 <InitiativeTracker combatants={this.state.combatants} />
-                <PartyEditor party={this.state.party} />
-                <EnemyEditor enemies={this.state.enemies} />
+                <PartyEditor party={this.state.combatants} />
+                <EnemyEditor enemies={this.state.combatants} />
             </div>
         );
     }

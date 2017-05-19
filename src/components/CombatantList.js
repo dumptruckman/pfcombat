@@ -24,7 +24,8 @@ const CombatantList = ({combatants, combatantType, selected}) => {
 
 CombatantList.propTypes = {
     combatants: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired,
-    combatantType: PropTypes.instanceOf(CombatantType).isRequired
+    combatantType: PropTypes.instanceOf(CombatantType).isRequired,
+    selected: PropTypes.number.isRequired
 };
 
 export default CombatantList;
