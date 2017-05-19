@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import {ENEMY, INITIATIVE, PARTY} from "./CombatantType";
-import CombatantList from "./components/CombatantList";
 import CombatantModel from "./models/CombatantModel";
 import CombatantListContainer from "./containers/CombatantListContainer";
 

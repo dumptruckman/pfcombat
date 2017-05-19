@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CombatantModel from "../models/CombatantModel";
 import {CombatantType} from "../CombatantType";
-import Combatant from "./Combatant";
+import CombatantContainer from "./Combatant";
 
 const CombatantList = ({combatants, combatantType, selected}) => {
     return (
         <div className="combatant-list">
             <ul>
                 {combatants.map((combatant, i) => {
-                    return <Combatant key={combatant.name} combatant={combatant} combatantType={combatantType} selected={selected === i} />;
+                    return <CombatantContainer key={combatant.name} combatant={combatant} combatantType={combatantType} selected={selected === i} />;
                 })}
             </ul>
         </div>

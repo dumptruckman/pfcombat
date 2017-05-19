@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import Combatant from '../components/Combatant';
 import PropTypes from 'prop-types';
-import CombatantPropType from '../models/CombatantModel';
+import CombatantModel from "../models/CombatantModel";
+import {CombatantType} from "../CombatantType";
 
 class CombatantContainer extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            combatant: this.props.combatant
-        }
     }
 
     render() {
-        return <Combatant combatant={this.state.combatant} />;
+        return <Combatant combatant={this.props.combatant} combatantType={this.props.combatantType} selected={this.props.selected}/>;
     }
 }
 
 CombatantContainer.propTypes = {
-    combatant: CombatantPropType
+    combatant: PropTypes.instanceOf(CombatantModel).isRequired,
+    combatantType: PropTypes.instanceOf(CombatantType).isRequired,
+    selected: PropTypes.bool
 };
 
 export default CombatantContainer;
