@@ -1,16 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
-export const CombatantPropType = PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    initMod: PropTypes.number.isRequired,
-    initiative: PropTypes.number.isRequired,
-    maxHp: PropTypes.number.isRequired,
-    currentHp: PropTypes.number.isRequired,
-    tempHp: PropTypes.number.isRequired,
-    nonlethalDamage: PropTypes.number.isRequired
-});
-
 class CombatantModel {
     constructor(name) {
         this.name = name;
