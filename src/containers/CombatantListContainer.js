@@ -14,7 +14,12 @@ class CombatantListContainer extends Component {
     }
 
     render() {
-        return <CombatantList combatants={this.props.combatants} combatantType={this.props.combatantType} selected={this.state.selected} />;
+        return (
+            <CombatantList
+                combatants={this.props.combatants}
+                combatantType={this.props.combatantType}
+                selected={this.state.selected} />
+        );
     }
 }
 

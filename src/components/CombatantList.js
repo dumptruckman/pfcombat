@@ -9,7 +9,13 @@ const CombatantList = ({combatants, combatantType, selected}) => {
         <div className="combatant-list">
             <ul>
                 {combatants.map((combatant, i) => {
-                    return <CombatantContainer key={combatant.name} combatant={combatant} combatantType={combatantType} selected={selected === i} />;
+                    return (
+                        <CombatantContainer
+                            key={combatant.name}
+                            combatant={combatant}
+                            combatantType={combatantType}
+                            selected={selected === i} />
+                    );
                 })}
             </ul>
         </div>

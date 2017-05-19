@@ -11,7 +11,12 @@ class CombatantContainer extends Component {
     }
 
     render() {
-        return <Combatant combatant={this.props.combatant} combatantType={this.props.combatantType} selected={this.props.selected}/>;
+        return (
+            <Combatant
+                combatant={this.props.combatant}
+                combatantType={this.props.combatantType}
+                selected={this.props.selected} />
+        );
     }
 }
 
