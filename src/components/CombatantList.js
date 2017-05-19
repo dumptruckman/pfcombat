@@ -9,7 +9,7 @@ const CombatantList = ({combatants, combatantType}) => {
         <div className="combatant-list">
             <ul>
                 {combatants.map((combatant) => {
-                    return <Combatant key={combatant.name} combatant={combatant} combatantType={combatantType}/>;
+                    return <Combatant key={combatant.name} combatant={combatant} combatantType={combatantType} />;
                 })}
             </ul>
         </div>

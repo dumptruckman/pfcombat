@@ -65,14 +65,22 @@ ul {
 }
 
 .combatant-list__element {
-    background-color: bisque;
+    background-color: #e7e7e7;
     border: solid 1px black;
     margin: 1px;
     display: flex;
 }
 
-.combatant-list__element--party {
+.combatant-list__element--editor {
+    background-color: bisque;
+}
+
+.combatant-list__element--selected-editor {
     background-color: #bf9897;
+}
+
+.combatant-list__element--selected-init {
+    background-color: #a6d9db;
 }
 
 .combatant {

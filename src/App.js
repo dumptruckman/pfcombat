@@ -6,7 +6,9 @@ import CombatantModel from "./models/CombatantModel";
 
 class App extends Component {
     render() {
-        let combatants = [new CombatantModel("Johnny")];
+        let party = [new CombatantModel("Johnny"), new CombatantModel("Linus")];
+        let enemies = [new CombatantModel("Orc 1"), new CombatantModel("Orc 2"), new CombatantModel("Orc Chieftan")];
+        let combatants = party.concat(enemies);
         return (
             <div id="combat-tab" className="tab">
                 <div id="init-tracker" className="combat-pane">
@@ -32,7 +34,7 @@ class App extends Component {
                         <button className="button" style={{flexGrow: 1}}>Save</button>
                         <button className="button" style={{flexGrow: 1}}>Load</button>
                     </div>
-                    <CombatantList combatants={combatants} combatantType={PARTY} />
+                    <CombatantList combatants={party} combatantType={PARTY} />
                     <div className="button-panel" style={{display: "flex"}}>
                         <button className="button">Clear</button>
                     </div>
@@ -45,7 +47,7 @@ class App extends Component {
                         <button className="button" style={{flexGrow: 1}}>Save</button>
                         <button className="button" style={{flexGrow: 1}}>Load</button>
                     </div>
-                    <CombatantList combatants={combatants} combatantType={ENEMY} />
+                    <CombatantList combatants={enemies} combatantType={ENEMY} />
                     <div className="button-panel" style={{display: "flex"}}>
                         <button className="button">Clear</button>
                     </div>
