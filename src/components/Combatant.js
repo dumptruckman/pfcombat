@@ -4,8 +4,8 @@ import CombatantExtraInfo from "./CombatantExtraInfo";
 import "../composite.css";
 import {CombatantType, ENEMY, INITIATIVE, PARTY} from "../CombatantType";
 import CombatantModel from "../models/CombatantModel";
-import ValueButtonComponent from "./ValueButtonComponent";
-import ValueBoxComponent from "./ValueBoxComponent";
+import ValueButtonComponent from "./ValueButton";
+import ValueBoxComponent from "./ValueBox";
 
 const Combatant = ({combatant, combatantType, selected}) => {
     let elementClass = "combatant-list__element";
@@ -13,12 +13,12 @@ const Combatant = ({combatant, combatantType, selected}) => {
         <div className="combatant__info combatant__info--vertical">
             <div className="combatant__info">
                 <input title="creature name" className="input" defaultValue={combatant.name} style={{flexGrow: 1}} />
-                <ValueBoxComponent text="Init Mod:" value={combatant.initMod} size={3} title="init mod" />
+                <ValueBox text="Init Mod:" value={combatant.initMod} size={3} title="init mod" />
                 <button title="Remove" className="button">X</button>
             </div>
             <div className="combatant__info">
-                <ValueButtonComponent text="HP:" value={combatant.currentHp} />
-                <ValueBoxComponent text="Max HP:" value={combatant.maxHp} size={4} title="maximum hp" />
+                <ValueButton text="HP:" value={combatant.currentHp} />
+                <ValueBox text="Max HP:" value={combatant.maxHp} size={4} title="maximum hp" />
             </div>
         </div>
     );
@@ -27,8 +27,8 @@ const Combatant = ({combatant, combatantType, selected}) => {
             <div className="combatant__info">
                 <span className="combatant__name" style={{flexGrow: 1}}>{combatant.name}</span>
                 <div className="combatant__info">
-                    <ValueButtonComponent text="HP:" value={combatant.currentHp} />
-                    <ValueBoxComponent text="Init:" value={combatant.initiative} size={2} title="initiative" />
+                    <ValueButton text="HP:" value={combatant.currentHp} />
+                    <ValueBox text="Init:" value={combatant.initiative} size={2} title="initiative" />
                 </div>
             </div>
         );

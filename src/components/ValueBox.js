@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import "../composite.css";
 
-const ValueBoxComponent = ({text, value, size, title}) => {
+const ValueBox = ({text, value, size, title}) => {
     return (
         <div className="combatant__info">
             <span className="combatant__combat-stats-label">{text}</span>
@@ -11,11 +11,11 @@ const ValueBoxComponent = ({text, value, size, title}) => {
     );
 };
 
-ValueBoxComponent.propTypes = {
+ValueBox.propTypes = {
     text: PropTypes.string.isRequired,
     value: PropTypes.number.isRequired,
     size: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
 };
 
-export default ValueBoxComponent;
+export default ValueBox;

@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import "../composite.css";
 import CombatantModel from "../models/CombatantModel";
-import ValueButtonComponent from "./ValueButtonComponent";
+import ValueButtonComponent from "./ValueButton";
 
 const CombatantExtraInfo = ({combatant, selected}) => {
     return (
         //<!--<div className="combatant__info combantant__info&#45;&#45;extras combatant__info&#45;&#45;vertical combatant__info&#45;&#45;hidden">-->
         <div className="combatant__info combatant__info--extras combatant__info--vertical" style={!selected ? {display: "none"} : {}}>
             <div className="combatant__info combatant__info--space-around">
-                <ValueButtonComponent text="Temp HP:" value={combatant.tempHp}/>
-                <ValueButtonComponent text="Nonlethal Damage:" value={combatant.nonlethalDamage} />
+                <ValueButton text="Temp HP:" value={combatant.tempHp}/>
+                <ValueButton text="Nonlethal Damage:" value={combatant.nonlethalDamage} />
             </div>
             <div className="combatant_info combatant__info--vertical">
                 <span>Conditions</span>
