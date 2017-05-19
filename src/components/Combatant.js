@@ -4,6 +4,8 @@ import CombatantExtraInfo from "./CombatantExtraInfo";
 import "../composite.css";
 import {CombatantType, ENEMY, INITIATIVE, PARTY} from "../CombatantType";
 import CombatantModel from "../models/CombatantModel";
+import ValueButtonComponent from "./ValueButtonComponent";
+import ValueBoxComponent from "./ValueBoxComponent";
 
 const Combatant = ({combatant, combatantType}) => {
     let elementClass = "combatant-list__element";
@@ -11,37 +13,27 @@ const Combatant = ({combatant, combatantType}) => {
         <div className="combatant__info combatant__info--vertical">
             <div className="combatant__info">
                 <input title="creature name" className="input" defaultValue="Johnny" style={{flexGrow: 1}} />
-                <div className="combatant__info" style={{flexBasis: "content"}}>
-                    <span className="combatant__combat-stats-label">Init:</span>
-                    <input title="initiative" className="input input--initiative" defaultValue="13" size="2"/>
-                </div>
+                <ValueBoxComponent text="Init Mod:" value={0} size={3} title="init mod" />
                 <button className="button">X</button>
             </div>
             <div className="combatant__info">
-                <div className="combatant__info">
-                    <span className="combatant__combat-stats-label">HP:</span>
-                    <button className="button button--hp">20</button>
-                </div>
-                <div className="combatant__info">
-                    <span className="combatant__combat-stats-label">Max HP:</span>
-                    <input title="max hp" className="input input--max-hp" defaultValue="40" size="4"/>
-                </div>
+                <ValueButtonComponent text="HP:" value={20} />
+                <ValueBoxComponent text="Max HP:" value={20} size={4} title="maximum hp" />
             </div>
         </div>
     );
     switch (combatantType) {
         case INITIATIVE:
             topSection = (
-                <div className="combatant__info combatant__info--space-between">
-                    <span className="combatant__name">Johnny</span>
+                <div className="combatant__info">
+                    <span className="combatant__name" style={{flexGrow: 1}}>Johnny</span>
                     <div className="combatant__info">
                         <div className="combatant__info combatant__info--hp">
                             <span className="combatant__combat-stats-label">HP:</span>
                             <button className="button button--hp">20</button>
                         </div>
                         <div className="combatant__info">
-                            <span className="combatant__combat-stats-label">Init:</span>
-                            <input title="initiative" className="input input--initiative" defaultValue="13" size="2"/>
+                            <ValueBoxComponent text="Init:" value={0} size={2} title="initiative" />
                         </div>
                     </div>
                 </div>

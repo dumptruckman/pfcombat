@@ -2,20 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import "../composite.css";
 import CombatantModel from "../models/CombatantModel";
+import ValueButtonComponent from "./ValueButtonComponent";
 
 const CombatantExtraInfo = ({combatant}) => {
     return (
         //<!--<div className="combatant__info combantant__info&#45;&#45;extras combatant__info&#45;&#45;vertical combatant__info&#45;&#45;hidden">-->
         <div className="combatant__info combatant__info--extras combatant__info--vertical">
             <div className="combatant__info combatant__info--space-around">
-                <div className="combatant__info">
-                    <span className="combatant__combat-stats-label">Temp HP:</span>
-                    <button className="button button--hp">0</button>
-                </div>
-                <div className="combatant__info">
-                    <span className="combatant__combat-stats-label">Nonlethal Damage:</span>
-                    <button className="button button--hp">0</button>
-                </div>
+                <ValueButtonComponent text="Temp HP:" value={0}/>
+                <ValueButtonComponent text="Nonlethal Damage:" value={0} />
             </div>
             <div className="combatant_info combatant__info--vertical">
                 <span>Conditions</span>
