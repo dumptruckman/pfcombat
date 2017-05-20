@@ -8,7 +8,7 @@ const ValueBox = ({text, value, size, title, onChange}) => {
             <span className="combatant__combat-stats-label">{text}</span>
             <input title={title} className="input input--initiative"
                    defaultValue={value} size={size} style={{width: size * 10}}
-                   onClick={(e) => {e.stopPropagation()}} onChange={() => onChange} />
+                   onClick={(e) => {e.stopPropagation()}} onChange={onChange} />
         </div>
     );
 };
