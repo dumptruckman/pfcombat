@@ -14,7 +14,9 @@ class CombatantContainer extends Component {
                 combatantType={this.props.combatantType}
                 selected={this.props.selected}
                 onClick={this.props.onClick}
-                updateCombatant={this.props.updateCombatant} />
+                updateCombatant={this.props.updateCombatant}
+                initController={this.props.initController}
+            />
         );
     }
 }
@@ -25,7 +27,12 @@ CombatantContainer.propTypes = {
     combatantType: PropTypes.instanceOf(CombatantType).isRequired,
     selected: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
-    updateCombatant: PropTypes.func.isRequired
+    updateCombatant: PropTypes.func.isRequired,
+    initController: PropTypes.shape({
+        nextTurn: PropTypes.func.isRequired,
+        prevTurn: PropTypes.func.isRequired,
+        getTurnIndex: PropTypes.func.isRequired
+    })
 };
 
 export default CombatantContainer;

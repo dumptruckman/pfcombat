@@ -13,7 +13,7 @@ class App extends Component {
             combatants: [new CombatantModel("Johnny", true), new CombatantModel("Linus", true),
                 new CombatantModel("Orc 1", false), new CombatantModel("Orc 2", false),
                 new CombatantModel("Orc Chieftan", false)]
-        }
+        };
         this.updateCombatant = this.updateCombatant.bind(this);
     }
 

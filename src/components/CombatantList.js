@@ -4,7 +4,7 @@ import CombatantModel from "../models/CombatantModel";
 import {CombatantType, ENEMY, INITIATIVE, PARTY} from "../CombatantType";
 import CombatantContainer from "../containers/CombatantContainer";
 
-const CombatantList = ({combatants, combatantType, selected, onClick, updateCombatant}) => {
+const CombatantList = ({combatants, combatantType, selected, onClick, updateCombatant, initController}) => {
     return (
         <div className="combatant-list">
             <ul>
@@ -21,7 +21,9 @@ const CombatantList = ({combatants, combatantType, selected, onClick, updateComb
                             combatantType={combatantType}
                             selected={selected === i}
                             onClick={onClick}
-                            updateCombatant={updateCombatant} />
+                            updateCombatant={updateCombatant}
+                            initController={initController}
+                        />
                     );
                 })}
             </ul>
@@ -34,7 +36,12 @@ CombatantList.propTypes = {
     combatantType: PropTypes.instanceOf(CombatantType).isRequired,
     selected: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired,
-    updateCombatant: PropTypes.func.isRequired
+    updateCombatant: PropTypes.func.isRequired,
+    initController: PropTypes.shape({
+        nextTurn: PropTypes.func.isRequired,
+        prevTurn: PropTypes.func.isRequired,
+        getTurnIndex: PropTypes.func.isRequired
+    })
 };
 
 export default CombatantList;
