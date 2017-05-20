@@ -47,7 +47,17 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, updateCo
                 <span className="combatant__name" style={{flexGrow: 1}}>{combatant.name}</span>
                 <div className="combatant__info">
                     <ValueButton text="HP:" value={combatant.currentHp} />
-                    <ValueBox text="Init:" value={combatant.initiative} size={2} title="initiative" />
+                    <ValueBox text="Init:" value={combatant.initiative}
+                              size={2} title="initiative"
+                              onChange={e => {
+                                  let value = parseInt(e.target.value, 10);
+                                  if (isNaN(value)) {
+                                      value = 0;
+                                  }
+                                  let newCombatant = new CombatantModel(combatant);
+                                  newCombatant.initiative = value;
+                                  updateCombatant(index, newCombatant);
+                              }} />
                 </div>
             </div>
         );
