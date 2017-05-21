@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {CombatantType, ENEMY, INITIATIVE, PARTY} from "../CombatantType";
 import CombatantContainer from "../containers/CombatantContainer";
 import CombatantsController from "../controllers/CombatantsController";
+import InitiativeController from "../controllers/InitiativeController";
 
 const CombatantList = ({combatantsController, combatantType, selected, onClick, initController}) => {
     return (
@@ -36,11 +37,7 @@ CombatantList.propTypes = {
     combatantType: PropTypes.instanceOf(CombatantType).isRequired,
     selected: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired,
-    initController: PropTypes.shape({
-        nextTurn: PropTypes.func.isRequired,
-        prevTurn: PropTypes.func.isRequired,
-        getTurnIndex: PropTypes.func.isRequired
-    })
+    initController: PropTypes.instanceOf(InitiativeController)
 };
 
 export default CombatantList;

@@ -8,6 +8,7 @@ import ValueButton from "./ValueButton";
 import ValueBox from "./ValueBox";
 import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
+import InitiativeController from "../controllers/InitiativeController";
 
 const Combatant = ({index, combatant, combatantType, selected, onClick, combatantsController, initController}) => {
     let elementClass = "combatant-list__element";
@@ -91,11 +92,7 @@ Combatant.propTypes = {
     selected: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,
-    initController: PropTypes.shape({
-        nextTurn: PropTypes.func.isRequired,
-        prevTurn: PropTypes.func.isRequired,
-        getTurnIndex: PropTypes.func.isRequired
-    })
+    initController: PropTypes.instanceOf(InitiativeController)
 };
 
 export default Combatant;

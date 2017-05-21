@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import CombatantModel from "../models/CombatantModel";
 import {CombatantType} from "../CombatantType";
 import CombatantsController from "../controllers/CombatantsController";
+import InitiativeController from "../controllers/InitiativeController";
 
 class CombatantContainer extends Component {
 
@@ -29,11 +30,7 @@ CombatantContainer.propTypes = {
     selected: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,
-    initController: PropTypes.shape({
-        nextTurn: PropTypes.func.isRequired,
-        prevTurn: PropTypes.func.isRequired,
-        getTurnIndex: PropTypes.func.isRequired
-    })
+    initController: PropTypes.instanceOf(InitiativeController)
 };
 
 export default CombatantContainer;
