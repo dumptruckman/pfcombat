@@ -29,7 +29,12 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, updateCo
                               newCombatant.initMod = e.target.value;
                               updateCombatant(index, newCombatant);
                           }} />
-                <Button title="Remove" className="button">X</Button>
+                <Button title="Remove" className="button"
+                        onClick={e => { // TODO Remove temporary combat toggle
+                            let newCombatant = new CombatantModel(combatant);
+                            newCombatant.inCombat = !combatant.inCombat;
+                            updateCombatant(index, newCombatant);
+                        }}>X</Button>
             </div>
             <div className="combatant__info">
                 <ValueButton text="HP:" value={combatant.currentHp} />
