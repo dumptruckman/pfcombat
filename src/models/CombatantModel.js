@@ -1,3 +1,5 @@
+import {generate} from "shortid";
+
 class CombatantModel {
     constructor(name, party) {
         if (name instanceof CombatantModel && party === undefined) {
@@ -10,6 +12,7 @@ class CombatantModel {
             this.tempHp = name.tempHp;
             this.nonlethalDamage = name.nonlethalDamage;
             this.inCombat = name.inCombat;
+            this.id = name.id;
         } else {
             this.name = name;
             this.isParty = party;
@@ -20,6 +23,7 @@ class CombatantModel {
             this.tempHp = 0;
             this.nonlethalDamage = 0;
             this.inCombat = true;
+            this.id = generate();
         }
     }
 }
