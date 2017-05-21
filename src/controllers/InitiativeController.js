@@ -1,5 +1,8 @@
 import CombatantModel from "../models/CombatantModel";
 class InitiativeController {
+
+    state; // defined here to remove warnings in IDE though all methods using this.state are rebound in InitiativeTracker.js
+
     rollInitiative() {
         let newCombatants = [];
         this.props.combatantsController.getAllCombatants().forEach((combatant) => {
