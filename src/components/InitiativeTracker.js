@@ -18,6 +18,7 @@ class InitiativeTracker extends Component {
         };
         this.getCombatantCount = this.getCombatantCount.bind(this);
         this.updateTurnIndex = this.updateTurnIndex.bind(this);
+        this.initiativeController.rollInitiative = this.initiativeController.rollInitiative.bind(this);
         this.initiativeController.nextTurn = this.initiativeController.nextTurn.bind(this);
         this.initiativeController.prevTurn = this.initiativeController.prevTurn.bind(this);
         this.initiativeController.getTurnIndex = this.initiativeController.getTurnIndex.bind(this);
@@ -36,7 +37,29 @@ class InitiativeTracker extends Component {
         })
     }
 
+    getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
     initiativeController = {
+        rollInitiative: function() {
+            let newCombatants = [];
+            this.props.combatants.forEach((combatant) => {
+                let newCombatant;
+                if (combatant.inCombat) {
+                    let roll = this.getRandomInt(1, 21);
+                    newCombatant = new CombatantModel(combatant);
+                    newCombatant.initiative = roll + combatant.initMod;
+                } else {
+                    newCombatant = new CombatantModel(combatant);
+                }
+                newCombatants.push(newCombatant);
+            });
+            this.props.updateCombatants(newCombatants);
+        },
+
         nextTurn: function() {
             let init = this.state.initiative.turnIndex;
             if (init < 0) {
@@ -73,7 +96,10 @@ class InitiativeTracker extends Component {
             <div id="init-tracker" className="combat-pane">
                 <p className="combat-pane__title">Initiative Tracker</p>
                 <div className="button-panel">
-                    <Button className="button" style={{flexGrow: 1}}>Roll Initiative</Button>
+                    <Button className="button" style={{flexGrow: 1}}
+                            onClick={() => {
+                                this.initiativeController.rollInitiative();
+                            }}>Roll Initiative</Button>
                     <div style={{display: "flex", flexDirection: "column", flexBasis: "content"}}>
                         <Button className="button">Sort</Button>
                         <Button className="button">Reset</Button>
@@ -98,7 +124,8 @@ class InitiativeTracker extends Component {
 
 InitiativeTracker.propTypes = {
     combatants: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired,
-    updateCombatant: PropTypes.func.isRequired
+    updateCombatant: PropTypes.func.isRequired,
+    updateCombatants: PropTypes.func.isRequired
 };
 
 export default InitiativeTracker;
