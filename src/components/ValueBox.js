@@ -15,7 +15,7 @@ const ValueBox = ({text, value, size, title, onChange}) => {
 
 ValueBox.propTypes = {
     text: PropTypes.string.isRequired,
-    value: PropTypes.number.isRequired,
+    value: PropTypes.node.isRequired,
     size: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     onChange: PropTypes.func

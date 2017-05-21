@@ -25,12 +25,8 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, updateCo
                 <ValueBox text="Init Mod:" value={combatant.initMod}
                           size={3} title="init mod"
                           onChange={e => {
-                              let value = parseInt(e.target.value, 10);
-                              if (isNaN(value)) {
-                                  value = 0;
-                              }
                               let newCombatant = new CombatantModel(combatant);
-                              newCombatant.initMod = value;
+                              newCombatant.initMod = e.target.value;
                               updateCombatant(index, newCombatant);
                           }} />
                 <Button title="Remove" className="button">X</Button>

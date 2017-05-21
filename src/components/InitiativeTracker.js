@@ -51,7 +51,12 @@ class InitiativeTracker extends Component {
                 if (combatant.inCombat) {
                     let roll = this.getRandomInt(1, 21);
                     newCombatant = new CombatantModel(combatant);
-                    newCombatant.initiative = roll + combatant.initMod;
+                    let initMod = combatant.initMod;
+                    initMod = parseInt(initMod, 10);
+                    if (isNaN(initMod)) {
+                        initMod = 0;
+                    }
+                    newCombatant.initiative = roll + initMod;
                 } else {
                     newCombatant = new CombatantModel(combatant);
                 }
