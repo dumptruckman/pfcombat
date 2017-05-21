@@ -7,8 +7,9 @@ import CombatantModel from "../models/CombatantModel";
 import ValueButton from "./ValueButton";
 import ValueBox from "./ValueBox";
 import Button from "./Button";
+import CombatantsController from "../controllers/CombatantsController";
 
-const Combatant = ({index, combatant, combatantType, selected, onClick, updateCombatant, initController}) => {
+const Combatant = ({index, combatant, combatantType, selected, onClick, combatantsController, initController}) => {
     let elementClass = "combatant-list__element";
     let topSection = (
         <div className="combatant__info combatant__info--vertical">
@@ -19,7 +20,7 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, updateCo
                        onChange={(e) => {
                            let newCombatant = new CombatantModel(combatant);
                            newCombatant.name = e.target.value;
-                           updateCombatant(index, newCombatant);
+                           combatantsController.updateCombatant(index, newCombatant);
                            e.stopPropagation();
                        }} />
                 <ValueBox text="Init Mod:" value={combatant.initMod}
@@ -27,13 +28,13 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, updateCo
                           onChange={e => {
                               let newCombatant = new CombatantModel(combatant);
                               newCombatant.initMod = e.target.value;
-                              updateCombatant(index, newCombatant);
+                              combatantsController.updateCombatant(index, newCombatant);
                           }} />
                 <Button title="Remove" className="button"
                         onClick={e => { // TODO Remove temporary combat toggle
                             let newCombatant = new CombatantModel(combatant);
                             newCombatant.inCombat = !combatant.inCombat;
-                            updateCombatant(index, newCombatant);
+                            combatantsController.updateCombatant(index, newCombatant);
                         }}>X</Button>
             </div>
             <div className="combatant__info">
@@ -57,7 +58,7 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, updateCo
                                   }
                                   let newCombatant = new CombatantModel(combatant);
                                   newCombatant.initiative = value;
-                                  updateCombatant(index, newCombatant);
+                                  combatantsController.updateCombatant(index, newCombatant);
                               }} />
                 </div>
             </div>
@@ -89,7 +90,7 @@ Combatant.propTypes = {
     combatantType: PropTypes.instanceOf(CombatantType).isRequired,
     selected: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
-    updateCombatant: PropTypes.func.isRequired,
+    combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,
     initController: PropTypes.shape({
         nextTurn: PropTypes.func.isRequired,
         prevTurn: PropTypes.func.isRequired,

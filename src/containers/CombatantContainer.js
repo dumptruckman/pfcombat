@@ -3,6 +3,7 @@ import Combatant from '../components/Combatant';
 import PropTypes from 'prop-types';
 import CombatantModel from "../models/CombatantModel";
 import {CombatantType} from "../CombatantType";
+import CombatantsController from "../controllers/CombatantsController";
 
 class CombatantContainer extends Component {
 
@@ -14,7 +15,7 @@ class CombatantContainer extends Component {
                 combatantType={this.props.combatantType}
                 selected={this.props.selected}
                 onClick={this.props.onClick}
-                updateCombatant={this.props.updateCombatant}
+                combatantsController={this.props.combatantsController}
                 initController={this.props.initController}
             />
         );
@@ -27,7 +28,7 @@ CombatantContainer.propTypes = {
     combatantType: PropTypes.instanceOf(CombatantType).isRequired,
     selected: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
-    updateCombatant: PropTypes.func.isRequired,
+    combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,
     initController: PropTypes.shape({
         nextTurn: PropTypes.func.isRequired,
         prevTurn: PropTypes.func.isRequired,

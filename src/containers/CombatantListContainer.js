@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CombatantList from '../components/CombatantList';
 import {CombatantType} from "../CombatantType";
-import CombatantModel from "../models/CombatantModel";
+import CombatantsController from "../controllers/CombatantsController";
 
 class CombatantListContainer extends Component {
 
@@ -21,11 +21,10 @@ class CombatantListContainer extends Component {
     render() {
         return (
             <CombatantList
-                combatants={this.props.combatants}
+                combatantsController={this.props.combatantsController}
                 combatantType={this.props.combatantType}
                 selected={this.state.selected}
                 onClick={this.changeSelection}
-                updateCombatant={this.props.updateCombatant}
                 initController={this.props.initController}
             />
         );
@@ -33,9 +32,8 @@ class CombatantListContainer extends Component {
 }
 
 CombatantListContainer.propTypes = {
-    combatants: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired,
+    combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,
     combatantType: PropTypes.instanceOf(CombatantType).isRequired,
-    updateCombatant: PropTypes.func.isRequired,
     initController: PropTypes.shape({
         nextTurn: PropTypes.func.isRequired,
         prevTurn: PropTypes.func.isRequired,

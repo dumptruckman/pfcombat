@@ -5,6 +5,7 @@ import CombatantListContainer from "../containers/CombatantListContainer";
 import {INITIATIVE} from "../CombatantType";
 import CombatantModel from "../models/CombatantModel";
 import Button from "./Button";
+import CombatantsController from "../controllers/CombatantsController";
 
 class InitiativeTracker extends Component {
 
@@ -26,7 +27,7 @@ class InitiativeTracker extends Component {
     }
 
     getCombatantCount() {
-        return this.props.combatants.filter(c => { return c.inCombat; }).length;
+        return this.props.combatantsController.getActiveCombatants().length;
     }
 
     updateTurnIndex(newIndex) {
@@ -47,7 +48,7 @@ class InitiativeTracker extends Component {
     initiativeController = {
         rollInitiative: function() {
             let newCombatants = [];
-            this.props.combatants.forEach((combatant) => {
+            this.props.combatantsController.getAllCombatants().forEach((combatant) => {
                 let newCombatant;
                 if (combatant.inCombat) {
                     let roll = this.getRandomInt(1, 21);
@@ -66,10 +67,7 @@ class InitiativeTracker extends Component {
             this.initiativeController.sortInitiative(newCombatants);
         },
 
-        sortInitiative: function(prevCombatants) {
-            if (prevCombatants === undefined) {
-                prevCombatants = this.props.combatants;
-            }
+        sortInitiative: function(prevCombatants = this.props.combatantsController.getAllCombatants()) {
             let newCombatants = [];
             let activeCombatants = prevCombatants.filter(c => c.inCombat).sort((a, b) => b.initiative - a.initiative);
             let i = 0;
@@ -81,7 +79,7 @@ class InitiativeTracker extends Component {
                     newCombatants.splice(i, 1, new CombatantModel(combatant));
                 }
             });
-            this.props.updateCombatants(newCombatants);
+            this.props.combatantsController.updateCombatants(newCombatants);
         },
 
         nextTurn: function() {
@@ -133,9 +131,8 @@ class InitiativeTracker extends Component {
                     </div>
                 </div>
                 <CombatantListContainer
-                    combatants={this.props.combatants}
+                    combatantsController={this.props.combatantsController}
                     combatantType={INITIATIVE}
-                    updateCombatant={this.props.updateCombatant}
                     initController={this.initiativeController}
                 />
                 <div className="button-panel" style={{display: "flex"}}>
@@ -150,9 +147,8 @@ class InitiativeTracker extends Component {
 }
 
 InitiativeTracker.propTypes = {
-    combatants: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired,
-    updateCombatant: PropTypes.func.isRequired,
-    updateCombatants: PropTypes.func.isRequired
+    combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,
+    //combatantsController: PropTypes.object.isRequired,
 };
 
 export default InitiativeTracker;

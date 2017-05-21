@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import "../composite.css";
 import CombatantListContainer from "../containers/CombatantListContainer";
 import {ENEMY} from "../CombatantType";
-import CombatantModel from "../models/CombatantModel";
 import Button from "./Button";
+import CombatantsController from "../controllers/CombatantsController";
 
-const EnemyEditor = ({enemies, updateCombatant}) => {
+const EnemyEditor = ({combatantsController}) => {
     return (
         <div id="enemy-editor" className="combat-pane">
             <p className="combat-pane__title">Enemy Editor</p>
@@ -16,9 +16,8 @@ const EnemyEditor = ({enemies, updateCombatant}) => {
                 <Button className="button" style={{flexGrow: 1}}>Load</Button>
             </div>
             <CombatantListContainer
-                combatants={enemies}
-                combatantType={ENEMY}
-                updateCombatant={updateCombatant} />
+                combatantsController={combatantsController}
+                combatantType={ENEMY}/>
             <div className="button-panel" style={{display: "flex"}}>
                 <Button className="button">Clear</Button>
             </div>
@@ -27,8 +26,7 @@ const EnemyEditor = ({enemies, updateCombatant}) => {
 };
 
 EnemyEditor.propTypes = {
-    enemies: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired,
-    updateCombatant: PropTypes.func.isRequired
+    combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,
 };
 
 export default EnemyEditor;
