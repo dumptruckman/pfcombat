@@ -12,10 +12,37 @@ class App extends Component {
         this.state = {
             combatants: []
         };
-        this.updateCombatant = this.updateCombatant.bind(this);
-        this.updateCombatants = this.updateCombatants.bind(this);
+        this.combatantsController.updateCombatant = this.combatantsController.updateCombatant.bind(this);
+        this.combatantsController.updateCombatants = this.combatantsController.updateCombatants.bind(this);
     }
 
+    combatantsController = new CombatantController();
+
+    componentWillMount() {
+        let combatants = [];
+        combatants.push(this.combatantsController.createCombatant(true, combatants));
+        combatants.push(this.combatantsController.createCombatant(true, combatants));
+        combatants.push(this.combatantsController.createCombatant(false, combatants));
+        combatants.push(this.combatantsController.createCombatant(false, combatants));
+        combatants.push(this.combatantsController.createCombatant(false, combatants));
+        this.setState({
+            combatants: combatants
+        });
+    }
+
+    render() {
+        return (
+            <div id="combat-tab" className="tab">
+                <InitiativeTracker combatants={this.state.combatants} updateCombatant={this.combatantsController.updateCombatant}
+                                   updateCombatants={this.combatantsController.updateCombatants}/>
+                <PartyEditor party={this.state.combatants} updateCombatant={this.combatantsController.updateCombatant} />
+                <EnemyEditor enemies={this.state.combatants} updateCombatant={this.combatantsController.updateCombatant} />
+            </div>
+        );
+    }
+}
+
+export class CombatantController {
     createCombatant(party, combatants = this.state.combatants) {
         let i = 1;
         let name = (party ? "Player " : "Monster ");
@@ -41,8 +68,8 @@ class App extends Component {
 
     updateCombatants(newCombatants) {
         this.setState({
-            combatants: newCombatants
-        },
+                combatants: newCombatants
+            },
         );
     }
 
@@ -54,29 +81,6 @@ class App extends Component {
                 ...this.state.combatants.slice(index+1)
             ]
         });
-    }
-
-    componentWillMount() {
-        let combatants = [];
-        combatants.push(this.createCombatant(true, combatants));
-        combatants.push(this.createCombatant(true, combatants));
-        combatants.push(this.createCombatant(false, combatants));
-        combatants.push(this.createCombatant(false, combatants));
-        combatants.push(this.createCombatant(false, combatants));
-        this.setState({
-            combatants: combatants
-        });
-    }
-
-    render() {
-        return (
-            <div id="combat-tab" className="tab">
-                <InitiativeTracker combatants={this.state.combatants} updateCombatant={this.updateCombatant}
-                                   updateCombatants={this.updateCombatants}/>
-                <PartyEditor party={this.state.combatants} updateCombatant={this.updateCombatant} />
-                <EnemyEditor enemies={this.state.combatants} updateCombatant={this.updateCombatant} />
-            </div>
-        );
     }
 }
 
