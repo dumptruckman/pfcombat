@@ -1,7 +1,10 @@
 import CombatantModel from "../models/CombatantModel";
 class InitiativeController {
 
-    state; // defined here to remove warnings in IDE though all methods using this.state are rebound in InitiativeTracker.js
+    // defined here to remove warnings in IDE though all methods using this.state are rebound in InitiativeTracker.js
+    state;
+    setState;
+    props;
 
     rollInitiative() {
         let newCombatants = [];
@@ -25,17 +28,19 @@ class InitiativeController {
     }
 
     sortInitiative(prevCombatants = this.props.combatantsController.getAllCombatants()) {
-        let newCombatants = [];
+        let combatantsArray = [];
         let activeCombatants = prevCombatants.filter(c => c.inCombat).sort((a, b) => b.initiative - a.initiative);
         let i = 0;
         prevCombatants.forEach(combatant => {
             if (combatant.inCombat) {
-                newCombatants.splice(i, 1, new CombatantModel(activeCombatants[i]));
+                combatantsArray.splice(i, 1, new CombatantModel(activeCombatants[i]));
                 i++;
             } else {
-                newCombatants.splice(i, 1, new CombatantModel(combatant));
+                combatantsArray.splice(i, 1, new CombatantModel(combatant));
             }
         });
+        let newCombatants = {};
+        combatantsArray.forEach(c => {newCombatants[c.id] = c});
         this.props.combatantsController.updateCombatants(newCombatants);
     }
 

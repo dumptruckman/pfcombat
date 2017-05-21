@@ -2,7 +2,9 @@ import CombatantModel from "../models/CombatantModel";
 
 class CombatantsController {
 
-    state; // defined here to remove warnings in IDE though all methods using this.state are rebound in App.js
+    // defined here to remove warnings in IDE though all methods using this.state are rebound in App.js
+    state;
+    setState;
 
     createCombatant(party, combatants = this.state.combatants) {
         let i = 1;
@@ -20,9 +22,11 @@ class CombatantsController {
     }
 
     getCombatantByName(name, combatants = this.state.combatants) {
-        for (let i = 0; i < combatants.length; i++) {
-            if (combatants[i].name === name) {
-                return combatants[i];
+        for (let key in combatants) {
+        //for (let i = 0; i < combatants.length; i++) {
+            let combatant = combatants[key];
+            if (combatant.name === name) {
+                return combatant;
             }
         }
     }
@@ -34,34 +38,33 @@ class CombatantsController {
         );
     }
 
-    updateCombatant(index, combatant) {
+    updateCombatant(combatant) {
         this.setState({
-            combatants: [
-                ...this.state.combatants.slice(0, index),
-                combatant,
-                ...this.state.combatants.slice(index+1)
-            ]
+            combatants: {
+                ...this.state.combatants,
+                [combatant.id]: combatant
+            }
         });
     }
 
     getCombatant(index) {
-        return this.state.combatants[index];
+        return Object.values(this.state.combatants)[index];
     }
 
     getParty() {
-        return this.state.combatants.filter(c => c.isParty);
+        return Object.values(this.state.combatants).filter(c => c.isParty);
     }
 
     getEnemies() {
-        return this.state.combatants.filter(c => !c.isParty);
+        return Object.values(this.state.combatants).filter(c => !c.isParty);
     }
 
     getActiveCombatants() {
-        return this.state.combatants.filter(c => c.inCombat);
+        return Object.values(this.state.combatants).filter(c => c.inCombat);
     }
 
     getAllCombatants() {
-        return this.state.combatants;
+        return Object.values(this.state.combatants);
     }
 }
 

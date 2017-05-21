@@ -21,7 +21,7 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
                        onChange={(e) => {
                            let newCombatant = new CombatantModel(combatant);
                            newCombatant.name = e.target.value;
-                           combatantsController.updateCombatant(index, newCombatant);
+                           combatantsController.updateCombatant(newCombatant);
                            e.stopPropagation();
                        }} />
                 <ValueBox text="Init Mod:" value={combatant.initMod}
@@ -29,13 +29,13 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
                           onChange={e => {
                               let newCombatant = new CombatantModel(combatant);
                               newCombatant.initMod = e.target.value;
-                              combatantsController.updateCombatant(index, newCombatant);
+                              combatantsController.updateCombatant(newCombatant);
                           }} />
                 <Button title="Remove" className="button"
                         onClick={e => { // TODO Remove temporary combat toggle
                             let newCombatant = new CombatantModel(combatant);
                             newCombatant.inCombat = !combatant.inCombat;
-                            combatantsController.updateCombatant(index, newCombatant);
+                            combatantsController.updateCombatant(newCombatant);
                         }}>X</Button>
             </div>
             <div className="combatant__info">
@@ -59,7 +59,7 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
                                   }
                                   let newCombatant = new CombatantModel(combatant);
                                   newCombatant.initiative = value;
-                                  combatantsController.updateCombatant(index, newCombatant);
+                                  combatantsController.updateCombatant(newCombatant);
                               }} />
                 </div>
             </div>

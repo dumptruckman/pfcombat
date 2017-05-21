@@ -10,7 +10,7 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            combatants: []
+            combatants: {}
         };
         this.combatantsController.updateCombatant = this.combatantsController.updateCombatant.bind(this);
         this.combatantsController.updateCombatants = this.combatantsController.updateCombatants.bind(this);
@@ -24,12 +24,17 @@ class App extends Component {
     combatantsController = new CombatantsController();
 
     componentWillMount() {
-        let combatants = [];
-        combatants.push(this.combatantsController.createCombatant(true, combatants));
-        combatants.push(this.combatantsController.createCombatant(true, combatants));
-        combatants.push(this.combatantsController.createCombatant(false, combatants));
-        combatants.push(this.combatantsController.createCombatant(false, combatants));
-        combatants.push(this.combatantsController.createCombatant(false, combatants));
+        let combatants = {};
+        let c = this.combatantsController.createCombatant(true, combatants);
+        combatants = {...combatants, [c.id]: c};
+        c = this.combatantsController.createCombatant(true, combatants);
+        combatants = {...combatants, [c.id]: c};
+        c = this.combatantsController.createCombatant(false, combatants);
+        combatants = {...combatants, [c.id]: c};
+        c = this.combatantsController.createCombatant(false, combatants);
+        combatants = {...combatants, [c.id]: c};
+        c = this.combatantsController.createCombatant(false, combatants);
+        combatants = {...combatants, [c.id]: c};
         this.setState({
             combatants: combatants
         });
