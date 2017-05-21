@@ -19,6 +19,7 @@ class InitiativeTracker extends Component {
         this.getCombatantCount = this.getCombatantCount.bind(this);
         this.updateTurnIndex = this.updateTurnIndex.bind(this);
         this.initiativeController.rollInitiative = this.initiativeController.rollInitiative.bind(this);
+        this.initiativeController.sortInitiative = this.initiativeController.sortInitiative.bind(this);
         this.initiativeController.nextTurn = this.initiativeController.nextTurn.bind(this);
         this.initiativeController.prevTurn = this.initiativeController.prevTurn.bind(this);
         this.initiativeController.getTurnIndex = this.initiativeController.getTurnIndex.bind(this);
@@ -61,6 +62,24 @@ class InitiativeTracker extends Component {
                     newCombatant = new CombatantModel(combatant);
                 }
                 newCombatants.push(newCombatant);
+            });
+            this.initiativeController.sortInitiative(newCombatants);
+        },
+
+        sortInitiative: function(prevCombatants) {
+            if (prevCombatants === undefined) {
+                prevCombatants = this.props.combatants;
+            }
+            let newCombatants = [];
+            let activeCombatants = prevCombatants.filter(c => c.inCombat).sort((a, b) => b.initiative - a.initiative);
+            let i = 0;
+            prevCombatants.forEach(combatant => {
+                if (combatant.inCombat) {
+                    newCombatants.splice(i, 1, new CombatantModel(activeCombatants[i]));
+                    i++;
+                } else {
+                    newCombatants.splice(i, 1, new CombatantModel(combatant));
+                }
             });
             this.props.updateCombatants(newCombatants);
         },
@@ -106,7 +125,10 @@ class InitiativeTracker extends Component {
                                 this.initiativeController.rollInitiative();
                             }}>Roll Initiative</Button>
                     <div style={{display: "flex", flexDirection: "column", flexBasis: "content"}}>
-                        <Button className="button">Sort</Button>
+                        <Button className="button"
+                                onClick={() => {
+                                    this.initiativeController.sortInitiative();
+                                }}>Sort</Button>
                         <Button className="button">Reset</Button>
                     </div>
                 </div>
