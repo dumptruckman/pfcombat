@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import "../composite.css";
+import "../font-awesome.css";
 import CombatantListContainer from "../containers/CombatantListContainer";
 import {INITIATIVE} from "../CombatantType";
 import Button from "./Button";
@@ -55,13 +56,13 @@ class InitiativeTracker extends Component {
                     <Button className="button" style={{flexGrow: 1}}
                             onClick={() => {
                                 this.initiativeController.rollInitiative();
-                            }}>Roll Initiative</Button>
+                            }}><i className="fa fa-random fa-2x" aria-hidden="true"/>Roll Initiative</Button>
                     <div style={{display: "flex", flexDirection: "column", flexBasis: "content"}}>
                         <Button className="button"
                                 onClick={() => {
                                     this.initiativeController.sortInitiative();
-                                }}>Sort</Button>
-                        <Button className="button">Reset</Button>
+                                }}><i className="fa fa-sort-numeric-desc" aria-hidden="true"/>Sort</Button>
+                        <Button className="button"><i className="fa fa-undo" aria-hidden="true"/>Reset</Button>
                     </div>
                 </div>
                 <CombatantListContainer
@@ -71,9 +72,11 @@ class InitiativeTracker extends Component {
                 />
                 <div className="button-panel" style={{display: "flex"}}>
                     <Button className="button" style={{flexBasis: "content"}}
-                            onClick={() => {this.initiativeController.prevTurn()}}>Prev Turn</Button>
+                            onClick={() => {this.initiativeController.prevTurn()}}>
+                        <i className="fa fa-arrow-left fa-lg" aria-hidden="true"/>Prev Turn</Button>
                     <Button className="button" style={{flexGrow: 1}}
-                            onClick={() => {this.initiativeController.nextTurn()}}>Next Turn</Button>
+                            onClick={() => {this.initiativeController.nextTurn()}}>
+                        Next Turn<i className="fa fa-arrow-right fa-2x" aria-hidden="true"/></Button>
                 </div>
             </div>
         );

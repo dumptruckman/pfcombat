@@ -39,7 +39,10 @@ span, p, div {
 .button {
     margin: 1px;
 
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border:1px solid #69932B;
     border-radius: 3px 3px 3px 3px;
     -webkit-border-radius: 3px 3px 3px 3px;
