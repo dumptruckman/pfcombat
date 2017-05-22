@@ -31,6 +31,10 @@ class CombatantsController {
         }
     }
 
+    getCombatantById(id) {
+        return this.state.combatants[id];
+    }
+
     updateCombatants(newCombatants) {
         this.setState({
                 combatants: newCombatants

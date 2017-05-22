@@ -23,6 +23,8 @@ class App extends Component {
         this.combatantsController.getAllCombatants = this.combatantsController.getAllCombatants.bind(this);
         this.combatantsController.getCombatant = this.combatantsController.getCombatant.bind(this);
         this.combatantsController.showCurrentHpDialog = this.combatantsController.showCurrentHpDialog.bind(this);
+        this.combatantsController.getCombatantById = this.combatantsController.getCombatantById.bind(this);
+        this.combatantsController.getCombatantByName = this.combatantsController.getCombatantByName.bind(this);
         this.hideModal = this.hideModal.bind(this);
     }
 
@@ -63,7 +65,8 @@ class App extends Component {
                 </div>
                 <div>
                     <ModalConductor currentModal={this.state.currentModal}
-                                    combatant={this.state.combatants[this.state.modalTarget]}
+                                    modalTarget={this.state.modalTarget}
+                                    combatantsController={this.combatantsController}
                                     hideModal={this.hideModal} />
                 </div>
             </div>
