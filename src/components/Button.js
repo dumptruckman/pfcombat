@@ -17,7 +17,7 @@ class Button extends Component {
     render() {
         return (
             <button
-                className={this.props.className ? this.props.className : ""}
+                className={this.props.className ? this.props.className : "button"}
                 style={this.props.style ? this.props.style : {}}
                 onClick={this.handleClick}
             >{this.props.children}</button>
