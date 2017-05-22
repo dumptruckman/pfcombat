@@ -67,8 +67,9 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
                 </div>
             </div>
         );
+        elementClass += " combatant-list__element--init";
         if (selected) {
-            elementClass += " combatant-list__element--selected-init"
+            elementClass += " combatant-list__element--selected-init";
         }
     } else {
         elementClass += " combatant-list__element--editor";

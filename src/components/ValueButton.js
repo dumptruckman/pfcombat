@@ -7,7 +7,7 @@ const ValueButton = ({text, value, onClick}) => {
     return (
         <div className="combatant__info">
             <span className="combatant__combat-stats-label">{text}</span>
-            <Button className="button button--hp" onClick={onClick}>{value}</Button>
+            <Button className="value-button" onClick={onClick}>{value}</Button>
         </div>
     );
 };

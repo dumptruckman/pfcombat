@@ -23,16 +23,20 @@ const ModalWrapper = props => {
         ) : null;
 
     return (
-        <div onClick={handleBackgroundClick} className="modal-dialog">
-            <header>
-                <h1>{props.title}</h1>
+        <div onClick={handleBackgroundClick} className="overlay overlay--dark">
+            <div className="modal-dialog">
+                <header>
+                    <h1>{props.title}</h1>
 
-                <Button onClick={props.hideModal}>Close</Button>
-            </header>
+                    <Button onClick={props.hideModal}>Close</Button>
+                </header>
 
-            {props.children}
+                <div className="modal-dialog-contents">
+                    {props.children}
+                </div>
 
-            {okButton}
+                {okButton}
+            </div>
         </div>
     );
 };
