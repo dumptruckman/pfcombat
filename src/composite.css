@@ -106,16 +106,20 @@ input {
 
 .combat-pane {
     width: 400px;
+    margin: 4px;
 }
 
 .combat-pane__title {
     text-align: center;
     /*font-family: Broadway;*/
     font-size: 30px;
+
 }
 
 .combatant-list {
     margin: 3px;
+    margin-top: 6px;
+    margin-bottom: 6px;
 }
 
 .combatant-list__element:hover {
