@@ -16,9 +16,9 @@ const CombatantList = ({combatantsController, combatantType, selected, onClick, 
                 }).map((combatant, i) => {
                     return (
                         <CombatantContainer
-                            key={i.toString()}
+                            key={combatant.id}
                             index={i}
-                            combatant={combatantsController.getCombatant(i)}
+                            combatant={combatant}
                             combatantType={combatantType}
                             selected={selected === i}
                             onClick={onClick}
