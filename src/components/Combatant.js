@@ -80,7 +80,7 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
 
     return (
         <li className={elementClass}>
-            {(combatantType === INITIATIVE && <div className="combatant__turn-arrow">{initController.getTurnIndex() === index ? "=>" : ""}</div>)}
+            {(combatantType === INITIATIVE && <div className="combatant__turn-arrow">{initController.getTurnIndex() === index ? <i className="fa fa-play"/> : ""}</div>)}
             <div className="combatant" onClick={() => {onClick(index)}}>
                 {topSection}
                 <CombatantExtraInfo combatant={combatant} selected={selected} />
