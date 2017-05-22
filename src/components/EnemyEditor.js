@@ -11,7 +11,8 @@ const EnemyEditor = ({combatantsController}) => {
         <div id="enemy-editor" className="combat-pane">
             <p className="combat-pane__title">Enemy Editor</p>
             <div className="button-panel">
-                <Button className="button" style={{flexGrow: 2}}>New Monster</Button>
+                <Button className="button" style={{flexGrow: 2}}
+                        onClick={() => combatantsController.addCombatant(false)}>New Monster</Button>
                 <Button className="button" style={{flexGrow: 1}}>Save</Button>
                 <Button className="button" style={{flexGrow: 1}}>Load</Button>
             </div>
@@ -19,7 +20,8 @@ const EnemyEditor = ({combatantsController}) => {
                 combatantsController={combatantsController}
                 combatantType={ENEMY}/>
             <div className="button-panel" style={{display: "flex"}}>
-                <Button className="button">Clear</Button>
+                <Button className="button"
+                        onClick={() => combatantsController.removeCombatants(false)}>Clear</Button>
             </div>
         </div>
     );

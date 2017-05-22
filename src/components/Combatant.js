@@ -33,9 +33,7 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
                           }} />
                 <Button title="Remove" className="button"
                         onClick={e => { // TODO Remove temporary combat toggle
-                            let newCombatant = new CombatantModel(combatant);
-                            newCombatant.inCombat = !combatant.inCombat;
-                            combatantsController.updateCombatant(newCombatant);
+                            combatantsController.removeCombatant(combatant.id);
                         }}>X</Button>
             </div>
             <div className="combatant__info">

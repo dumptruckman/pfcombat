@@ -11,7 +11,8 @@ const PartyEditor = ({combatantsController}) => {
         <div id="party-editor" className="combat-pane">
             <p className="combat-pane__title">Party Editor</p>
             <div className="button-panel">
-                <Button className="button" style={{flexGrow: 2}}>New Party Member</Button>
+                <Button className="button" style={{flexGrow: 2}}
+                        onClick={() => combatantsController.addCombatant(true)}>New Party Member</Button>
                 <Button className="button" style={{flexGrow: 1}}>Save</Button>
                 <Button className="button" style={{flexGrow: 1}}>Load</Button>
             </div>
@@ -19,7 +20,8 @@ const PartyEditor = ({combatantsController}) => {
                 combatantsController={combatantsController}
                 combatantType={PARTY} />
             <div className="button-panel" style={{display: "flex"}}>
-                <Button className="button">Clear</Button>
+                <Button className="button"
+                        onClick={() => combatantsController.removeCombatants(true)}>Clear</Button>
             </div>
         </div>
     );

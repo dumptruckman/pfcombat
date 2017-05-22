@@ -16,6 +16,10 @@ class App extends Component {
             modalTarget: null,
         };
         this.combatantsController.updateCombatant = this.combatantsController.updateCombatant.bind(this);
+        this.combatantsController.addCombatant = this.combatantsController.addCombatant.bind(this);
+        this.combatantsController.createCombatant = this.combatantsController.createCombatant.bind(this);
+        this.combatantsController.removeCombatant = this.combatantsController.removeCombatant.bind(this);
+        this.combatantsController.removeCombatants = this.combatantsController.removeCombatants.bind(this);
         this.combatantsController.updateCombatants = this.combatantsController.updateCombatants.bind(this);
         this.combatantsController.getParty = this.combatantsController.getParty.bind(this);
         this.combatantsController.getEnemies = this.combatantsController.getEnemies.bind(this);

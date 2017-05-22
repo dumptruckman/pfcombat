@@ -5,12 +5,13 @@ class CombatantsController {
     // defined here to remove warnings in IDE though all methods using this.state are rebound in App.js
     state;
     setState;
+    combatantsController;
 
     createCombatant(party, combatants = this.state.combatants) {
         let i = 1;
         let name = (party ? "Player " : "Monster ");
         while (true) {
-            let combatant = this.getCombatantByName(name + i, combatants);
+            let combatant = this.combatantsController.getCombatantByName(name + i, combatants);
             if (combatant === undefined) {
                 name += i;
                 break;
@@ -19,6 +20,30 @@ class CombatantsController {
             }
         }
         return new CombatantModel(name, party);
+    }
+
+    addCombatant(party) {
+        let combatant = this.combatantsController.createCombatant(party);
+        this.setState({
+            ...this.state,
+            combatants: {
+                ...this.state.combatants,
+                [combatant.id]: combatant
+            }
+        });
+    }
+
+    removeCombatant(id) {
+        let newCombatants = this.state.combatants;
+        delete newCombatants[id];
+        this.setState({
+            ...this.state,
+            combatants: newCombatants
+        });
+    }
+
+    removeCombatants(party) {
+        Object.values(this.state.combatants).filter(c => c.isParty === party).forEach(c => this.combatantsController.removeCombatant(c.id));
     }
 
     getCombatantByName(name, combatants = this.state.combatants) {
