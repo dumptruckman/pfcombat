@@ -22,7 +22,7 @@ const CombatantExtraInfo = ({combatant, selected}) => {
                     <span className="combatant__condition-label">Dazed</span>
                 </div>
             </div>
-            <Button className="button">Edit Combatant</Button>
+            <Button className="button-disabled">Edit Combatant</Button>
         </div>
     );
 };

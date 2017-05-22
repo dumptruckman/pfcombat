@@ -13,8 +13,8 @@ const PartyEditor = ({combatantsController}) => {
             <div className="button-panel">
                 <Button className="button" style={{flexGrow: 2}}
                         onClick={() => combatantsController.addCombatant(true)}>New Party Member</Button>
-                <Button className="button" style={{flexGrow: 1}}>Save</Button>
-                <Button className="button" style={{flexGrow: 1}}>Load</Button>
+                <Button className="button-disabled" style={{flexGrow: 1}}>Save</Button>
+                <Button className="button-disabled" style={{flexGrow: 1}}>Load</Button>
             </div>
             <CombatantListContainer
                 combatantsController={combatantsController}
