@@ -39,7 +39,10 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
                         }}>X</Button>
             </div>
             <div className="combatant__info">
-                <ValueButton text="HP:" value={combatant.currentHp} />
+                <ValueButton text="HP:" value={combatant.currentHp}
+                             onClick={() => {
+                                 combatantsController.showCurrentHpDialog(combatant);
+                             }} />
                 <ValueBox text="Max HP:" value={combatant.maxHp} size={4} title="maximum hp" />
             </div>
         </div>

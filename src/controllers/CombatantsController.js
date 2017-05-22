@@ -66,6 +66,14 @@ class CombatantsController {
     getAllCombatants() {
         return Object.values(this.state.combatants);
     }
+
+    showCurrentHpDialog(combatant) {
+        this.setState({
+            ...this.state,
+            currentModal: "CURRENT_HP",
+            modalTarget: combatant.id
+        });
+    }
 }
 
 export default CombatantsController;

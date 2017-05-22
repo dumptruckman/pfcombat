@@ -151,3 +151,16 @@ span, p, div {
 .combatant__condition-label {
     font-style: italic;
 }
+
+.modal-dialog {
+    position: fixed; /* could be absolute */
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    width: 200px;
+    height: 150px;
+    background-color: #b99b7b
+}
+
+.modal-dialog h1 {
+    font-size: 14px;
+}

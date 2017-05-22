@@ -4,13 +4,16 @@ import InitiativeTracker from "./components/InitiativeTracker";
 import PartyEditor from "./components/PartyEditor";
 import EnemyEditor from "./components/EnemyEditor";
 import CombatantsController from "./controllers/CombatantsController";
+import ModalConductor from "./ModalConductor";
 
 class App extends Component {
 
     constructor() {
         super();
         this.state = {
-            combatants: {}
+            combatants: {},
+            currentModal: null,
+            modalTarget: null,
         };
         this.combatantsController.updateCombatant = this.combatantsController.updateCombatant.bind(this);
         this.combatantsController.updateCombatants = this.combatantsController.updateCombatants.bind(this);
@@ -19,6 +22,8 @@ class App extends Component {
         this.combatantsController.getActiveCombatants = this.combatantsController.getActiveCombatants.bind(this);
         this.combatantsController.getAllCombatants = this.combatantsController.getAllCombatants.bind(this);
         this.combatantsController.getCombatant = this.combatantsController.getCombatant.bind(this);
+        this.combatantsController.showCurrentHpDialog = this.combatantsController.showCurrentHpDialog.bind(this);
+        this.hideModal = this.hideModal.bind(this);
     }
 
     combatantsController = new CombatantsController();
@@ -40,12 +45,27 @@ class App extends Component {
         });
     }
 
+    hideModal() {
+        this.setState({
+            ...this.state,
+            modalTarget: null,
+            currentModal: null
+        });
+    }
+
     render() {
         return (
-            <div id="combat-tab" className="tab">
-                <InitiativeTracker combatantsController={this.combatantsController} />
-                <PartyEditor combatantsController={this.combatantsController} />
-                <EnemyEditor combatantsController={this.combatantsController} />
+            <div>
+                <div id="combat-tab" className="tab">
+                    <InitiativeTracker combatantsController={this.combatantsController} />
+                    <PartyEditor combatantsController={this.combatantsController} />
+                    <EnemyEditor combatantsController={this.combatantsController} />
+                </div>
+                <div>
+                    <ModalConductor currentModal={this.state.currentModal}
+                                    combatant={this.state.combatants[this.state.modalTarget]}
+                                    hideModal={this.hideModal} />
+                </div>
             </div>
         );
     }
