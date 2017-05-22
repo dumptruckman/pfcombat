@@ -25,6 +25,7 @@ class InitiativeTracker extends Component {
         this.initiativeController.nextTurn = this.initiativeController.nextTurn.bind(this);
         this.initiativeController.prevTurn = this.initiativeController.prevTurn.bind(this);
         this.initiativeController.getTurnIndex = this.initiativeController.getTurnIndex.bind(this);
+        this.initiativeController.resetInitiative = this.initiativeController.resetInitiative.bind(this);
     }
 
     getCombatantCount() {
@@ -49,6 +50,7 @@ class InitiativeTracker extends Component {
     initiativeController = new InitiativeController();
 
     render() {
+        console.log(this.props.combatantsController.getAllCombatants());
         return (
             <div id="init-tracker" className="combat-pane">
                 <p className="combat-pane__title">Initiative Tracker</p>
@@ -62,7 +64,10 @@ class InitiativeTracker extends Component {
                                 onClick={() => {
                                     this.initiativeController.sortInitiative();
                                 }}><i className="fa fa-sort-numeric-desc" aria-hidden="true"/>Sort</Button>
-                        <Button className="button"><i className="fa fa-undo" aria-hidden="true"/>Reset</Button>
+                        <Button className="button"
+                                onClick={() => {
+                                    this.initiativeController.resetInitiative()
+                                }}><i className="fa fa-undo" aria-hidden="true"/>Reset</Button>
                     </div>
                 </div>
                 <CombatantListContainer

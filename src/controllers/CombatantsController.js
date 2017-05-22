@@ -62,7 +62,10 @@ class CombatantsController {
 
     updateCombatants(newCombatants) {
         this.setState({
-                combatants: newCombatants
+                combatants: {
+                    ...this.state.combatants,
+                    ...newCombatants
+                }
             },
         );
     }

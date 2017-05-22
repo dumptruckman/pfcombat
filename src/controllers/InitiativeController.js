@@ -5,8 +5,10 @@ class InitiativeController {
     state;
     setState;
     props;
+    initiativeController;
 
     rollInitiative() {
+        this.initiativeController.resetInitiative();
         let newCombatants = [];
         this.props.combatantsController.getAllCombatants().forEach((combatant) => {
             let newCombatant;
@@ -72,6 +74,24 @@ class InitiativeController {
 
     getTurnIndex() {
         return this.state.initiative.turnIndex;
+    }
+
+    resetInitiative() {
+        let newCombatants = {};
+        this.props.combatantsController.getActiveCombatants().forEach(c => {
+            c = new CombatantModel(c);
+            c.initiative = 0;
+            newCombatants = {
+                ...newCombatants,
+                [c.id]: c
+            };
+        });
+        this.props.combatantsController.updateCombatants(newCombatants);
+        this.setState({
+            ...this.state,
+            turnIndex: -1,
+            roundCount: 0
+        });
     }
 }
 
