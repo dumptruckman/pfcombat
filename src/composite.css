@@ -90,6 +90,16 @@ span, p, div {
     margin: 1px;
     border-color: black;
     border-width: 1px;
+    box-shadow: inset 0 1px 0 0 #F4FAED,inset 0 -1px 0 0 #69932B,inset 0 0 0 1px #ADD76F;
+    -moz-box-shadow: inset 0 1px 0 0 #F4FAED,inset 0 -1px 0 0 #69932B,inset 0 0 0 1px #ADD76F;
+    -webkit-box-shadow: inset 0 1px 0 0 #F4FAED,inset 0 -1px 0 0 #69932B,inset 0 0 0 1px #ADD76F;
+}
+
+.value-button:hover {
+    background-color: #eaeae7;
+    box-shadow: inset 0 0 0 0 #F4FAED,inset 0 0 0 0 #69932B,inset 0 0 0 0 #ADD76F;
+    -moz-box-shadow: inset 0 0 0 0 #F4FAED,inset 0 0 0 0 #69932B,inset 0 0 0 0 #ADD76F;
+    -webkit-box-shadow: inset 0 0 0 0 #F4FAED,inset 0 0 0 0 #69932B,inset 0 0 0 0 #ADD76F;
 }
 
 .button--turn-control {
