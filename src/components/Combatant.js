@@ -23,7 +23,7 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
                            e.stopPropagation();
                        }} />
                 <ValueBox text="Init Mod:" value={combatant.initMod}
-                          size={3} title="init mod"
+                          size={3} title="init mod" scroll={true}
                           onChange={e => {
                               combatantsController.setCombatantProp(combatant, "initMod", e.target.value);
                           }} />
