@@ -46,11 +46,17 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
         </div>
     );
     if (combatantType === INITIATIVE) { // Initiative pane shows different info in the top section of the combatant display
+        let hpStyle;
+        if (combatant.currentHp === 0) {
+            hpStyle = {backgroundColor: "#c1c1c1"}
+        } else if (combatant.currentHp < 0) {
+            hpStyle = {backgroundColor: "#cf7672"}
+        }
         topSection = (
             <div className="combatant__info">
                 <span className="combatant__name" style={{flexGrow: 1}}>{combatant.name}</span>
                 <div className="combatant__info">
-                    <ValueButton text="HP:" value={combatant.currentHp}
+                    <ValueButton text="HP:" value={combatant.currentHp} style={hpStyle}
                                  onClick={() => {
                                      combatantsController.showCurrentHpDialog(combatant);
                                  }} />
