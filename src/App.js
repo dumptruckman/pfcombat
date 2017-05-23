@@ -16,6 +16,7 @@ class App extends Component {
             modalTarget: null,
         };
         this.combatantsController.updateCombatant = this.combatantsController.updateCombatant.bind(this);
+        this.combatantsController.setCombatantProp = this.combatantsController.setCombatantProp.bind(this);
         this.combatantsController.addCombatant = this.combatantsController.addCombatant.bind(this);
         this.combatantsController.createCombatant = this.combatantsController.createCombatant.bind(this);
         this.combatantsController.removeCombatant = this.combatantsController.removeCombatant.bind(this);
@@ -53,7 +54,6 @@ class App extends Component {
 
     hideModal() {
         this.setState({
-            ...this.state,
             modalTarget: null,
             currentModal: null
         });

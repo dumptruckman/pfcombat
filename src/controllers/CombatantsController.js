@@ -25,7 +25,6 @@ class CombatantsController {
     addCombatant(party) {
         let combatant = this.combatantsController.createCombatant(party);
         this.setState({
-            ...this.state,
             combatants: {
                 ...this.state.combatants,
                 [combatant.id]: combatant
@@ -34,10 +33,9 @@ class CombatantsController {
     }
 
     removeCombatant(id) {
-        let newCombatants = this.state.combatants;
+        let newCombatants = { ...this.state.combatants };
         delete newCombatants[id];
         this.setState({
-            ...this.state,
             combatants: newCombatants
         });
     }
@@ -75,6 +73,17 @@ class CombatantsController {
             combatants: {
                 ...this.state.combatants,
                 [combatant.id]: combatant
+            }
+        });
+    }
+
+    setCombatantProp(combatant, propName, value) {
+        let c = new CombatantModel(combatant);
+        c[propName] = value;
+        this.setState({
+            combatants: {
+                ...this.state.combatants,
+                [c.id]: c
             }
         });
     }

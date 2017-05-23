@@ -4,14 +4,21 @@ import "../composite.css";
 import CombatantModel from "../models/CombatantModel";
 import ValueButton from "./ValueButton";
 import Button from "./Button";
+import CombatantsController from "../controllers/CombatantsController";
 
-const CombatantExtraInfo = ({combatant, selected}) => {
+const CombatantExtraInfo = ({combatant, selected, combatantsController}) => {
     return (
         //<!--<div className="combatant__info combantant__info&#45;&#45;extras combatant__info&#45;&#45;vertical combatant__info&#45;&#45;hidden">-->
         <div className="combatant__info combatant__info--extras combatant__info--vertical" style={!selected ? {display: "none"} : {}}>
             <div className="combatant__info combatant__info--space-around">
-                <ValueButton text="Temp HP:" value={combatant.tempHp}/>
-                <ValueButton text="Nonlethal Damage:" value={combatant.nonlethalDamage} />
+                <ValueButton text="Temp HP:" value={combatant.tempHp}
+                             onClick={() => {
+                                 combatantsController.showCurrentHpDialog(combatant);
+                             }} />
+                <ValueButton text="Nonlethal Damage:" value={combatant.nonlethalDamage}
+                             onClick={() => {
+                                 combatantsController.showCurrentHpDialog(combatant);
+                             }} />
             </div>
             <div className="combatant_info combatant__info--vertical">
                 <span>Conditions</span>
@@ -29,7 +36,8 @@ const CombatantExtraInfo = ({combatant, selected}) => {
 
 CombatantExtraInfo.propTypes = {
     combatant: PropTypes.instanceOf(CombatantModel).isRequired,
-    selected: PropTypes.bool
+    selected: PropTypes.bool,
+    combatantsController: PropTypes.instanceOf(CombatantsController).isRequired
 };
 
 export default CombatantExtraInfo

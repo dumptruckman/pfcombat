@@ -19,17 +19,13 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
                        defaultValue={combatant.name} style={{flexGrow: 1}}
                        onClick={(e) => {e.stopPropagation()}}
                        onChange={(e) => {
-                           let newCombatant = new CombatantModel(combatant);
-                           newCombatant.name = e.target.value;
-                           combatantsController.updateCombatant(newCombatant);
+                           combatantsController.setCombatantProp(combatant, "name", e.target.value);
                            e.stopPropagation();
                        }} />
                 <ValueBox text="Init Mod:" value={combatant.initMod}
                           size={3} title="init mod"
                           onChange={e => {
-                              let newCombatant = new CombatantModel(combatant);
-                              newCombatant.initMod = e.target.value;
-                              combatantsController.updateCombatant(newCombatant);
+                              combatantsController.setCombatantProp(combatant, "initMod", e.target.value);
                           }} />
                 <Button title="Remove" className="button"
                         onClick={e => { // TODO Remove temporary combat toggle
@@ -41,7 +37,11 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
                              onClick={() => {
                                  combatantsController.showCurrentHpDialog(combatant);
                              }} />
-                <ValueBox text="Max HP:" value={combatant.maxHp} size={4} title="maximum hp" />
+                <ValueBox text="Max HP:" value={combatant.maxHp}
+                          size={4} title="maximum hp"
+                          onChange={e => {
+                              combatantsController.setCombatantProp(combatant, "maxHp", e.target.value);
+                          }} />
             </div>
         </div>
     );
@@ -50,7 +50,10 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
             <div className="combatant__info">
                 <span className="combatant__name" style={{flexGrow: 1}}>{combatant.name}</span>
                 <div className="combatant__info">
-                    <ValueButton text="HP:" value={combatant.currentHp} />
+                    <ValueButton text="HP:" value={combatant.currentHp}
+                                 onClick={() => {
+                                     combatantsController.showCurrentHpDialog(combatant);
+                                 }} />
                     <ValueBox text="Init:" value={combatant.initiative}
                               size={2} title="initiative"
                               onChange={e => {
@@ -81,7 +84,7 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
             {(combatantType === INITIATIVE && <div className="combatant__turn-arrow">{initController.getTurnIndex() === index ? <i className="fa fa-play"/> : ""}</div>)}
             <div className="combatant" onClick={() => {onClick(index)}} onContextMenu={e => e.preventDefault()}>
                 {topSection}
-                <CombatantExtraInfo combatant={combatant} selected={selected} />
+                <CombatantExtraInfo combatant={combatant} selected={selected} combatantsController={combatantsController}/>
             </div>
         </li>
     );

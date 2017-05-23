@@ -28,7 +28,7 @@ const ModalWrapper = props => {
                 <header>
                     <h1>{props.title}</h1>
 
-                    <Button onClick={props.hideModal}>Close</Button>
+                    <Button onClick={props.hideModal} style={{fontSize: 12}}>Close</Button>
                 </header>
 
                 <div className="modal-dialog-contents">
