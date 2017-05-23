@@ -7,13 +7,45 @@ class InitiativeController {
     props;
     initiativeController;
 
+    static getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    getCombatantCount() {
+        return this.state.initiative.order.length;
+    }
+
+    getInitIndex(combatant) {
+        return this.state.initiative.order.indexOf(combatant.id);
+    }
+
+    updateTurnIndex(newIndex) {
+        this.setState({
+            initiative: {
+                ...this.state.initiative,
+                turnIndex: newIndex
+            }
+        })
+    }
+
+    updateRoundCount(round) {
+        this.setState({
+            initiative: {
+                ...this.state.initiative,
+                roundCount: round
+            }
+        })
+    }
+
     rollInitiative() {
         this.initiativeController.resetInitiative();
         let newCombatants = [];
         this.props.combatantsController.getAllCombatants().forEach((combatant) => {
             let newCombatant;
             if (combatant.inCombat) {
-                let roll = this.getRandomInt(1, 21);
+                let roll = InitiativeController.getRandomInt(1, 21);
                 newCombatant = new CombatantModel(combatant);
                 let initMod = combatant.initMod;
                 initMod = parseInt(initMod, 10);
@@ -26,24 +58,28 @@ class InitiativeController {
             }
             newCombatants.push(newCombatant);
         });
+        this.props.combatantsController.updateCombatants(newCombatants);
         this.initiativeController.sortInitiative(newCombatants);
     }
 
     sortInitiative(prevCombatants = this.props.combatantsController.getAllCombatants()) {
-        let combatantsArray = [];
-        let activeCombatants = prevCombatants.filter(c => c.inCombat).sort((a, b) => b.initiative - a.initiative);
-        let i = 0;
-        prevCombatants.forEach(combatant => {
-            if (combatant.inCombat) {
-                combatantsArray.splice(i, 1, new CombatantModel(activeCombatants[i]));
-                i++;
-            } else {
-                combatantsArray.splice(i, 1, new CombatantModel(combatant));
+        let initOrder = [];
+        let activeCombatants = prevCombatants.filter(c => c.inCombat).sort((a, b) => {
+            let res = b.initiative - a.initiative;
+            if (res === 0) {
+                res = b.initMod - a.initMod;
             }
+            return res;
         });
-        let newCombatants = {};
-        combatantsArray.forEach(c => {newCombatants[c.id] = c});
-        this.props.combatantsController.updateCombatants(newCombatants);
+        activeCombatants.forEach(combatant => {
+            initOrder.push(combatant.id);
+        });
+        this.setState({
+            initiative: {
+                ...this.state.initiative,
+                order: initOrder
+            }
+        })
     }
 
     nextTurn() {
@@ -52,24 +88,24 @@ class InitiativeController {
             init = 0;
         } else {
             init++;
-            if (init >= this.getCombatantCount()) {
+            if (init >= this.initiativeController.getCombatantCount()) {
                 init = 0;
             }
         }
-        this.updateTurnIndex(init);
+        this.initiativeController.updateTurnIndex(init);
     }
 
     prevTurn() {
         let init = this.state.initiative.turnIndex;
         if (init < 0) {
-            init = this.getCombatantCount() - 1;
+            init = this.initiativeController.getCombatantCount() - 1;
         } else {
             init--;
             if (init < 0) {
-                init = this.getCombatantCount() - 1;
+                init = this.initiativeController.getCombatantCount() - 1;
             }
         }
-        this.updateTurnIndex(init);
+        this.initiativeController.updateTurnIndex(init);
     }
 
     getTurnIndex() {
@@ -77,21 +113,20 @@ class InitiativeController {
     }
 
     resetInitiative() {
-        let newCombatants = {};
+        let newCombatants = [];
         this.props.combatantsController.getActiveCombatants().forEach(c => {
             c = new CombatantModel(c);
             c.initiative = 0;
-            newCombatants = {
-                ...newCombatants,
-                [c.id]: c
-            };
+            newCombatants.push(c);
+        });
+        this.setState({
+            initiative: {
+                ...this.state.initiative,
+                turnIndex: -1,
+                roundCount: 0
+            }
         });
         this.props.combatantsController.updateCombatants(newCombatants);
-        this.setState({
-            ...this.state,
-            turnIndex: -1,
-            roundCount: 0
-        });
     }
 }
 

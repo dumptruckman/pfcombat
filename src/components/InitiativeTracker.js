@@ -15,11 +15,14 @@ class InitiativeTracker extends Component {
         this.state = {
             initiative: {
                 turnIndex: -1,
-                roundCount: 0
+                roundCount: 0,
+                order: []
             }
         };
-        this.getCombatantCount = this.getCombatantCount.bind(this);
-        this.updateTurnIndex = this.updateTurnIndex.bind(this);
+        this.initiativeController.getCombatantCount = this.initiativeController.getCombatantCount.bind(this);
+        this.initiativeController.getInitIndex = this.initiativeController.getInitIndex.bind(this);
+        this.initiativeController.updateTurnIndex = this.initiativeController.updateTurnIndex.bind(this);
+        this.initiativeController.updateRoundCount = this.initiativeController.updateRoundCount.bind(this);
         this.initiativeController.rollInitiative = this.initiativeController.rollInitiative.bind(this);
         this.initiativeController.sortInitiative = this.initiativeController.sortInitiative.bind(this);
         this.initiativeController.nextTurn = this.initiativeController.nextTurn.bind(this);
@@ -28,29 +31,19 @@ class InitiativeTracker extends Component {
         this.initiativeController.resetInitiative = this.initiativeController.resetInitiative.bind(this);
     }
 
-    getCombatantCount() {
-        return this.props.combatantsController.getActiveCombatants().length;
-    }
-
-    updateTurnIndex(newIndex) {
+    componentWillMount() {
+        let order = this.props.combatantsController.getAllCombatants().map(c => c.id);
         this.setState({
             initiative: {
                 ...this.state.initiative,
-                turnIndex: newIndex
+                order: order
             }
         })
-    }
-
-    getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min)) + min;
     }
 
     initiativeController = new InitiativeController();
 
     render() {
-        console.log(this.props.combatantsController.getAllCombatants());
         return (
             <div id="init-tracker" className="combat-pane">
                 <p className="combat-pane__title">Initiative Tracker</p>

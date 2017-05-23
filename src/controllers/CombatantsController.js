@@ -61,13 +61,13 @@ class CombatantsController {
     }
 
     updateCombatants(newCombatants) {
+        let combatants = {...this.state.combatants};
+        for (let i = 0; i < newCombatants.length; i++) {
+            combatants[newCombatants[i].id] = newCombatants[i];
+        }
         this.setState({
-                combatants: {
-                    ...this.state.combatants,
-                    ...newCombatants
-                }
-            },
-        );
+            combatants: combatants
+        });
     }
 
     updateCombatant(combatant) {
@@ -101,7 +101,6 @@ class CombatantsController {
 
     showCurrentHpDialog(combatant) {
         this.setState({
-            ...this.state,
             currentModal: "CURRENT_HP",
             modalTarget: combatant.id
         });

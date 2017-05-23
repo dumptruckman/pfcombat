@@ -13,6 +13,12 @@ const CombatantList = ({combatantsController, combatantType, selected, onClick, 
                     return (combatantType === INITIATIVE && combatant.inCombat)
                         || (combatantType === ENEMY && !combatant.isParty)
                         || (combatantType === PARTY && combatant.isParty);
+                }).sort((a, b) => {
+                    if (combatantType === INITIATIVE && a.inCombat && b.inCombat) {
+                        return initController.getInitIndex(a) - initController.getInitIndex(b);
+                    } else {
+                        return 0;
+                    }
                 }).map((combatant, i) => {
                     return (
                         <CombatantContainer
