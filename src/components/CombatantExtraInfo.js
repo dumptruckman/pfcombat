@@ -20,7 +20,29 @@ const CombatantExtraInfo = ({combatant, selected, combatantsController}) => {
                                  combatantsController.showCurrentHpDialog(combatant);
                              }} />
             </div>
-            <div className="combatant_info combatant__info--vertical">
+            <div className="combatant__info">
+                <Button onClick={() => {
+                    let c = new CombatantModel(combatant);
+                    c.delay = false;
+                    c.ready = false;
+                    c.inCombat = !c.inCombat;
+                    combatantsController.updateCombatant(c);
+                }}>{combatant.inCombat ? "Make Idle" : "Make Active"}</Button>
+                <Button className={!combatant.inCombat && "button-disabled"} onClick={() => {
+                    let c = new CombatantModel(combatant);
+                    c.delay = false;
+                    c.ready = !c.ready;
+                    combatantsController.updateCombatant(c);
+                }}>{combatant.ready ? "Act Now" : "Ready"}</Button>
+                <Button className={!combatant.inCombat && "button-disabled"} onClick={() => {
+                    let c = new CombatantModel(combatant);
+                    c.delay = !c.delay;
+                    c.ready = false;
+                    combatantsController.updateCombatant(c);
+                }}>{combatant.delay ? "Act Now" : "Delay"}</Button>
+
+            </div>
+            <div className="combatant__info combatant__info--vertical" style={{display: "none"}}>
                 <span>Conditions</span>
                 <div className="combatant__info combatant__info--space-around">
                     <span className="combatant__condition-label">Blinded</span>
@@ -29,6 +51,7 @@ const CombatantExtraInfo = ({combatant, selected, combatantsController}) => {
                     <span className="combatant__condition-label">Dazed</span>
                 </div>
             </div>
+
             <Button className="button-disabled">Edit Combatant</Button>
         </div>
     );

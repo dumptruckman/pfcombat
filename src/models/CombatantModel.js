@@ -13,6 +13,8 @@ class CombatantModel {
             this.nonlethalDamage = name.nonlethalDamage;
             this.inCombat = name.inCombat;
             this.id = name.id;
+            this.ready = name.ready;
+            this.delay = name.delay;
         } else {
             this.name = name;
             this.isParty = party;
@@ -24,6 +26,8 @@ class CombatantModel {
             this.nonlethalDamage = 0;
             this.inCombat = true;
             this.id = generate();
+            this.ready = false;
+            this.delay = false;
         }
     }
 }
