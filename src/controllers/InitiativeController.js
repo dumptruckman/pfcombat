@@ -22,21 +22,21 @@ class InitiativeController {
     }
 
     updateTurnIndex(newIndex) {
-        this.setState({
+        this.setState(prevState => { return {
             initiative: {
-                ...this.state.initiative,
+                ...prevState.initiative,
                 turnIndex: newIndex
             }
-        })
+        }});
     }
 
     updateRoundCount(round) {
-        this.setState({
+        this.setState(prevState => { return {
             initiative: {
-                ...this.state.initiative,
+                ...prevState.initiative,
                 roundCount: round
             }
-        })
+        }})
     }
 
     rollInitiative() {
@@ -74,12 +74,12 @@ class InitiativeController {
         activeCombatants.forEach(combatant => {
             initOrder.push(combatant.id);
         });
-        this.setState({
+        this.setState(prevState => { return {
             initiative: {
-                ...this.state.initiative,
+                ...prevState.initiative,
                 order: initOrder
             }
-        })
+        }});
     }
 
     nextTurn() {
@@ -119,13 +119,13 @@ class InitiativeController {
             c.initiative = 0;
             newCombatants.push(c);
         });
-        this.setState({
+        this.setState(prevState => { return {
             initiative: {
-                ...this.state.initiative,
+                ...prevState.initiative,
                 turnIndex: -1,
                 roundCount: 0
             }
-        });
+        }});
         this.props.combatantsController.updateCombatants(newCombatants);
     }
 }

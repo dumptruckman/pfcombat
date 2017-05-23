@@ -33,12 +33,12 @@ class InitiativeTracker extends Component {
 
     componentWillMount() {
         let order = this.props.combatantsController.getAllCombatants().map(c => c.id);
-        this.setState({
+        this.setState((prevState) => { return {
             initiative: {
-                ...this.state.initiative,
+                ...prevState.initiative,
                 order: order
             }
-        })
+        }});
     }
 
     initiativeController = new InitiativeController();

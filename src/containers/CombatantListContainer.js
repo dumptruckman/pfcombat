@@ -16,7 +16,11 @@ class CombatantListContainer extends Component {
     }
 
     changeSelection(index) {
-        this.setState({selected: (this.state.selected === index ? -1 : index)});
+        this.setState(prevState => {
+            return {
+                selected: (prevState.selected === index ? -1 : index)
+            }
+        });
     }
 
     render() {

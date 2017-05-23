@@ -24,12 +24,12 @@ class CombatantsController {
 
     addCombatant(party) {
         let combatant = this.combatantsController.createCombatant(party);
-        this.setState({
+        this.setState(prevState => { return {
             combatants: {
                 ...this.state.combatants,
                 [combatant.id]: combatant
             }
-        });
+        }});
     }
 
     removeCombatant(id) {
@@ -69,23 +69,23 @@ class CombatantsController {
     }
 
     updateCombatant(combatant) {
-        this.setState({
+        this.setState(prevState => { return {
             combatants: {
-                ...this.state.combatants,
+                ...prevState.combatants,
                 [combatant.id]: combatant
             }
-        });
+        }});
     }
 
     setCombatantProp(combatant, propName, value) {
         let c = new CombatantModel(combatant);
         c[propName] = value;
-        this.setState({
+        this.setState(prevState => { return {
             combatants: {
-                ...this.state.combatants,
+                ...prevState.combatants,
                 [c.id]: c
             }
-        });
+        }});
     }
 
     getCombatant(index) {
