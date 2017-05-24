@@ -80,7 +80,15 @@ class CombatantsController {
 
   setCombatantProp(combatant, propName, value) {
     const c = new CombatantModel(combatant);
-    c[propName] = value;
+    let v = value;
+    if (!isNaN(c[propName])) {
+      v = parseInt(v, 10);
+      if (isNaN(v)) {
+        v = 0;
+      }
+    }
+
+    c[propName] = v;
     this.setState(prevState => ({
       combatants: {
         ...prevState.combatants,
