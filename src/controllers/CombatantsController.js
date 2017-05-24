@@ -15,7 +15,7 @@ class CombatantsController {
     let name = (party ? "Player " : "Monster ");
     while (true) {
       const combatant = this.combatantsController.getCombatantByName(name + i, combatants);
-      if (combatant === undefined) {
+      if (combatant === undefined || combatant === null) {
         name += i;
         break;
       } else {
@@ -56,7 +56,7 @@ class CombatantsController {
         return combatant;
       }
     }
-    return null;
+    return undefined;
   }
 
   getCombatantById(id) {
