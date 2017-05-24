@@ -24,8 +24,8 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
                        }} />
                 <ValueBox text="Init Mod:" value={combatant.initMod}
                           size={3} title="init mod" scroll={true}
-                          onChange={e => {
-                              combatantsController.setCombatantProp(combatant, "initMod", e.target.value);
+                          onChange={value => {
+                              combatantsController.setCombatantProp(combatant, "initMod", value);
                           }} />
                 <Button title="Remove" className="button"
                         onClick={e => { // TODO Remove temporary combat toggle
@@ -39,8 +39,8 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
                              }} />
                 <ValueBox text="Max HP:" value={combatant.maxHp}
                           size={4} title="maximum hp"
-                          onChange={e => {
-                              combatantsController.setCombatantProp(combatant, "maxHp", e.target.value);
+                          onChange={value => {
+                              combatantsController.setCombatantProp(combatant, "maxHp", value);
                           }} />
             </div>
         </div>
@@ -62,8 +62,8 @@ const Combatant = ({index, combatant, combatantType, selected, onClick, combatan
                                  }} />
                     <ValueBox text="Init:" value={combatant.initiative}
                               size={2} title="initiative"
-                              onChange={e => {
-                                  let value = parseInt(e.target.value, 10);
+                              onChange={val => {
+                                  let value = parseInt(val, 10);
                                   if (isNaN(value)) {
                                       value = 0;
                                   }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import "../composite.css";
-import * as ReactDOM from "react-dom";
 
 class ValueBox extends Component {
 
@@ -25,10 +24,10 @@ class ValueBox extends Component {
         } else {
             v--;
         }
-        this.input.value = v;
-        evt.stopPropagation();
 
-        // TODO need to fire onchange somehow...
+        this.props.onChange(v);
+
+        evt.stopPropagation();
     }
 
     render() {
@@ -40,7 +39,7 @@ class ValueBox extends Component {
                        onClick={(e) => {
                            e.stopPropagation();
                            e.target.setSelectionRange(0, e.target.value.length);
-                       }} onChange={this.props.onChange} />
+                       }} onChange={e => this.props.onChange(e.target.value)} />
                 <button ref={button => {this.button = button}} style={!this.props.scroll ? {display: "none"} : {}}
                         onClick={this.scrollClick}><i className="fa fa-arrows-v fa-1" /></button>
             </div>
