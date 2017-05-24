@@ -13,7 +13,11 @@ const ModalConductor = (props) => {
 };
 
 ModalConductor.propTypes = {
-  currentModal: PropTypes.string.isRequired,
+  currentModal: PropTypes.string,
+};
+
+ModalConductor.defaultProps = {
+  currentModal: null,
 };
 
 export default ModalConductor;
