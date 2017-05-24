@@ -4,11 +4,11 @@ import CombatantExtraInfo from "./CombatantExtraInfo";
 import "../composite.css";
 import { CombatantType, INITIATIVE } from "../CombatantType";
 import CombatantModel from "../models/CombatantModel";
-import ValueButton from "./ValueButton";
 import ValueBox from "./ValueBox";
 import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
 import InitiativeController from "../controllers/InitiativeController";
+import HPButton from "./HPButton";
 
 const Combatant = ({ index, combatant, combatantType, selected, onClick, combatantsController,
                      initController }) => {
@@ -46,12 +46,11 @@ const Combatant = ({ index, combatant, combatantType, selected, onClick, combata
         >X</Button>
       </div>
       <div className="combatant__info">
-        <ValueButton
+        <HPButton
           text="HP:"
           value={combatant.currentHp}
-          onClick={() => {
-            combatantsController.showCurrentHpDialog(combatant);
-          }}
+          controller={combatantsController}
+          combatant={combatant}
         />
         <ValueBox
           text="Max HP:"
@@ -77,13 +76,12 @@ const Combatant = ({ index, combatant, combatantType, selected, onClick, combata
       <div className="combatant__info">
         <span className="combatant__name" style={{ flexGrow: 1 }}>{combatant.name}</span>
         <div className="combatant__info">
-          <ValueButton
+          <HPButton
             text="HP:"
             value={combatant.currentHp}
+            controller={combatantsController}
+            combatant={combatant}
             style={hpStyle}
-            onClick={() => {
-              combatantsController.showCurrentHpDialog(combatant);
-            }}
           />
           <ValueBox
             text="Init:"

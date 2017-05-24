@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../composite.css";
 import CombatantModel from "../models/CombatantModel";
-import ValueButton from "./ValueButton";
 import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
+import HPButton from "./HPButton";
 
 const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
   <div
@@ -12,19 +12,17 @@ const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
     style={!selected ? { display: "none" } : {}}
   >
     <div className="combatant__info combatant__info--space-around">
-      <ValueButton
+      <HPButton
         text="Temp HP:"
         value={combatant.tempHp}
-        onClick={() => {
-          combatantsController.showCurrentHpDialog(combatant);
-        }}
+        controller={combatantsController}
+        combatant={combatant}
       />
-      <ValueButton
+      <HPButton
         text="Nonlethal Damage:"
         value={combatant.nonlethalDamage}
-        onClick={() => {
-          combatantsController.showCurrentHpDialog(combatant);
-        }}
+        controller={combatantsController}
+        combatant={combatant}
       />
     </div>
     <div className="combatant__info">
