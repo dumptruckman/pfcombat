@@ -19,6 +19,7 @@ class InitiativeTracker extends Component {
         roundCount: 0,
         order: [],
       },
+      selected: -1,
     };
     this.initiativeController = new InitiativeController();
     this.initiativeController.getCombatantCount
@@ -36,6 +37,7 @@ class InitiativeTracker extends Component {
     this.initiativeController.moveCombatant = this.initiativeController.moveCombatant.bind(this);
     this.initiativeController.resetInitiative
         = this.initiativeController.resetInitiative.bind(this);
+    this.changeSelection = this.changeSelection.bind(this);
   }
 
   componentWillMount() {
@@ -65,6 +67,12 @@ class InitiativeTracker extends Component {
         //     this.initiativeController.getInitIndex(nextCombatant));
       }
     });
+  }
+
+  changeSelection(index) {
+    this.setState(prevState => ({
+      selected: (prevState.selected === index ? -1 : index),
+    }));
   }
 
   render() {
@@ -98,6 +106,8 @@ class InitiativeTracker extends Component {
           combatantsController={this.props.combatantsController}
           combatantType={INITIATIVE}
           initController={this.initiativeController}
+          selected={this.state.selected}
+          changeSelection={this.changeSelection}
         />
         <div className="button-panel" style={{ display: "flex" }}>
           <Button

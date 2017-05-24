@@ -36,7 +36,7 @@ class InitiativeController {
 
   moveCombatant(id, newIndex) {
     const oldIndex = this.state.initiative.order.findIndex(i => i === id);
-    if (oldIndex < 0) {
+    if (oldIndex < 0 || newIndex < 0) {
       return;
     }
 
@@ -44,13 +44,16 @@ class InitiativeController {
       const newOrder = [...prevState.initiative.order];
       newOrder.splice(oldIndex, 1);
       newOrder.splice(newIndex > oldIndex ? newIndex - 1 : newIndex, 0, id);
+      let newSelected = prevState.selected === oldIndex ? newIndex : prevState.selected;
+      newSelected = newIndex > oldIndex ? newSelected - 1 : newSelected;
       return {
         initiative: {
           ...prevState.initiative,
           order: newOrder,
           turnIndex: (newIndex > oldIndex ?
-              prevState.initiative.turnIndex - 1 : prevState.initiative.turnIndex),
+            prevState.initiative.turnIndex - 1 : prevState.initiative.turnIndex),
         },
+        selected: newSelected,
       };
     });
   }
