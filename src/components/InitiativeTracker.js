@@ -68,7 +68,6 @@ class InitiativeTracker extends Component {
   }
 
   render() {
-    console.log(this.state.initiative.order);
     return (
       <div id="init-tracker" className="combat-pane">
         <p className="combat-pane__title">Initiative Tracker</p>

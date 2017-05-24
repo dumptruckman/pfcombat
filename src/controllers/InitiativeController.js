@@ -39,19 +39,20 @@ class InitiativeController {
     if (oldIndex < 0) {
       return;
     }
-    /* TODO implement this
+
     this.setState((prevState) => {
       const newOrder = [...prevState.initiative.order];
-      newOrder.splice(newIndex, 0, id);
-      // newOrder.splice(newIndex < oldIndex ? oldIndex - 1 : oldIndex, 1);
+      newOrder.splice(oldIndex, 1);
+      newOrder.splice(newIndex > oldIndex ? newIndex - 1 : newIndex, 0, id);
       return {
         initiative: {
           ...prevState.initiative,
           order: newOrder,
+          turnIndex: (newIndex > oldIndex ?
+              prevState.initiative.turnIndex - 1 : prevState.initiative.turnIndex),
         },
       };
     });
-    */
   }
 
   updateRoundCount(round) {
