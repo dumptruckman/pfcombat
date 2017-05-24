@@ -38,7 +38,7 @@ const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
         }}
       >{combatant.inCombat ? "Make Idle" : "Make Active"}</Button>
       <Button
-        className={!combatant.inCombat ? "button-disabled" : ""}
+        className={!combatant.inCombat ? "button-disabled" : "button"}
         onClick={() => {
           const c = new CombatantModel(combatant);
           c.delay = false;
@@ -47,7 +47,7 @@ const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
         }}
       >{combatant.ready ? "Act Now" : "Ready"}</Button>
       <Button
-        className={!combatant.inCombat ? "button-disabled" : ""}
+        className={!combatant.inCombat ? "button-disabled" : "button"}
         onClick={() => {
           const c = new CombatantModel(combatant);
           c.delay = !c.delay;
