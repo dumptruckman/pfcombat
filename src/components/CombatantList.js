@@ -1,24 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { CombatantType, ENEMY, INITIATIVE, PARTY } from "../CombatantType";
 import CombatantContainer from "../containers/CombatantContainer";
 import CombatantsController from "../controllers/CombatantsController";
 import InitiativeController from "../controllers/InitiativeController";
+import CombatantModel from "../models/CombatantModel";
+import { CombatantType } from "../CombatantType";
 
 const CombatantList =
-  ({ combatantsController, combatantType, selected, onClick, initController }) => (
+  ({ combatants, combatantsController, combatantType, selected, onClick, initController }) => (
     <div className="combatant-list">
       <ul>
-        {combatantsController.getAllCombatants().filter(combatant => (
-          (combatantType === INITIATIVE && combatant.inCombat)
-          || (combatantType === ENEMY && !combatant.isParty)
-          || (combatantType === PARTY && combatant.isParty)
-        )).sort((a, b) => {
-          if (combatantType === INITIATIVE && a.inCombat && b.inCombat) {
-            return initController.getInitIndex(a) - initController.getInitIndex(b);
-          }
-          return 0;
-        }).map((combatant, i) => (
+        {combatants.map((combatant, i) => (
           <CombatantContainer
             key={combatant.id}
             index={i}
@@ -36,6 +28,7 @@ const CombatantList =
 
 CombatantList.propTypes = {
   combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,
+  combatants: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired,
   combatantType: PropTypes.instanceOf(CombatantType).isRequired,
   selected: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,

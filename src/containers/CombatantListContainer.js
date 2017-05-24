@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import CombatantList from "../components/CombatantList";
-import { CombatantType } from "../CombatantType";
+import {CombatantType, ENEMY, INITIATIVE, PARTY} from "../CombatantType";
 import CombatantsController from "../controllers/CombatantsController";
 import InitiativeController from "../controllers/InitiativeController";
 
@@ -22,8 +22,20 @@ class CombatantListContainer extends Component {
   }
 
   render() {
+    let combatants = this.props.combatantsController.getAllCombatants().filter(combatant => (
+      (this.props.combatantType === INITIATIVE && combatant.inCombat)
+      || (this.props.combatantType === ENEMY && !combatant.isParty)
+      || (this.props.combatantType === PARTY && combatant.isParty)
+    )).sort((a, b) => {
+      if (this.props.combatantType === INITIATIVE && a.inCombat && b.inCombat) {
+        return this.props.initController.getInitIndex(a)
+            - this.props.initController.getInitIndex(b);
+      }
+      return 0;
+    });
     return (
       <CombatantList
+        combatants={combatants}
         combatantsController={this.props.combatantsController}
         combatantType={this.props.combatantType}
         selected={this.state.selected}
