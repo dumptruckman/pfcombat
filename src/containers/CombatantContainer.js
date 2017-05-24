@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Combatant from "../components/Combatant";
 import CombatantModel from "../models/CombatantModel";
@@ -6,9 +6,33 @@ import { CombatantType } from "../CombatantType";
 import CombatantsController from "../controllers/CombatantsController";
 import InitiativeController from "../controllers/InitiativeController";
 
-const CombatantContainer = props => (
-  <Combatant {...props} />
-);
+class CombatantContainer extends Component {
+
+  componentWillReceiveProps(nextProps) {
+    let combatant = nextProps.combatant;
+    if (combatant.inCombat && nextProps.initController) {
+      if (nextProps.initController.getTurnIndex()
+          === nextProps.initController.getInitIndex(combatant)) {
+        if (combatant.delay || combatant.ready) {
+          combatant = new CombatantModel(combatant);
+          combatant.delay = false;
+          combatant.ready = false;
+          this.props.combatantsController.updateCombatant(combatant);
+        }
+      } else {
+        // const prevCombatant = this.props.combatant;
+        // if (prevCombatant.delay !== combatant.delay || prevCombatant.ready !== combatant.ready) {
+        //   nextProps.initController.updateTurnIndex(
+        //       this.props.initController.getInitIndex(combatant));
+        // }
+      }
+    }
+  }
+
+  render() {
+    return <Combatant {...this.props} />;
+  }
+}
 
 CombatantContainer.propTypes = {
   index: PropTypes.number.isRequired,

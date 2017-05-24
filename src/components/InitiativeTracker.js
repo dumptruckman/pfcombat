@@ -7,6 +7,7 @@ import { INITIATIVE } from "../CombatantType";
 import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
 import InitiativeController from "../controllers/InitiativeController";
+import CombatantModel from "../models/CombatantModel";
 
 class InitiativeTracker extends Component {
 
@@ -32,6 +33,7 @@ class InitiativeTracker extends Component {
     this.initiativeController.nextTurn = this.initiativeController.nextTurn.bind(this);
     this.initiativeController.prevTurn = this.initiativeController.prevTurn.bind(this);
     this.initiativeController.getTurnIndex = this.initiativeController.getTurnIndex.bind(this);
+    this.initiativeController.moveCombatant = this.initiativeController.moveCombatant.bind(this);
     this.initiativeController.resetInitiative
         = this.initiativeController.resetInitiative.bind(this);
   }
@@ -46,7 +48,27 @@ class InitiativeTracker extends Component {
     }));
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.state.initiative.turnIndex >= 0) {
+      const id = this.state.initiative.order[this.state.initiative.turnIndex];
+      const combatant = nextProps.combatantsController.getCombatantById(id);
+      if (combatant.ready || combatant.delay) {
+        this.initiativeController.nextTurn();
+      }
+    }
+    nextProps.activeCombatants.forEach((nextCombatant) => {
+      const prevCombatant = this.props.activeCombatants.filter(c => c.id === nextCombatant.id)[0];
+      if ((prevCombatant.delay && !nextCombatant.delay)
+          || (prevCombatant.ready && !nextCombatant.ready)) {
+        this.initiativeController.moveCombatant(nextCombatant.id, this.state.initiative.turnIndex);
+        // this.initiativeController.updateTurnIndex(
+        //     this.initiativeController.getInitIndex(nextCombatant));
+      }
+    });
+  }
+
   render() {
+    console.log(this.state.initiative.order);
     return (
       <div id="init-tracker" className="combat-pane">
         <p className="combat-pane__title">Initiative Tracker</p>
@@ -98,6 +120,7 @@ class InitiativeTracker extends Component {
 }
 
 InitiativeTracker.propTypes = {
+  activeCombatants: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired,
   combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,
     //combatantsController: PropTypes.object.isRequired,
 };

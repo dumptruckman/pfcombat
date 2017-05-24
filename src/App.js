@@ -74,7 +74,10 @@ class App extends Component {
     return (
       <div>
         <div id="combat-tab" className="tab">
-          <InitiativeTracker combatantsController={this.combatantsController} />
+          <InitiativeTracker
+            activeCombatants={Object.values(this.state.combatants).filter(c => c.inCombat)}
+            combatantsController={this.combatantsController}
+          />
           <PartyEditor combatantsController={this.combatantsController} />
           <EnemyEditor combatantsController={this.combatantsController} />
         </div>

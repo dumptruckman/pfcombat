@@ -34,6 +34,26 @@ class InitiativeController {
     }));
   }
 
+  moveCombatant(id, newIndex) {
+    const oldIndex = this.state.initiative.order.findIndex(i => i === id);
+    if (oldIndex < 0) {
+      return;
+    }
+    /* TODO implement this
+    this.setState((prevState) => {
+      const newOrder = [...prevState.initiative.order];
+      newOrder.splice(newIndex, 0, id);
+      // newOrder.splice(newIndex < oldIndex ? oldIndex - 1 : oldIndex, 1);
+      return {
+        initiative: {
+          ...prevState.initiative,
+          order: newOrder,
+        },
+      };
+    });
+    */
+  }
+
   updateRoundCount(round) {
     this.setState(prevState => ({
       initiative: {
