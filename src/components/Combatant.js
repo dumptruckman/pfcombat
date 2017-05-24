@@ -4,11 +4,11 @@ import CombatantExtraInfo from "./CombatantExtraInfo";
 import "../composite.css";
 import { CombatantType, INITIATIVE } from "../CombatantType";
 import CombatantModel from "../models/CombatantModel";
-import ValueBox from "./ValueBox";
 import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
 import InitiativeController from "../controllers/InitiativeController";
 import HPButton from "./HPButton";
+import CombatantValueBox from "./CombatantValueBox";
 
 const Combatant = ({ index, combatant, combatantType, selected, onClick, combatantsController,
                      initController }) => {
@@ -16,26 +16,22 @@ const Combatant = ({ index, combatant, combatantType, selected, onClick, combata
   let topSection = (
     <div className="combatant__info combatant__info--vertical">
       <div className="combatant__info">
-        <input
+        <CombatantValueBox
           title="creature name"
-          className="input"
-          defaultValue={combatant.name}
+          placeholder="Enter name"
           style={{ flexGrow: 1 }}
-          onClick={(e) => { e.stopPropagation(); }}
-          onChange={(e) => {
-            combatantsController.setCombatantProp(combatant, "name", e.target.value);
-            e.stopPropagation();
-          }}
+          combatant={combatant}
+          controller={combatantsController}
+          prop={"name"}
         />
-        <ValueBox
+        <CombatantValueBox
           text="Init Mod:"
-          value={combatant.initMod}
           size={3}
           title="init mod"
           scroll
-          onChange={(value) => {
-            combatantsController.setCombatantProp(combatant, "initMod", value);
-          }}
+          combatant={combatant}
+          controller={combatantsController}
+          prop={"initMod"}
         />
         <Button
           title="Remove"
@@ -52,14 +48,13 @@ const Combatant = ({ index, combatant, combatantType, selected, onClick, combata
           controller={combatantsController}
           combatant={combatant}
         />
-        <ValueBox
+        <CombatantValueBox
           text="Max HP:"
-          value={combatant.maxHp}
           size={4}
-          title="maximum hp"
-          onChange={(value) => {
-            combatantsController.setCombatantProp(combatant, "maxHp", value);
-          }}
+          title="maxmium hp"
+          combatant={combatant}
+          controller={combatantsController}
+          prop={"maxHp"}
         />
       </div>
     </div>
@@ -83,20 +78,13 @@ const Combatant = ({ index, combatant, combatantType, selected, onClick, combata
             combatant={combatant}
             style={hpStyle}
           />
-          <ValueBox
+          <CombatantValueBox
             text="Init:"
-            value={combatant.initiative}
             size={2}
             title="initiative"
-            onChange={(val) => {
-              let value = parseInt(val, 10);
-              if (isNaN(value)) {
-                value = 0;
-              }
-              const newCombatant = new CombatantModel(combatant);
-              newCombatant.initiative = value;
-              combatantsController.updateCombatant(newCombatant);
-            }}
+            combatant={combatant}
+            controller={combatantsController}
+            prop={"initiative"}
           />
         </div>
       </div>
