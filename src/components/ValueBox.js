@@ -55,16 +55,20 @@ class ValueBox extends Component {
   }
 
   render() {
+    const style = {};
+    if (this.props.size) {
+      style.width = this.props.size * 10;
+    }
     return (
-      <div className="combatant__info">
+      <div className="combatant__info" style={this.props.style}>
         <span className="combatant__combat-stats-label">{this.props.text}</span>
         <input
           title={this.props.title}
-          className="input input--initiative"
+          className={this.props.className}
           ref={(input) => { this.input = input; }}
           value={this.props.value}
           size={this.props.size}
-          style={{ width: this.props.size * 10 }}
+          style={style}
           placeholder={this.props.placeholder}
           onClick={(e) => {
             e.stopPropagation();
@@ -89,6 +93,8 @@ ValueBox.propTypes = {
   text: PropTypes.string.isRequired,
   value: PropTypes.node.isRequired,
   size: PropTypes.number,
+  className: PropTypes.string,
+  style: PropTypes.objectOf(PropTypes.node),
   title: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   scroll: PropTypes.bool,
@@ -97,7 +103,9 @@ ValueBox.propTypes = {
 
 ValueBox.defaultProps = {
   onChange() {},
+  className: "input",
   scroll: false,
+  style: {},
   placeholder: "",
   size: undefined,
 };
