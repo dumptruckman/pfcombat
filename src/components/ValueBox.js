@@ -62,7 +62,7 @@ class ValueBox extends Component {
 ValueBox.propTypes = {
   text: PropTypes.string.isRequired,
   value: PropTypes.node.isRequired,
-  size: PropTypes.number.isRequired,
+  size: PropTypes.number,
   title: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   scroll: PropTypes.bool,
@@ -73,6 +73,7 @@ ValueBox.defaultProps = {
   onChange() {},
   scroll: false,
   placeholder: "",
+  size: undefined,
 };
 
 export default ValueBox;
