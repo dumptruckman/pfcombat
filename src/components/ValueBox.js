@@ -7,9 +7,16 @@ class ValueBox extends Component {
   constructor(props) {
     super(props);
     this.scrollClick = this.scrollClick.bind(this);
+    this.scroll = this.scroll.bind(this);
+    this.repeatScroll = this.repeatScroll.bind(this);
+    this.scrollMouseUp = this.scrollMouseUp.bind(this);
+    this.timeout = undefined;
+    this.start = undefined;
+    this.speedup = 1.2;
+    this.event = undefined;
   }
 
-  scrollClick(evt) {
+  scroll(evt) {
     const bounds = this.button.getBoundingClientRect();
     const y = evt.pageY - bounds.top;
     const height = bounds.height;
@@ -26,8 +33,25 @@ class ValueBox extends Component {
     }
 
     this.props.onChange(v);
+  }
 
+  scrollClick(evt) {
+    this.event = { ...evt };
+    this.start = 250;
     evt.stopPropagation();
+    this.repeatScroll();
+  }
+
+  scrollMouseUp() {
+    clearTimeout(this.timeout);
+    this.event = undefined;
+    this.start = 250;
+  }
+
+  repeatScroll() {
+    this.scroll(this.event);
+    this.timeout = setTimeout(this.repeatScroll, this.start);
+    this.start = this.start / this.speedup;
   }
 
   render() {
@@ -51,7 +75,9 @@ class ValueBox extends Component {
         <button
           ref={(button) => { this.button = button; }}
           style={!this.props.scroll ? { display: "none" } : {}}
-          onClick={this.scrollClick}
+          onClick={(e) => { e.stopPropagation(); }}
+          onMouseDown={this.scrollClick}
+          onMouseUp={this.scrollMouseUp}
         ><i className="fa fa-arrows-v fa-1" /></button>
       </div>
     );
