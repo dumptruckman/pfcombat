@@ -40,19 +40,23 @@ const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
       <Button
         className={!combatant.inCombat ? "button-disabled" : "button"}
         onClick={() => {
-          const c = new CombatantModel(combatant);
-          c.delay = false;
-          c.ready = !c.ready;
-          combatantsController.updateCombatant(c);
+          if (combatant.inCombat) {
+            const c = new CombatantModel(combatant);
+            c.delay = false;
+            c.ready = !c.ready;
+            combatantsController.updateCombatant(c);
+          }
         }}
       >{combatant.ready ? "Act Now" : "Ready"}</Button>
       <Button
         className={!combatant.inCombat ? "button-disabled" : "button"}
         onClick={() => {
-          const c = new CombatantModel(combatant);
-          c.delay = !c.delay;
-          c.ready = false;
-          combatantsController.updateCombatant(c);
+          if (combatant.inCombat) {
+            const c = new CombatantModel(combatant);
+            c.delay = !c.delay;
+            c.ready = false;
+            combatantsController.updateCombatant(c);
+          }
         }}
       >{combatant.delay ? "Act Now" : "Delay"}</Button>
 
