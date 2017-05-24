@@ -41,6 +41,7 @@ class ValueBox extends Component {
           value={this.props.value}
           size={this.props.size}
           style={{ width: this.props.size * 10 }}
+          placeholder={this.props.placeholder}
           onClick={(e) => {
             e.stopPropagation();
             e.target.setSelectionRange(0, e.target.value.length);
@@ -65,11 +66,13 @@ ValueBox.propTypes = {
   title: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   scroll: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
 
 ValueBox.defaultProps = {
   onChange() {},
   scroll: false,
+  placeholder: "",
 };
 
 export default ValueBox;
