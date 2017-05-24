@@ -23,6 +23,7 @@ const ModalWrapper = (props) => {
         ) : null;
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
       onClick={handleBackgroundClick}
       className="overlay overlay--dark"

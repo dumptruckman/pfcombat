@@ -119,21 +119,23 @@ const Combatant = ({ index, combatant, combatantType, selected, onClick, combata
       {(combatantType === INITIATIVE && <div className="combatant__turn-arrow">{
         initController.getTurnIndex() === index ? <i className="fa fa-play" /> : ""
       }</div>)}
-      <div
-        role="presentation"
-        className="combatant"
-        onClick={() => {
-          onClick(index);
-        }}
-        onContextMenu={e => e.preventDefault()}
-      >
-        {topSection}
-        <CombatantExtraInfo
-          combatant={combatant}
-          selected={selected}
-          combatantsController={combatantsController}
-        />
-      </div>
+      { // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+        <div
+          role="presentation"
+          className="combatant"
+          onClick={() => {
+            onClick(index);
+          }}
+          onContextMenu={e => e.preventDefault()}
+        >
+          {topSection}
+          <CombatantExtraInfo
+            combatant={combatant}
+            selected={selected}
+            combatantsController={combatantsController}
+          />
+        </div>
+      }
     </li>
   );
 };

@@ -11,17 +11,14 @@ class CombatantsController {
   }
 
   createCombatant(party, combatants = this.state.combatants) {
-    let i = 1;
+    let i = 0;
     let name = (party ? "Player " : "Monster ");
-    while (true) {
-      const combatant = this.combatantsController.getCombatantByName(name + i, combatants);
-      if (combatant === undefined || combatant === null) {
-        name += i;
-        break;
-      } else {
-        i += 1;
-      }
-    }
+    let combatant;
+    do {
+      i += 1;
+      combatant = this.combatantsController.getCombatantByName(name + i, combatants);
+    } while (combatant !== null);
+    name += i;
     return new CombatantModel(name, party);
   }
 
@@ -49,14 +46,13 @@ class CombatantsController {
   }
 
   getCombatantByName(name, combatants = this.state.combatants) {
-    for (const key in combatants) {
-        // for (let i = 0; i < combatants.length; i++) {
-      const combatant = combatants[key];
+    let res = null;
+    Object.values(combatants).forEach((combatant) => {
       if (combatant.name === name) {
-        return combatant;
+        res = combatant;
       }
-    }
-    return undefined;
+    });
+    return res;
   }
 
   getCombatantById(id) {

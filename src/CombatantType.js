@@ -1,7 +1,7 @@
 export class CombatantType {
-    constructor(type) {
-        this.type = type;
-    }
+  constructor(type) {
+    this.type = type;
+  }
 }
 
 export const INITIATIVE = new CombatantType("initiative");

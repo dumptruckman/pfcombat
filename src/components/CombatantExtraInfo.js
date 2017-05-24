@@ -28,13 +28,14 @@ const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
       />
     </div>
     <div className="combatant__info">
-      <Button onClick={() => {
-        const c = new CombatantModel(combatant);
-        c.delay = false;
-        c.ready = false;
-        c.inCombat = !c.inCombat;
-        combatantsController.updateCombatant(c);
-      }}
+      <Button
+        onClick={() => {
+          const c = new CombatantModel(combatant);
+          c.delay = false;
+          c.ready = false;
+          c.inCombat = !c.inCombat;
+          combatantsController.updateCombatant(c);
+        }}
       >{combatant.inCombat ? "Make Idle" : "Make Active"}</Button>
       <Button
         className={!combatant.inCombat ? "button-disabled" : ""}
