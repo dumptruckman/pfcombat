@@ -38,6 +38,7 @@ class InitiativeTracker extends Component {
     this.initiativeController.resetInitiative
         = this.initiativeController.resetInitiative.bind(this);
     this.changeSelection = this.changeSelection.bind(this);
+    this.shiftSelection = this.shiftSelection.bind(this);
   }
 
   componentWillMount() {
@@ -73,6 +74,21 @@ class InitiativeTracker extends Component {
     this.setState(prevState => ({
       selected: (prevState.selected === index ? -1 : index),
     }));
+  }
+
+  shiftSelection(amount) {
+    if (this.state.selected >= 0) {
+      let newSelected = this.state.selected + amount;
+      if (newSelected < 0) {
+        newSelected = this.state.initiative.order.length;
+      } else if (newSelected > this.state.initiative.order.length) {
+        newSelected = 0;
+      }
+      console.log(this.state.initiative.order);
+      console.log(this.state.initiative.order[this.state.selected]);
+      this.initiativeController.moveCombatant(
+          this.state.initiative.order[this.state.selected], newSelected, false);
+    }
   }
 
   render() {
@@ -122,6 +138,14 @@ class InitiativeTracker extends Component {
             onClick={() => { this.initiativeController.nextTurn(); }}
           >
             Next Turn<i className="fa fa-arrow-right fa-2x" aria-hidden="true" /></Button>
+          <div className="button-panel" style={{ display: "flex", flexDirection: "column" }}>
+            <Button className="button" onClick={() => this.shiftSelection(-1)}>
+              <i className="fa fa-arrow-up" />
+            </Button>
+            <Button className="button" onClick={() => this.shiftSelection(1)}>
+              <i className="fa fa-arrow-down" />
+            </Button>
+          </div>
         </div>
       </div>
     );
