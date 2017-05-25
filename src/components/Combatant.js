@@ -104,8 +104,8 @@ const Combatant = ({ index, combatant, combatantType, selected, onClick, combata
     <li className={elementClass}>
       {(combatantType === INITIATIVE && <div className="combatant__turn-arrow">
         {initController.getTurnIndex() === index ? <i className="fa fa-play" /> : ""}
-        {combatant.delay ? <i className="fa fa-clock-o" /> : ""}
-        {combatant.ready ? <i className="fa fa-hourglass-half" /> : ""}
+        {combatant.delay ? <i className="fa fa-hourglass-half" /> : ""}
+        {combatant.ready ? <i className="fa fa-bullseye" /> : ""}
       </div>)}
       { // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
