@@ -91,7 +91,7 @@ class HPModal extends Component {
       <ModalWrapper
         {...this.props}
         title={combatant.name}
-        width={300}
+        width={200}
         showOk={false}
       >
         <div style={{ display: "flex", flexDirection: "column" }}>

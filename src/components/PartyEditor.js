@@ -6,7 +6,7 @@ import { PARTY } from "../CombatantType";
 import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
 
-const PartyEditor = ({ combatantsController }) => (
+const PartyEditor = ({ combatantsController, showModal }) => (
   <div id="party-editor" className="combat-pane">
     <p className="combat-pane__title">Party Editor</p>
     <div className="button-panel">
@@ -15,8 +15,10 @@ const PartyEditor = ({ combatantsController }) => (
         style={{ flexGrow: 2 }}
         onClick={() => combatantsController.addCombatant(true)}
       >New Party Member</Button>
-      <Button className="button-disabled" style={{ flexGrow: 1 }}>Save</Button>
-      <Button className="button-disabled" style={{ flexGrow: 1 }}>Load</Button>
+      <Button
+        className="button-disabled"
+        onClick={() => showModal("IMPORT_EXPORT", true)}
+      >Import/Export</Button>
     </div>
     <CombatantListContainer
       combatantsController={combatantsController}
@@ -33,6 +35,7 @@ const PartyEditor = ({ combatantsController }) => (
 
 PartyEditor.propTypes = {
   combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,
+  showModal: PropTypes.func.isRequired,
 };
 
 export default PartyEditor;

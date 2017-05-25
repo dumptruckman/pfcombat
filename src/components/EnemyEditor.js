@@ -6,7 +6,7 @@ import { ENEMY } from "../CombatantType";
 import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
 
-const EnemyEditor = ({ combatantsController }) => (
+const EnemyEditor = ({ combatantsController, showModal }) => (
   <div id="enemy-editor" className="combat-pane">
     <p className="combat-pane__title">Enemy Editor</p>
     <div className="button-panel">
@@ -15,8 +15,10 @@ const EnemyEditor = ({ combatantsController }) => (
         style={{ flexGrow: 2 }}
         onClick={() => combatantsController.addCombatant(false)}
       >New Monster</Button>
-      <Button className="button-disabled" style={{ flexGrow: 1 }}>Save</Button>
-      <Button className="button-disabled" style={{ flexGrow: 1 }}>Load</Button>
+      <Button
+        className="button-disabled"
+        onClick={() => showModal("IMPORT_EXPORT", false)}
+      >Import/Export</Button>
     </div>
     <CombatantListContainer
       combatantsController={combatantsController}
@@ -33,6 +35,7 @@ const EnemyEditor = ({ combatantsController }) => (
 
 EnemyEditor.propTypes = {
   combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,
+  showModal: PropTypes.func.isRequired,
 };
 
 export default EnemyEditor;

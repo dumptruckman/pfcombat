@@ -22,6 +22,9 @@ const ModalWrapper = (props) => {
           </Button>
         ) : null;
 
+  let style = { display: "flex", flexDirection: "column" };
+  style.width = props.width;
+  style = { ...style, ...props.style };
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
@@ -29,14 +32,14 @@ const ModalWrapper = (props) => {
       className="overlay overlay--dark"
       role="presentation"
     >
-      <div className="modal-dialog">
+      <div className="modal-dialog" style={style}>
         <header>
           <h1>{props.title}</h1>
 
           <Button onClick={props.hideModal} style={{ fontSize: 12 }}>Close</Button>
         </header>
 
-        <div className="modal-dialog-contents">
+        <div className="modal-dialog-contents" style={{ display: "flex" }}>
           {props.children}
         </div>
 
@@ -72,6 +75,7 @@ ModalWrapper.defaultProps = {
   okDisabled: false,
   width: 400,
   onOk: () => {},
+  style: {},
 };
 
 export default ModalWrapper;

@@ -43,6 +43,7 @@ class App extends Component {
     this.combatantsController.getCombatantByName
         = this.combatantsController.getCombatantByName.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.showModal = this.showModal.bind(this);
   }
 
 
@@ -70,6 +71,13 @@ class App extends Component {
     });
   }
 
+  showModal(id, target) {
+    this.setState({
+      modalTarget: target,
+      currentModal: id,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -78,8 +86,14 @@ class App extends Component {
             activeCombatants={[...this.state.combatants.values()].filter(c => c.inCombat)}
             combatantsController={this.combatantsController}
           />
-          <PartyEditor combatantsController={this.combatantsController} />
-          <EnemyEditor combatantsController={this.combatantsController} />
+          <PartyEditor
+            combatantsController={this.combatantsController}
+            showModal={this.showModal}
+          />
+          <EnemyEditor
+            combatantsController={this.combatantsController}
+            showModal={this.showModal}
+          />
         </div>
         <div>
           <ModalConductor
