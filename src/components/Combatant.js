@@ -52,6 +52,7 @@ const Combatant = ({ index, combatant, combatantType, selected, onClick, combata
           text="Max HP:"
           size={4}
           title="maxmium hp"
+          scroll
           combatant={combatant}
           controller={combatantsController}
           prop={"maxHp"}
