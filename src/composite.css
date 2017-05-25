@@ -30,6 +30,8 @@ span, p, div {
 
 .button-panel {
     display: flex;
+    flex: 0 0 auto;
+    height: auto;
 }
 
 .button-panel--init-roll {
@@ -135,11 +137,11 @@ input {
 }
 
 .combat-pane {
-    height: 98vh;
     width: 33vw;
     min-width: 360px;
     margin: 4px;
-    max-height: 98vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .combat-pane__title {
@@ -153,12 +155,14 @@ input {
     margin: 3px;
     margin-top: 6px;
     margin-bottom: 6px;
+    overflow: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: content;
 }
 
 .combatant-list {
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
+    
 }
 
 .combatant-list__element:hover {
