@@ -82,7 +82,7 @@ class ValueBox extends Component {
           onClick={(e) => { e.stopPropagation(); }}
           onMouseDown={this.scrollClick}
           onMouseUp={this.scrollMouseUp}
-        ><i className="fa fa-arrows-v fa-1" /></button>
+        ><i className="fa fa-sort fa-1" /></button>
       </div>
     );
   }
