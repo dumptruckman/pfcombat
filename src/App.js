@@ -11,7 +11,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      combatants: {},
+      combatants: new Map(),
       currentModal: null,
       modalTarget: null,
     };
@@ -47,17 +47,17 @@ class App extends Component {
 
 
   componentWillMount() {
-    let combatants = {};
+    const combatants = new Map();
     let c = this.combatantsController.createCombatant(true, combatants);
-    combatants = { ...combatants, [c.id]: c };
+    combatants.set(c.id, c);
     c = this.combatantsController.createCombatant(true, combatants);
-    combatants = { ...combatants, [c.id]: c };
+    combatants.set(c.id, c);
     c = this.combatantsController.createCombatant(false, combatants);
-    combatants = { ...combatants, [c.id]: c };
+    combatants.set(c.id, c);
     c = this.combatantsController.createCombatant(false, combatants);
-    combatants = { ...combatants, [c.id]: c };
+    combatants.set(c.id, c);
     c = this.combatantsController.createCombatant(false, combatants);
-    combatants = { ...combatants, [c.id]: c };
+    combatants.set(c.id, c);
     this.setState({
       combatants,
     });
@@ -75,7 +75,7 @@ class App extends Component {
       <div>
         <div id="combat-tab" className="tab">
           <InitiativeTracker
-            activeCombatants={Object.values(this.state.combatants).filter(c => c.inCombat)}
+            activeCombatants={[...this.state.combatants.values()].filter(c => c.inCombat)}
             combatantsController={this.combatantsController}
           />
           <PartyEditor combatantsController={this.combatantsController} />

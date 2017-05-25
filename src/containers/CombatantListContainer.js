@@ -26,17 +26,15 @@ class CombatantListContainer extends Component {
   }
 
   render() {
-    const combatants = this.props.combatantsController.getAllCombatants().filter(combatant => (
+    let combatants = this.props.combatantsController.getAllCombatants().filter(combatant => (
       (this.props.combatantType === INITIATIVE && combatant.inCombat)
       || (this.props.combatantType === ENEMY && !combatant.isParty)
       || (this.props.combatantType === PARTY && combatant.isParty)
-    )).sort((a, b) => {
-      if (this.props.combatantType === INITIATIVE && a.inCombat && b.inCombat) {
-        return this.props.initController.getInitIndex(a)
-            - this.props.initController.getInitIndex(b);
-      }
-      return 0;
-    });
+    ));
+    if (this.props.combatantType === INITIATIVE) {
+      combatants = combatants.sort((a, b) => this.props.initController.getInitIndex(a)
+            - this.props.initController.getInitIndex(b));
+    }
     return (
       <CombatantList
         combatants={combatants}

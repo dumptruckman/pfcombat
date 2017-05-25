@@ -24,30 +24,40 @@ class CombatantsController {
 
   addCombatant(party) {
     const combatant = this.combatantsController.createCombatant(party);
-    this.setState(prevState => ({
-      combatants: {
-        ...prevState.combatants,
-        [combatant.id]: combatant,
-      },
-    }));
+    this.setState((prevState) => {
+      const newCombatants = new Map(prevState.combatants);
+      newCombatants.set(combatant.id, combatant);
+      console.log(newCombatants);
+      return {
+        combatants: newCombatants,
+      };
+    });
   }
 
   removeCombatant(id) {
-    const newCombatants = { ...this.state.combatants };
-    delete newCombatants[id];
-    this.setState({
-      combatants: newCombatants,
+    this.setState((prevState) => {
+      const newCombatants = new Map(prevState.combatants);
+      newCombatants.delete(id);
+      return {
+        combatants: newCombatants,
+      };
     });
   }
 
   removeCombatants(party) {
-    Object.values(this.state.combatants).filter(c => c.isParty === party)
-        .forEach(c => this.combatantsController.removeCombatant(c.id));
+    this.setState((prevState) => {
+      const newCombatants = new Map(prevState.combatants);
+      [...prevState.combatants.entries()].filter(([, c]) => c.party === party)
+          .forEach(key => newCombatants.delete(key));
+      return {
+        combatants: newCombatants,
+      };
+    });
   }
 
   getCombatantByName(name, combatants = this.state.combatants) {
     let res = null;
-    Object.values(combatants).forEach((combatant) => {
+    combatants.forEach((combatant) => {
       if (combatant.name === name) {
         res = combatant;
       }
@@ -56,26 +66,27 @@ class CombatantsController {
   }
 
   getCombatantById(id) {
-    return this.state.combatants[id];
+    return this.state.combatants.get(id);
   }
 
   updateCombatants(newCombatants) {
-    const combatants = { ...this.state.combatants };
-    for (let i = 0; i < newCombatants.length; i += 1) {
-      combatants[newCombatants[i].id] = newCombatants[i];
-    }
-    this.setState({
-      combatants,
+    this.setState((prevState) => {
+      const combatants = new Map(prevState.combatants);
+      newCombatants.forEach(c => combatants.set(c.id, c));
+      return {
+        combatants,
+      };
     });
   }
 
   updateCombatant(combatant) {
-    this.setState(prevState => ({
-      combatants: {
-        ...prevState.combatants,
-        [combatant.id]: combatant,
-      },
-    }));
+    this.setState((prevState) => {
+      const combatants = new Map(prevState.combatants);
+      combatants.set(combatant.id, combatant);
+      return {
+        combatants,
+      };
+    });
   }
 
   setCombatantProp(combatant, propName, value) {
@@ -89,32 +100,27 @@ class CombatantsController {
     }
 
     c[propName] = v;
-    this.setState(prevState => ({
-      combatants: {
-        ...prevState.combatants,
-        [c.id]: c,
-      },
-    }));
+    this.combatantsController.updateCombatant(c);
   }
 
   getCombatant(index) {
-    return Object.values(this.state.combatants)[index];
+    return [...this.state.combatants.values()][index];
   }
 
   getParty() {
-    return Object.values(this.state.combatants).filter(c => c.isParty);
+    return [...this.state.combatants.values()].filter(c => c.isParty);
   }
 
   getEnemies() {
-    return Object.values(this.state.combatants).filter(c => !c.isParty);
+    return [...this.state.combatants.values()].filter(c => !c.isParty);
   }
 
   getActiveCombatants() {
-    return Object.values(this.state.combatants).filter(c => c.inCombat);
+    return [...this.state.combatants.values()].filter(c => c.inCombat);
   }
 
   getAllCombatants() {
-    return Object.values(this.state.combatants);
+    return [...this.state.combatants.values()];
   }
 
   showCurrentHpDialog(combatant) {
