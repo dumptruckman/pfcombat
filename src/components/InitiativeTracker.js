@@ -61,8 +61,8 @@ class InitiativeTracker extends Component {
     }
     nextProps.activeCombatants.forEach((nextCombatant) => {
       const prevCombatant = this.props.activeCombatants.filter(c => c.id === nextCombatant.id)[0];
-      if ((prevCombatant.delay && !nextCombatant.delay)
-          || (prevCombatant.ready && !nextCombatant.ready)) {
+      if (prevCombatant && ((prevCombatant.delay && !nextCombatant.delay)
+          || (prevCombatant.ready && !nextCombatant.ready))) {
         this.initiativeController.moveCombatant(nextCombatant.id, this.state.initiative.turnIndex);
         // this.initiativeController.updateTurnIndex(
         //     this.initiativeController.getInitIndex(nextCombatant));
