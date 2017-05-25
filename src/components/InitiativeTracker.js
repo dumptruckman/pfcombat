@@ -62,18 +62,53 @@ class InitiativeTracker extends Component {
     nextProps.activeCombatants.forEach((nextCombatant) => {
       const prevCombatant = this.props.activeCombatants.filter(c => c.id === nextCombatant.id)[0];
       if (prevCombatant) {
-        if ((prevCombatant.delay && !nextCombatant.delay)
+        if (nextCombatant) {
+          if ((prevCombatant.delay && !nextCombatant.delay)
             || (prevCombatant.ready && !nextCombatant.ready)) {
-          this.initiativeController
-              .moveCombatant(nextCombatant.id, this.state.initiative.turnIndex);
+            this.initiativeController
+            .moveCombatant(nextCombatant.id, this.state.initiative.turnIndex);
+          }
+          if (prevCombatant.inCombat && !nextCombatant.inCombat) {
+            this.setState({
+              selected: -1,
+            });
+          }
         }
-        if (prevCombatant.inCombat && !nextCombatant.inCombat) {
-          this.setState({
-            selected: -1,
-          });
-        }
+      } else {
+        this.setState(prevState => ({
+          initiative: {
+            ...prevState.initiative,
+            order: [
+              ...prevState.initiative.order,
+              nextCombatant.id,
+            ],
+          },
+        }));
       }
     });
+    if (nextProps.activeCombatants.length < this.props.activeCombatants.length) {
+      this.props.activeCombatants.forEach((prevCombatant) => {
+        const nextCombatant = nextProps.activeCombatants.filter(c => c.id === prevCombatant.id)[0];
+        if (!nextCombatant) {
+          const index = this.initiativeController.getInitIndex(prevCombatant);
+          this.setState((prevState) => {
+            let newSelected = prevState.selected;
+            if (prevState.selected === index) {
+              newSelected = -1;
+            }
+            const newOrder = [...prevState.initiative.order];
+            newOrder.splice(index, 1);
+            return {
+              selected: newSelected,
+              initiative: {
+                ...prevState.initiative,
+                order: newOrder,
+              },
+            };
+          });
+        }
+      });
+    }
   }
 
   changeSelection(index) {
