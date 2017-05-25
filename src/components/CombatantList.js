@@ -8,8 +8,8 @@ import { CombatantType } from "../CombatantType";
 
 const CombatantList =
   ({ combatants, combatantsController, combatantType, selected, onClick, initController }) => (
-    <div className="combatant-list">
-      <ul>
+    <div className="combatant-list-container">
+      <ul className="combatant-list">
         {combatants.map((combatant, i) => (
           <CombatantContainer
             key={combatant.id}

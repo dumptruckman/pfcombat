@@ -24,6 +24,8 @@ span, p, div {
 
 .tab {
     display: flex;
+    height: 100vh;
+    width: 100vw;
 }
 
 .button-panel {
@@ -133,8 +135,11 @@ input {
 }
 
 .combat-pane {
-    width: 400px;
+    height: 98vh;
+    width: 33vw;
+    min-width: 360px;
     margin: 4px;
+    max-height: 98vh;
 }
 
 .combat-pane__title {
@@ -144,10 +149,16 @@ input {
 
 }
 
-.combatant-list {
+.combatant-list-container {
     margin: 3px;
     margin-top: 6px;
     margin-bottom: 6px;
+}
+
+.combatant-list {
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
 }
 
 .combatant-list__element:hover {
