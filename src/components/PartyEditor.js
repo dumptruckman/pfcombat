@@ -5,7 +5,6 @@ import CombatantListContainer from "../containers/CombatantListContainer";
 import { PARTY } from "../CombatantType";
 import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
-import InitiativeController from "../controllers/InitiativeController";
 
 const PartyEditor = ({ combatantsController, showModal, smallMode }) => (
   <div id="party-editor" className="combat-pane">
