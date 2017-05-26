@@ -36,6 +36,7 @@ const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
         }}
       >{combatant.inCombat ? "Make Idle" : "Make Active"}</Button>
       <Button
+        style={{ flex: "1 1 auto" }}
         className={!combatant.inCombat ? "button-disabled" : "button"}
         onClick={() => {
           if (combatant.inCombat) {
@@ -47,6 +48,7 @@ const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
         }}
       >{combatant.ready ? "Act Now" : "Ready"}</Button>
       <Button
+        style={{ flex: "1 1 auto" }}
         className={!combatant.inCombat ? "button-disabled" : "button"}
         onClick={() => {
           if (combatant.inCombat) {
