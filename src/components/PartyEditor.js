@@ -5,6 +5,7 @@ import CombatantListContainer from "../containers/CombatantListContainer";
 import { PARTY } from "../CombatantType";
 import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
+import InitiativeController from "../controllers/InitiativeController";
 
 const PartyEditor = ({ combatantsController, showModal, smallMode }) => (
   <div id="party-editor" className="combat-pane">
@@ -25,6 +26,16 @@ const PartyEditor = ({ combatantsController, showModal, smallMode }) => (
       combatantType={PARTY}
     />
     <div className="button-panel" style={{ display: "flex" }}>
+      <Button
+        style={{ flex: "1 1 auto" }}
+        className="button"
+        onClick={() => combatantsController.makeAllActive(combatantsController.getParty())}
+      >Make All Active</Button>
+      <Button
+        style={{ flex: "1 1 auto" }}
+        className="button"
+        onClick={() => combatantsController.makeAllIdle(combatantsController.getParty())}
+      >Make All Idle</Button>
       <Button
         className="button"
         onClick={() => combatantsController.removeCombatants(true)}

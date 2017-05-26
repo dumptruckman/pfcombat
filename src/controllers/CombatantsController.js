@@ -127,6 +127,23 @@ class CombatantsController {
       modalTarget: combatant.id,
     });
   }
+
+  makeAllIdle(combatants) {
+    this.combatantsController.updateCombatants(combatants.map((c) => {
+      const combatant = new CombatantModel(c);
+      combatant.inCombat = false;
+      combatant.initiative = 0;
+      return combatant;
+    }));
+  }
+
+  makeAllActive(combatants) {
+    this.combatantsController.updateCombatants(combatants.map((c) => {
+      const combatant = new CombatantModel(c);
+      combatant.inCombat = true;
+      return combatant;
+    }));
+  }
 }
 
 export default CombatantsController;

@@ -26,6 +26,16 @@ const EnemyEditor = ({ combatantsController, showModal, smallMode }) => (
     />
     <div className="button-panel" style={{ display: "flex" }}>
       <Button
+        style={{ flex: "1 1 auto" }}
+        className="button"
+        onClick={() => combatantsController.makeAllActive(combatantsController.getEnemies())}
+      >Make All Active</Button>
+      <Button
+        style={{ flex: "1 1 auto" }}
+        className="button"
+        onClick={() => combatantsController.makeAllIdle(combatantsController.getEnemies())}
+      >Make All Idle</Button>
+      <Button
         className="button"
         onClick={() => combatantsController.removeCombatants(false)}
       >Clear</Button>

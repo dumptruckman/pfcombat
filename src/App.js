@@ -56,6 +56,8 @@ class App extends Component {
         = this.combatantsController.getCombatantById.bind(this);
     this.combatantsController.getCombatantByName
         = this.combatantsController.getCombatantByName.bind(this);
+    this.combatantsController.makeAllActive = this.combatantsController.makeAllActive.bind(this);
+    this.combatantsController.makeAllIdle = this.combatantsController.makeAllIdle.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.showModal = this.showModal.bind(this);
     this.componentDidUpdate = this.componentDidUpdate.bind(this);
@@ -67,8 +69,10 @@ class App extends Component {
     this.componentCleanup();
   }
 
-  componentCleanup() {
-    localStorage.setItem("combatants", JSON.stringify([...this.state.combatants.values()]));
+  setTab(currentTab) {
+    this.setState({
+      currentTab,
+    });
   }
 
   hideModal() {
@@ -85,10 +89,8 @@ class App extends Component {
     });
   }
 
-  setTab(currentTab) {
-    this.setState({
-      currentTab,
-    });
+  componentCleanup() {
+    localStorage.setItem("combatants", JSON.stringify([...this.state.combatants.values()]));
   }
 
   render() {
