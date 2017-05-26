@@ -29,10 +29,12 @@ const Combatant = ({ index, combatant, combatantType, selected, onClick, combata
           size={3}
           title="init mod"
           scroll
+          type="number"
           combatant={combatant}
           controller={combatantsController}
           prop={"initMod"}
         />
+        <div style={{ minWidth: 20 }} />
         <Button
           title="Remove"
           className="button"
@@ -53,6 +55,7 @@ const Combatant = ({ index, combatant, combatantType, selected, onClick, combata
           size={4}
           title="maxmium hp"
           scroll
+          type="number"
           combatant={combatant}
           controller={combatantsController}
           prop={"maxHp"}
@@ -86,7 +89,9 @@ const Combatant = ({ index, combatant, combatantType, selected, onClick, combata
             combatant={combatant}
             controller={combatantsController}
             prop={"initiative"}
+            type="number"
           />
+          <div style={{ minWidth: 10 }} />
         </div>
       </div>
         );

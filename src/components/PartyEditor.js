@@ -6,9 +6,9 @@ import { PARTY } from "../CombatantType";
 import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
 
-const PartyEditor = ({ combatantsController, showModal }) => (
+const PartyEditor = ({ combatantsController, showModal, smallMode }) => (
   <div id="party-editor" className="combat-pane">
-    <p className="combat-pane__title">Party Editor</p>
+    {!smallMode && <p className="combat-pane__title">Party Editor</p>}
     <div className="button-panel">
       <Button
         className="button"
@@ -36,6 +36,7 @@ const PartyEditor = ({ combatantsController, showModal }) => (
 PartyEditor.propTypes = {
   combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,
   showModal: PropTypes.func.isRequired,
+  smallMode: PropTypes.bool.isRequired,
 };
 
 export default PartyEditor;

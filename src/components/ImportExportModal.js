@@ -82,8 +82,9 @@ class ImportExportModal extends Component {
       <ModalWrapper
         {...this.props}
         title={title}
-        width={500}
+        // width={500}
         showOk={false}
+        style={{ maxWidth: 500, width: "100%", minHeight: 150, maxHeight: 200, height: "100%" }}
       >
         <div style={{ display: "flex", flexGrow: 1, flexDirection: "column" }}>
           <div style={{ display: "flex", flexGrow: 1 }}>

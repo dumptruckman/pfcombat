@@ -6,9 +6,9 @@ import { ENEMY } from "../CombatantType";
 import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
 
-const EnemyEditor = ({ combatantsController, showModal }) => (
+const EnemyEditor = ({ combatantsController, showModal, smallMode }) => (
   <div id="enemy-editor" className="combat-pane">
-    <p className="combat-pane__title">Enemy Editor</p>
+    {!smallMode && <p className="combat-pane__title">Enemy Editor</p>}
     <div className="button-panel">
       <Button
         className="button"
@@ -36,6 +36,7 @@ const EnemyEditor = ({ combatantsController, showModal }) => (
 EnemyEditor.propTypes = {
   combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,
   showModal: PropTypes.func.isRequired,
+  smallMode: PropTypes.bool.isRequired,
 };
 
 export default EnemyEditor;

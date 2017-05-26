@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import sizeMe from "react-sizeme";
 import "./App.css";
 import InitiativeTracker from "./components/InitiativeTracker";
 import PartyEditor from "./components/PartyEditor";
@@ -6,8 +8,11 @@ import EnemyEditor from "./components/EnemyEditor";
 import CombatantsController from "./controllers/CombatantsController";
 import ModalConductor from "./ModalConductor";
 import CombatantModel from "./models/CombatantModel";
+import { ENEMY, INITIATIVE, PARTY } from "./CombatantType";
+import Button from "./components/Button";
 
 class App extends Component {
+  // width 1105
 
   constructor() {
     super();
@@ -20,6 +25,7 @@ class App extends Component {
       combatants: initialCombatants,
       currentModal: null,
       modalTarget: null,
+      currentTab: INITIATIVE,
     };
     this.combatantsController = new CombatantsController();
     this.combatantsController.updateCombatant
@@ -54,6 +60,7 @@ class App extends Component {
     this.showModal = this.showModal.bind(this);
     this.componentDidUpdate = this.componentDidUpdate.bind(this);
     this.componentCleanup = this.componentCleanup.bind(this);
+    this.setTab = this.setTab.bind(this);
   }
 
   componentDidUpdate() {
@@ -78,22 +85,80 @@ class App extends Component {
     });
   }
 
+  setTab(currentTab) {
+    this.setState({
+      currentTab,
+    });
+  }
+
   render() {
+    let smallMode = false;
+    const { width } = this.props.size;
+    if (width < 1105) {
+      smallMode = true;
+    }
+
+    const initiativePane = (<InitiativeTracker
+      activeCombatants={[...this.state.combatants.values()].filter(c => c.inCombat)}
+      combatantsController={this.combatantsController}
+      smallMode={smallMode}
+    />);
+    const partyPane = (<PartyEditor
+      combatantsController={this.combatantsController}
+      showModal={this.showModal}
+      smallMode={smallMode}
+    />);
+    const enemiesPane = (<EnemyEditor
+      combatantsController={this.combatantsController}
+      showModal={this.showModal}
+      smallMode={smallMode}
+    />);
+
+    let panesToShow = (<div id="combat-tab" className="tab">
+      {initiativePane}
+      {partyPane}
+      {enemiesPane}
+    </div>);
+    if (smallMode) {
+      switch (this.state.currentTab) {
+        case INITIATIVE:
+          panesToShow = <div id="combat-tab" className="tab">{initiativePane}</div>;
+          break;
+        case PARTY:
+          panesToShow = <div id="combat-tab" className="tab">{partyPane}</div>;
+          break;
+        case ENEMY:
+          panesToShow = <div id="combat-tab" className="tab">{enemiesPane}</div>;
+          break;
+        default:
+          break;
+      }
+    }
+
     return (
       <div>
-        <div id="combat-tab" className="tab">
-          <InitiativeTracker
-            activeCombatants={[...this.state.combatants.values()].filter(c => c.inCombat)}
-            combatantsController={this.combatantsController}
-          />
-          <PartyEditor
-            combatantsController={this.combatantsController}
-            showModal={this.showModal}
-          />
-          <EnemyEditor
-            combatantsController={this.combatantsController}
-            showModal={this.showModal}
-          />
+        <div className="tab tab--small-mode">
+          {smallMode && <div className="button-panel">
+            <Button
+              className={this.state.currentTab === INITIATIVE
+                  ? "button-disabled button-disabled--tab" : "button button--tab"}
+              style={{ flex: "1 1 auto" }}
+              onClick={() => { this.setTab(INITIATIVE); }}
+            >Initiative Tracker</Button>
+            <Button
+              className={this.state.currentTab === PARTY
+                ? "button-disabled button-disabled--tab" : "button button--tab"}
+              style={{ flex: "1 1 auto" }}
+              onClick={() => { this.setTab(PARTY); }}
+            >Party Editor</Button>
+            <Button
+              className={this.state.currentTab === ENEMY
+                ? "button-disabled button-disabled--tab" : "button button--tab"}
+              style={{ flex: "1 1 auto" }}
+              onClick={() => { this.setTab(ENEMY); }}
+            >Enemy Editor</Button>
+          </div>}
+          {panesToShow}
         </div>
         <div>
           <ModalConductor
@@ -108,5 +173,10 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  size: PropTypes.shape({
+    width: PropTypes.number.isRequired,
+  }).isRequired,
+};
 
-export default App;
+export default sizeMe({ monitorWidth: true })(App);

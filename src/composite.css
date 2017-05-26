@@ -13,6 +13,13 @@ ul {
     margin: 0;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
 span, p, div {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -24,8 +31,14 @@ span, p, div {
 
 .tab {
     display: flex;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
+}
+
+.tab--small-mode {
+    flex-direction: column;
+    height: 100%;
+    position: fixed;
 }
 
 .button-panel {
@@ -71,6 +84,11 @@ span, p, div {
     background-color: #E0F0C9;
 }
 
+.button--tab {
+    padding: 10px 20px;
+    font-size: 20px;
+}
+
 .button-disabled {
     margin: 1px;
 
@@ -87,6 +105,11 @@ span, p, div {
     font-size: 16px;
     padding: 5px 10px;
     background-color: #c3c3c3;
+}
+
+.button-disabled--tab {
+    padding: 10px 20px;
+    font-size: 20px;
 }
 
 .value-button {
@@ -137,11 +160,12 @@ input {
 }
 
 .combat-pane {
-    width: 33vw;
+    /*width: 33vw;*/
     min-width: 360px;
     margin: 4px;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 
 .combat-pane__title {
@@ -224,12 +248,14 @@ input {
 
 .combatant__name {
     vertical-align: middle;
-    font-size: 20px;
+    font-size: 18px;
+    align-items: center;
+    display: inline-flex;
 }
 
 .combatant__info {
     display: flex;
-    align-content:center;
+    align-content: center;
 }
 
 .combatant__info--extras {
@@ -263,8 +289,9 @@ input {
 }
 
 .combatant__combat-stats-label {
-    font-style: italic;
-    font-size: 20px;
+    font-size: 16px;
+    align-items: center;
+    display: inline-flex;
 }
 
 .combatant__condition-label {

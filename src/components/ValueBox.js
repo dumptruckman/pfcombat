@@ -58,6 +58,7 @@ class ValueBox extends Component {
     const style = {};
     if (this.props.size) {
       style.width = this.props.size * 10;
+      style.minHeight = 30;
     }
     return (
       <div className="combatant__info" style={this.props.style}>
@@ -72,9 +73,10 @@ class ValueBox extends Component {
           placeholder={this.props.placeholder}
           onClick={(e) => {
             e.stopPropagation();
-            e.target.setSelectionRange(0, e.target.value.length);
+            e.target.select();
           }}
           onChange={e => this.props.onChange(e.target.value)}
+          type={this.props.type}
         />
         <button
           ref={(button) => { this.button = button; }}
@@ -99,6 +101,7 @@ ValueBox.propTypes = {
   onChange: PropTypes.func,
   scroll: PropTypes.bool,
   placeholder: PropTypes.string,
+  type: PropTypes.string,
 };
 
 ValueBox.defaultProps = {
@@ -108,6 +111,7 @@ ValueBox.defaultProps = {
   style: {},
   placeholder: "",
   size: undefined,
+  type: undefined,
 };
 
 export default ValueBox;

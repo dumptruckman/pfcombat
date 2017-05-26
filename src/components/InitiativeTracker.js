@@ -137,7 +137,7 @@ class InitiativeTracker extends Component {
   render() {
     return (
       <div id="init-tracker" className="combat-pane">
-        <p className="combat-pane__title">Initiative Tracker</p>
+        {!this.props.smallMode && <p className="combat-pane__title">Initiative Tracker</p>}
         <div className="button-panel">
           <Button
             className="button"
@@ -198,6 +198,7 @@ class InitiativeTracker extends Component {
 InitiativeTracker.propTypes = {
   activeCombatants: PropTypes.arrayOf(PropTypes.instanceOf(CombatantModel)).isRequired,
   combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,
+  smallMode: PropTypes.bool.isRequired,
     //combatantsController: PropTypes.object.isRequired,
 };
 

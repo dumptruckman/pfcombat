@@ -17,7 +17,7 @@ const CombatantValueBox = props => (
     onChange={(value) => {
       props.controller.setCombatantProp(props.combatant, props.prop, value);
     }}
-
+    type={props.type}
   />
 );
 
@@ -32,6 +32,7 @@ CombatantValueBox.propTypes = {
   scroll: PropTypes.bool,
   controller: PropTypes.instanceOf(CombatantsController).isRequired,
   combatant: PropTypes.instanceOf(CombatantModel).isRequired,
+  type: PropTypes.string
 };
 
 CombatantValueBox.defaultProps = {
@@ -41,6 +42,7 @@ CombatantValueBox.defaultProps = {
   size: undefined,
   scroll: false,
   style: {},
+  type: undefined,
 };
 
 export default CombatantValueBox;
