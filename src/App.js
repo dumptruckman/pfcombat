@@ -16,18 +16,8 @@ class App extends Component {
 
   constructor() {
     super();
-    const combatants = JSON.parse(localStorage.getItem("combatants"));
-    const initialCombatants = new Map();
-    if (combatants !== null && combatants.constructor === Array) {
-      combatants.map(c => new CombatantModel(c)).forEach(c => initialCombatants.set(c.id, c));
-    }
-    this.state = {
-      combatants: initialCombatants,
-      currentModal: null,
-      modalTarget: null,
-      currentTab: INITIATIVE,
-    };
     this.combatantsController = new CombatantsController();
+
     this.combatantsController.updateCombatant
         = this.combatantsController.updateCombatant.bind(this);
     this.combatantsController.setCombatantProp
@@ -63,6 +53,20 @@ class App extends Component {
     this.componentDidUpdate = this.componentDidUpdate.bind(this);
     this.componentCleanup = this.componentCleanup.bind(this);
     this.setTab = this.setTab.bind(this);
+    this.createFirstRunSampleData = this.createFirstRunSampleData.bind(this);
+
+    const combatants = localStorage.getItem("combatants") !== null
+        ? JSON.parse(localStorage.getItem("combatants")) : this.createFirstRunSampleData();
+    const initialCombatants = new Map();
+    if (combatants !== null && combatants.constructor === Array) {
+      combatants.map(c => new CombatantModel(c)).forEach(c => initialCombatants.set(c.id, c));
+    }
+    this.state = {
+      combatants: initialCombatants,
+      currentModal: null,
+      modalTarget: null,
+      currentTab: INITIATIVE,
+    };
   }
 
   componentDidUpdate() {
@@ -73,6 +77,32 @@ class App extends Component {
     this.setState({
       currentTab,
     });
+  }
+
+  createFirstRunSampleData() {
+    const combatants = [];
+    let c = this.combatantsController.createCombatant(true, combatants);
+    c.inCombat = true;
+    combatants.push(c);
+    c = this.combatantsController.createCombatant(true, combatants);
+    c.inCombat = true;
+    combatants.push(c);
+    c = this.combatantsController.createCombatant(true, combatants);
+    c.inCombat = true;
+    combatants.push(c);
+    c = this.combatantsController.createCombatant(true, combatants);
+    c.inCombat = true;
+    combatants.push(c);
+    c = this.combatantsController.createCombatant(false, combatants);
+    c.inCombat = true;
+    combatants.push(c);
+    c = this.combatantsController.createCombatant(false, combatants);
+    c.inCombat = true;
+    combatants.push(c);
+    c = this.combatantsController.createCombatant(false, combatants);
+    c.inCombat = true;
+    combatants.push(c);
+    return combatants;
   }
 
   hideModal() {
