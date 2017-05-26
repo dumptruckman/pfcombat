@@ -191,6 +191,20 @@ class App extends Component {
             >Enemy Editor</Button>
           </div>}
           {panesToShow}
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            {// eslint-disable-next-line jsx-a11y/no-static-element-interactions
+              <span
+                role="presentation"
+                style={smallMode ? { fontSize: 10 } : {}}
+              >This app is in beta. If you want to help make it better,&nbsp;
+                <a
+                  href="https://github.com/dumptruckman/pfcombat/issues"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >click here</a>
+              &nbsp;to report issues.</span>
+            }
+          </div>
         </div>
         <div>
           <ModalConductor
