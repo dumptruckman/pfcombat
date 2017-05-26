@@ -50,8 +50,11 @@ class CombatantsController {
   removeCombatants(party) {
     this.setState((prevState) => {
       const newCombatants = new Map(prevState.combatants);
-      [...prevState.combatants.entries()].filter(([, c]) => c.party === party)
-          .forEach(key => newCombatants.delete(key));
+      [...prevState.combatants.entries()].forEach(([key, value]) => {
+        if (value.isParty === party) {
+          newCombatants.delete(key);
+        }
+      });
       return {
         combatants: newCombatants,
       };
