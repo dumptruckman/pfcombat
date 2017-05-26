@@ -13,11 +13,13 @@ class InitiativeTracker extends Component {
 
   constructor(props) {
     super(props);
+    const localInit = JSON.parse(localStorage.getItem("initiative"));
+    const localValid = localInit !== null;
     this.state = {
       initiative: {
-        turnIndex: -1,
-        roundCount: 0,
-        order: [],
+        turnIndex: localValid && localInit.turnIndex !== null ? localInit.turnIndex : -1,
+        roundCount: localValid && localInit.roundCount !== null ? localInit.roundCount : 0,
+        order: localValid && localInit.order !== null ? localInit.order : [],
       },
       selected: -1,
     };
@@ -39,16 +41,10 @@ class InitiativeTracker extends Component {
         = this.initiativeController.resetInitiative.bind(this);
     this.changeSelection = this.changeSelection.bind(this);
     this.shiftSelection = this.shiftSelection.bind(this);
-  }
+    this.componentDidUpdate = this.componentDidUpdate.bind(this);
+    this.componentCleanup = this.componentCleanup.bind(this);
 
-  componentWillMount() {
-    const order = this.props.combatantsController.getAllCombatants().map(c => c.id);
-    this.setState(prevState => ({
-      initiative: {
-        ...prevState.initiative,
-        order,
-      },
-    }));
+    this.componentCleanup();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -74,7 +70,7 @@ class InitiativeTracker extends Component {
             });
           }
         }
-      } else {
+      } else if (nextCombatant.inCombat) {
         this.setState(prevState => ({
           initiative: {
             ...prevState.initiative,
@@ -109,6 +105,14 @@ class InitiativeTracker extends Component {
         }
       });
     }
+  }
+
+  componentDidUpdate() {
+    this.componentCleanup();
+  }
+
+  componentCleanup() {
+    localStorage.setItem("initiative", JSON.stringify(this.state.initiative));
   }
 
   changeSelection(index) {

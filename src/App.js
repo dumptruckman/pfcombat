@@ -5,13 +5,19 @@ import PartyEditor from "./components/PartyEditor";
 import EnemyEditor from "./components/EnemyEditor";
 import CombatantsController from "./controllers/CombatantsController";
 import ModalConductor from "./ModalConductor";
+import CombatantModel from "./models/CombatantModel";
 
 class App extends Component {
 
   constructor() {
     super();
+    const combatants = JSON.parse(localStorage.getItem("combatants"));
+    const initialCombatants = new Map();
+    if (combatants !== null && combatants.constructor === Array) {
+      combatants.map(c => new CombatantModel(c)).forEach(c => initialCombatants.set(c.id, c));
+    }
     this.state = {
-      combatants: new Map(),
+      combatants: initialCombatants,
       currentModal: null,
       modalTarget: null,
     };
@@ -46,24 +52,16 @@ class App extends Component {
         = this.combatantsController.getCombatantByName.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.showModal = this.showModal.bind(this);
+    this.componentDidUpdate = this.componentDidUpdate.bind(this);
+    this.componentCleanup = this.componentCleanup.bind(this);
   }
 
+  componentDidUpdate() {
+    this.componentCleanup();
+  }
 
-  componentWillMount() {
-    const combatants = new Map();
-    let c = this.combatantsController.createCombatant(true, combatants);
-    combatants.set(c.id, c);
-    c = this.combatantsController.createCombatant(true, combatants);
-    combatants.set(c.id, c);
-    c = this.combatantsController.createCombatant(false, combatants);
-    combatants.set(c.id, c);
-    c = this.combatantsController.createCombatant(false, combatants);
-    combatants.set(c.id, c);
-    c = this.combatantsController.createCombatant(false, combatants);
-    combatants.set(c.id, c);
-    this.setState({
-      combatants,
-    });
+  componentCleanup() {
+    localStorage.setItem("combatants", JSON.stringify([...this.state.combatants.values()]));
   }
 
   hideModal() {

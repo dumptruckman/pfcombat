@@ -30,7 +30,7 @@ class CombatantModel {
       this.currentHp = 5;
       this.tempHp = 0;
       this.nonlethalDamage = 0;
-      this.inCombat = true;
+      this.inCombat = false;
       this.id = generate();
       this.ready = false;
       this.delay = false;
