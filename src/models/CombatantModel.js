@@ -35,6 +35,31 @@ class CombatantModel {
       this.ready = false;
       this.delay = false;
     }
+
+    this.getMaxHp = this.getMaxHp.bind(this);
+    this.getInitiative = this.getInitiative.bind(this);
+    this.getInitMod = this.getInitMod.bind(this);
+  }
+
+  getMaxHp() {
+    if (isNaN(this.maxHp)) {
+      return 0;
+    }
+    return parseInt(this.maxHp, 10);
+  }
+
+  getInitiative() {
+    if (isNaN(this.initiative)) {
+      return 0;
+    }
+    return parseInt(this.initiative, 10);
+  }
+
+  getInitMod() {
+    if (isNaN(this.initMod)) {
+      return 0;
+    }
+    return parseInt(this.initMod, 10);
   }
 }
 

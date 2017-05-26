@@ -77,11 +77,7 @@ class InitiativeController {
       if (combatant.inCombat) {
         const roll = InitiativeController.getRandomInt(1, 21);
         newCombatant = new CombatantModel(combatant);
-        let initMod = combatant.initMod;
-        initMod = parseInt(initMod, 10);
-        if (isNaN(initMod)) {
-          initMod = 0;
-        }
+        const initMod = combatant.getInitMod();
         newCombatant.initiative = roll + initMod;
       } else {
         newCombatant = new CombatantModel(combatant);
@@ -95,9 +91,9 @@ class InitiativeController {
   sortInitiative(prevCombatants = this.props.combatantsController.getAllCombatants()) {
     const initOrder = [];
     const activeCombatants = prevCombatants.filter(c => c.inCombat).sort((a, b) => {
-      let res = b.initiative - a.initiative;
+      let res = b.getInitiative() - a.getInitiative();
       if (res === 0) {
-        res = b.initMod - a.initMod;
+        res = b.getInitMod() - a.getInitMod();
       }
       return res;
     });

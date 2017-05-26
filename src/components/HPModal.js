@@ -41,7 +41,7 @@ class HPModal extends Component {
     if (amount < 0) {
       this.damage(combatant, -amount);
     } else {
-      const hp = Math.min(combatant.currentHp + amount, combatant.maxHp);
+      const hp = Math.min(combatant.currentHp + amount, combatant.getMaxHp());
       const nonlethal = Math.max(combatant.nonlethalDamage - amount, 0);
       const c = new CombatantModel(combatant);
       c.currentHp = hp;

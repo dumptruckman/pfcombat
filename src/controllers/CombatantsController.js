@@ -97,15 +97,7 @@ class CombatantsController {
 
   setCombatantProp(combatant, propName, value) {
     const c = new CombatantModel(combatant);
-    let v = value;
-    if (!isNaN(c[propName])) {
-      v = parseInt(v, 10);
-      if (isNaN(v)) {
-        v = 0;
-      }
-    }
-
-    c[propName] = v;
+    c[propName] = value;
     this.combatantsController.updateCombatant(c);
   }
 
