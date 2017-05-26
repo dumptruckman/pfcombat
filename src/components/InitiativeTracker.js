@@ -125,8 +125,6 @@ class InitiativeTracker extends Component {
       } else if (newSelected > this.state.initiative.order.length) {
         newSelected = 0;
       }
-      console.log(this.state.initiative.order);
-      console.log(this.state.initiative.order[this.state.selected]);
       this.initiativeController.moveCombatant(
           this.state.initiative.order[this.state.selected], newSelected, false);
     }

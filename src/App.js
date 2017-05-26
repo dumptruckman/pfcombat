@@ -21,6 +21,8 @@ class App extends Component {
     this.combatantsController.setCombatantProp
         = this.combatantsController.setCombatantProp.bind(this);
     this.combatantsController.addCombatant = this.combatantsController.addCombatant.bind(this);
+    this.combatantsController.addBlankCombatant
+        = this.combatantsController.addBlankCombatant.bind(this);
     this.combatantsController.createCombatant
         = this.combatantsController.createCombatant.bind(this);
     this.combatantsController.removeCombatant

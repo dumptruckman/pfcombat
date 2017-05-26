@@ -16,7 +16,7 @@ const PartyEditor = ({ combatantsController, showModal }) => (
         onClick={() => combatantsController.addBlankCombatant(true)}
       >New Party Member</Button>
       <Button
-        className="button-disabled"
+        className="button"
         onClick={() => showModal("IMPORT_EXPORT", true)}
       >Import/Export</Button>
     </div>

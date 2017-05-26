@@ -16,7 +16,7 @@ const EnemyEditor = ({ combatantsController, showModal }) => (
         onClick={() => combatantsController.addBlankCombatant(false)}
       >New Monster</Button>
       <Button
-        className="button-disabled"
+        className="button"
         onClick={() => showModal("IMPORT_EXPORT", false)}
       >Import/Export</Button>
     </div>
