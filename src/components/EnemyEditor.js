@@ -13,7 +13,7 @@ const EnemyEditor = ({ combatantsController, showModal }) => (
       <Button
         className="button"
         style={{ flexGrow: 2 }}
-        onClick={() => combatantsController.addCombatant(false)}
+        onClick={() => combatantsController.addBlankCombatant(false)}
       >New Monster</Button>
       <Button
         className="button-disabled"

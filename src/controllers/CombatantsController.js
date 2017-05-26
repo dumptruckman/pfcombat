@@ -22,12 +22,15 @@ class CombatantsController {
     return new CombatantModel(name, party);
   }
 
-  addCombatant(party) {
+  addBlankCombatant(party) {
     const combatant = this.combatantsController.createCombatant(party);
+    this.combatantsController.addCombatant(combatant);
+  }
+
+  addCombatant(combatant) {
     this.setState((prevState) => {
       const newCombatants = new Map(prevState.combatants);
       newCombatants.set(combatant.id, combatant);
-      console.log(newCombatants);
       return {
         combatants: newCombatants,
       };

@@ -13,7 +13,7 @@ const PartyEditor = ({ combatantsController, showModal }) => (
       <Button
         className="button"
         style={{ flexGrow: 2 }}
-        onClick={() => combatantsController.addCombatant(true)}
+        onClick={() => combatantsController.addBlankCombatant(true)}
       >New Party Member</Button>
       <Button
         className="button-disabled"
