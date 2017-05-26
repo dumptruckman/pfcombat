@@ -86,6 +86,13 @@ class InitiativeController {
     });
     this.props.combatantsController.updateCombatants(newCombatants);
     this.initiativeController.sortInitiative(newCombatants);
+    this.setState(prevState => ({
+      initiative: {
+        ...prevState.initiative,
+        turnIndex: 0,
+        roundCount: 0,
+      },
+    }));
   }
 
   sortInitiative(prevCombatants = this.props.combatantsController.getAllCombatants()) {
