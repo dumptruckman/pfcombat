@@ -69,7 +69,7 @@ const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
       </div>
     </div>
 
-    <Button className="button-disabled">Edit Combatant</Button>
+    <Button style={{ display: "none" }} className="button-disabled">Edit Combatant</Button>
   </div>
     );
 
