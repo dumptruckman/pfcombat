@@ -11,12 +11,10 @@ const EnemyEditor = ({ combatantsController, showModal, smallMode }) => (
     {!smallMode && <p className="combat-pane__title">Enemy Editor</p>}
     <div className="button-panel">
       <Button
-        className="button"
-        style={{ flexGrow: 2 }}
+        grow
         onClick={() => combatantsController.addBlankCombatant(false)}
       >New Monster</Button>
       <Button
-        className="button"
         onClick={() => showModal("IMPORT_EXPORT", false)}
       >Import/Export</Button>
     </div>
@@ -26,13 +24,11 @@ const EnemyEditor = ({ combatantsController, showModal, smallMode }) => (
     />
     <div className="button-panel" style={{ display: "flex" }}>
       <Button
-        style={{ flex: "1 1 auto" }}
-        className="button"
+        grow
         onClick={() => combatantsController.makeAllActive(combatantsController.getEnemies())}
       >Make All Active</Button>
       <Button
-        style={{ flex: "1 1 auto" }}
-        className="button"
+        grow
         onClick={() => combatantsController.makeAllIdle(combatantsController.getEnemies())}
       >Make All Idle</Button>
       <Button

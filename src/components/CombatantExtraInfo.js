@@ -36,8 +36,8 @@ const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
         }}
       >{combatant.inCombat ? "Make Idle" : "Make Active"}</Button>
       <Button
-        style={{ flex: "1 1 auto" }}
-        className={!combatant.inCombat ? "button-disabled" : "button"}
+        grow
+        disabled={!combatant.inCombat}
         onClick={() => {
           if (combatant.inCombat) {
             const c = new CombatantModel(combatant);
@@ -48,8 +48,7 @@ const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
         }}
       >{combatant.ready ? "Act Now" : "Ready"}</Button>
       <Button
-        style={{ flex: "1 1 auto" }}
-        className={!combatant.inCombat ? "button-disabled" : "button"}
+        disabled={!combatant.inCombat}
         onClick={() => {
           if (combatant.inCombat) {
             const c = new CombatantModel(combatant);
@@ -71,7 +70,7 @@ const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
       </div>
     </div>
 
-    <Button style={{ display: "none" }} className="button-disabled">Edit Combatant</Button>
+    <Button style={{ display: "none" }} disabled>Edit Combatant</Button>
   </div>
     );
 

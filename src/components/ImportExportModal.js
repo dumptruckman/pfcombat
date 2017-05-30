@@ -97,11 +97,11 @@ class ImportExportModal extends Component {
           </div>
           <div style={{ display: "flex" }}>
             <Button
-              style={{ flexGrow: 1 }}
+              grow
               onClick={this.importData}
             >Import</Button>
             <Button
-              style={{ flexGrow: 1 }}
+              grow
               onClick={this.exportData}
             >Export</Button>
           </div>

@@ -173,21 +173,21 @@ class App extends Component {
         <FullPageWebApp>
           {smallMode && <div className="button-panel">
             <Button
-              className={this.state.currentTab === INITIATIVE
-                  ? "button-disabled button-disabled--tab" : "button button--tab"}
-              style={{ flex: "1 1 auto" }}
+              large
+              grow
+              disabled={this.state.currentTab === INITIATIVE}
               onClick={() => { this.setTab(INITIATIVE); }}
             >Initiative Tracker</Button>
             <Button
-              className={this.state.currentTab === PARTY
-                ? "button-disabled button-disabled--tab" : "button button--tab"}
-              style={{ flex: "1 1 auto" }}
+              large
+              grow
+              disabled={this.state.currentTab === PARTY}
               onClick={() => { this.setTab(PARTY); }}
             >Party Editor</Button>
             <Button
-              className={this.state.currentTab === ENEMY
-                ? "button-disabled button-disabled--tab" : "button button--tab"}
-              style={{ flex: "1 1 auto" }}
+              large
+              grow
+              disabled={this.state.currentTab === ENEMY}
               onClick={() => { this.setTab(ENEMY); }}
             >Enemy Editor</Button>
           </div>}

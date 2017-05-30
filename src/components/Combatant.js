@@ -37,7 +37,6 @@ const Combatant = ({ index, combatant, combatantType, selected, onClick, combata
         <div style={{ minWidth: 20 }} />
         <Button
           title="Remove"
-          className="button"
           onClick={() => {
             combatantsController.removeCombatant(combatant.id);
           }}

@@ -140,21 +140,18 @@ class InitiativeTracker extends Component {
         {!this.props.smallMode && <p className="combat-pane__title">Initiative Tracker</p>}
         <div className="button-panel">
           <Button
-            className="button"
-            style={{ flexGrow: 1 }}
+            grow
             onClick={() => {
               this.initiativeController.rollInitiative();
             }}
           ><i className="fa fa-random fa-2x" aria-hidden="true" />Roll Initiative</Button>
           <div style={{ display: "flex", flexDirection: "column", flexBasis: "content" }}>
             <Button
-              className="button"
               onClick={() => {
                 this.initiativeController.sortInitiative();
               }}
             ><i className="fa fa-sort-numeric-desc" aria-hidden="true" />Sort</Button>
             <Button
-              className="button"
               onClick={() => {
                 this.initiativeController.resetInitiative();
               }}
@@ -170,22 +167,20 @@ class InitiativeTracker extends Component {
         />
         <div className="button-panel" style={{ display: "flex" }}>
           <Button
-            className="button"
             style={{ flexBasis: "content" }}
             onClick={() => { this.initiativeController.prevTurn(); }}
           >
             <i className="fa fa-arrow-left fa-lg" aria-hidden="true" />Prev Turn</Button>
           <Button
-            className="button"
-            style={{ flexGrow: 1 }}
+            grow
             onClick={() => { this.initiativeController.nextTurn(); }}
           >
             Next Turn<i className="fa fa-arrow-right fa-2x" aria-hidden="true" /></Button>
           <div className="button-panel" style={{ display: "flex", flexDirection: "column" }}>
-            <Button className="button" onClick={() => this.shiftSelection(-1)}>
+            <Button onClick={() => this.shiftSelection(-1)}>
               <i className="fa fa-arrow-up" />
             </Button>
-            <Button className="button" onClick={() => this.shiftSelection(1)}>
+            <Button onClick={() => this.shiftSelection(1)}>
               <i className="fa fa-arrow-down" />
             </Button>
           </div>
