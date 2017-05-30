@@ -10,7 +10,7 @@ import ModalConductor from "./ModalConductor";
 import CombatantModel from "./models/CombatantModel";
 import { ENEMY, INITIATIVE, PARTY } from "./CombatantType";
 import Button from "./components/Button";
-import FullPageWebApp from "./components/layout/FullPageWebApp";
+import WebAppPanel from "./components/layout/WebAppPanel";
 
 class App extends Component {
   // width 1105
@@ -147,21 +147,21 @@ class App extends Component {
       smallMode={smallMode}
     />);
 
-    let panesToShow = (<div id="combat-tab" className="tab">
+    let panesToShow = (<WebAppPanel>
       {initiativePane}
       {partyPane}
       {enemiesPane}
-    </div>);
+    </WebAppPanel>);
     if (smallMode) {
       switch (this.state.currentTab) {
         case INITIATIVE:
-          panesToShow = <div id="combat-tab" className="tab">{initiativePane}</div>;
+          panesToShow = <WebAppPanel>{initiativePane}</WebAppPanel>;
           break;
         case PARTY:
-          panesToShow = <div id="combat-tab" className="tab">{partyPane}</div>;
+          panesToShow = <WebAppPanel>{partyPane}</WebAppPanel>;
           break;
         case ENEMY:
-          panesToShow = <div id="combat-tab" className="tab">{enemiesPane}</div>;
+          panesToShow = <WebAppPanel>{enemiesPane}</WebAppPanel>;
           break;
         default:
           break;
@@ -170,7 +170,7 @@ class App extends Component {
 
     return (
       <div>
-        <FullPageWebApp>
+        <WebAppPanel fullPage>
           {smallMode && <div className="button-panel">
             <Button
               large
@@ -206,7 +206,7 @@ class App extends Component {
               &nbsp;to report issues.</span>
             }
           </div>
-        </FullPageWebApp>
+        </WebAppPanel>
         <div>
           <ModalConductor
             currentModal={this.state.currentModal}
