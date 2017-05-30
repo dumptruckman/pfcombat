@@ -5,6 +5,7 @@
   "homepage": "https://dumptruckman.github.io/pfcombat",
   "dependencies": {
     "prop-types": "^15.5.10",
+    "radium": "^0.19.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-sizeme": "^2.3.2",
