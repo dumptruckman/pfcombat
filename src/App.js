@@ -10,7 +10,7 @@ import ModalConductor from "./ModalConductor";
 import CombatantModel from "./models/CombatantModel";
 import { ENEMY, INITIATIVE, PARTY } from "./CombatantType";
 import Button from "./components/Button";
-import WebAppPanel from "./components/layout/WebAppPanel";
+import WebAppFrame from "./components/layout/WebAppFrame";
 import ButtonPanel from "./components/layout/ButtonPanel";
 
 class App extends Component {
@@ -148,21 +148,21 @@ class App extends Component {
       smallMode={smallMode}
     />);
 
-    let panesToShow = (<WebAppPanel>
+    let panesToShow = (<WebAppFrame>
       {initiativePane}
       {partyPane}
       {enemiesPane}
-    </WebAppPanel>);
+    </WebAppFrame>);
     if (smallMode) {
       switch (this.state.currentTab) {
         case INITIATIVE:
-          panesToShow = <WebAppPanel>{initiativePane}</WebAppPanel>;
+          panesToShow = <WebAppFrame>{initiativePane}</WebAppFrame>;
           break;
         case PARTY:
-          panesToShow = <WebAppPanel>{partyPane}</WebAppPanel>;
+          panesToShow = <WebAppFrame>{partyPane}</WebAppFrame>;
           break;
         case ENEMY:
-          panesToShow = <WebAppPanel>{enemiesPane}</WebAppPanel>;
+          panesToShow = <WebAppFrame>{enemiesPane}</WebAppFrame>;
           break;
         default:
           break;
@@ -171,7 +171,7 @@ class App extends Component {
 
     return (
       <div>
-        <WebAppPanel fullPage>
+        <WebAppFrame fullPage>
           {smallMode && <ButtonPanel>
             <Button
               large
@@ -207,7 +207,7 @@ class App extends Component {
               &nbsp;to report issues.</span>
             }
           </div>
-        </WebAppPanel>
+        </WebAppFrame>
         <div>
           <ModalConductor
             currentModal={this.state.currentModal}

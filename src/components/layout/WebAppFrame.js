@@ -14,13 +14,13 @@ const styles = {
   },
 };
 
-const WebAppPanel = props => (
+const WebAppFrame = props => (
   <div style={[styles.base, props.fullPage && styles.fullPage]}>
     {props.children}
   </div>
 );
 
-WebAppPanel.propTypes = {
+WebAppFrame.propTypes = {
   fullPage: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.array,
@@ -28,8 +28,8 @@ WebAppPanel.propTypes = {
   ]).isRequired,
 };
 
-WebAppPanel.defaultProps = {
+WebAppFrame.defaultProps = {
   fullPage: false,
 };
 
-export default Radium(WebAppPanel);
+export default Radium(WebAppFrame);
