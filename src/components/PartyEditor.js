@@ -5,11 +5,12 @@ import CombatantListContainer from "../containers/CombatantListContainer";
 import { PARTY } from "../CombatantType";
 import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
+import ButtonPanel from "./layout/ButtonPanel";
 
 const PartyEditor = ({ combatantsController, showModal, smallMode }) => (
   <div id="party-editor" className="combat-pane">
     {!smallMode && <p className="combat-pane__title">Party Editor</p>}
-    <div className="button-panel">
+    <ButtonPanel>
       <Button
         grow
         onClick={() => combatantsController.addBlankCombatant(true)}
@@ -17,12 +18,12 @@ const PartyEditor = ({ combatantsController, showModal, smallMode }) => (
       <Button
         onClick={() => showModal("IMPORT_EXPORT", true)}
       >Import/Export</Button>
-    </div>
+    </ButtonPanel>
     <CombatantListContainer
       combatantsController={combatantsController}
       combatantType={PARTY}
     />
-    <div className="button-panel" style={{ display: "flex" }}>
+    <ButtonPanel>
       <Button
         grow
         onClick={() => combatantsController.makeAllActive(combatantsController.getParty())}
@@ -34,9 +35,9 @@ const PartyEditor = ({ combatantsController, showModal, smallMode }) => (
       <Button
         onClick={() => combatantsController.removeCombatants(true)}
       >Clear</Button>
-    </div>
+    </ButtonPanel>
   </div>
-    );
+);
 
 PartyEditor.propTypes = {
   combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,

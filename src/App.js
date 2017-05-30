@@ -11,6 +11,7 @@ import CombatantModel from "./models/CombatantModel";
 import { ENEMY, INITIATIVE, PARTY } from "./CombatantType";
 import Button from "./components/Button";
 import WebAppPanel from "./components/layout/WebAppPanel";
+import ButtonPanel from "./components/layout/ButtonPanel";
 
 class App extends Component {
   // width 1105
@@ -171,7 +172,7 @@ class App extends Component {
     return (
       <div>
         <WebAppPanel fullPage>
-          {smallMode && <div className="button-panel">
+          {smallMode && <ButtonPanel>
             <Button
               large
               grow
@@ -190,7 +191,7 @@ class App extends Component {
               disabled={this.state.currentTab === ENEMY}
               onClick={() => { this.setTab(ENEMY); }}
             >Enemy Editor</Button>
-          </div>}
+          </ButtonPanel>}
           {panesToShow}
           <div style={{ display: "flex", justifyContent: "center" }}>
             {// eslint-disable-next-line jsx-a11y/no-static-element-interactions

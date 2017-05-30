@@ -5,11 +5,12 @@ import CombatantListContainer from "../containers/CombatantListContainer";
 import { ENEMY } from "../CombatantType";
 import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
+import ButtonPanel from "./layout/ButtonPanel";
 
 const EnemyEditor = ({ combatantsController, showModal, smallMode }) => (
   <div id="enemy-editor" className="combat-pane">
     {!smallMode && <p className="combat-pane__title">Enemy Editor</p>}
-    <div className="button-panel">
+    <ButtonPanel>
       <Button
         grow
         onClick={() => combatantsController.addBlankCombatant(false)}
@@ -17,12 +18,12 @@ const EnemyEditor = ({ combatantsController, showModal, smallMode }) => (
       <Button
         onClick={() => showModal("IMPORT_EXPORT", false)}
       >Import/Export</Button>
-    </div>
+    </ButtonPanel>
     <CombatantListContainer
       combatantsController={combatantsController}
       combatantType={ENEMY}
     />
-    <div className="button-panel" style={{ display: "flex" }}>
+    <ButtonPanel>
       <Button
         grow
         onClick={() => combatantsController.makeAllActive(combatantsController.getEnemies())}
@@ -35,7 +36,7 @@ const EnemyEditor = ({ combatantsController, showModal, smallMode }) => (
         className="button"
         onClick={() => combatantsController.removeCombatants(false)}
       >Clear</Button>
-    </div>
+    </ButtonPanel>
   </div>
     );
 

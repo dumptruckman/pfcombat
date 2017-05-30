@@ -8,6 +8,7 @@ import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
 import InitiativeController from "../controllers/InitiativeController";
 import CombatantModel from "../models/CombatantModel";
+import ButtonPanel from "./layout/ButtonPanel";
 
 class InitiativeTracker extends Component {
 
@@ -138,7 +139,7 @@ class InitiativeTracker extends Component {
     return (
       <div id="init-tracker" className="combat-pane">
         {!this.props.smallMode && <p className="combat-pane__title">Initiative Tracker</p>}
-        <div className="button-panel">
+        <ButtonPanel>
           <Button
             grow
             onClick={() => {
@@ -157,7 +158,7 @@ class InitiativeTracker extends Component {
               }}
             ><i className="fa fa-undo" aria-hidden="true" />Reset</Button>
           </div>
-        </div>
+        </ButtonPanel>
         <CombatantListContainer
           combatantsController={this.props.combatantsController}
           combatantType={INITIATIVE}
@@ -165,7 +166,7 @@ class InitiativeTracker extends Component {
           selected={this.state.selected}
           changeSelection={this.changeSelection}
         />
-        <div className="button-panel" style={{ display: "flex" }}>
+        <ButtonPanel>
           <Button
             style={{ flexBasis: "content" }}
             onClick={() => { this.initiativeController.prevTurn(); }}
@@ -176,15 +177,15 @@ class InitiativeTracker extends Component {
             onClick={() => { this.initiativeController.nextTurn(); }}
           >
             Next Turn<i className="fa fa-arrow-right fa-2x" aria-hidden="true" /></Button>
-          <div className="button-panel" style={{ display: "flex", flexDirection: "column" }}>
+          <ButtonPanel vertical>
             <Button onClick={() => this.shiftSelection(-1)}>
               <i className="fa fa-arrow-up" />
             </Button>
             <Button onClick={() => this.shiftSelection(1)}>
               <i className="fa fa-arrow-down" />
             </Button>
-          </div>
-        </div>
+          </ButtonPanel>
+        </ButtonPanel>
       </div>
     );
   }
