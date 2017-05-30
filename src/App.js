@@ -10,6 +10,7 @@ import ModalConductor from "./ModalConductor";
 import CombatantModel from "./models/CombatantModel";
 import { ENEMY, INITIATIVE, PARTY } from "./CombatantType";
 import Button from "./components/Button";
+import FullPageWebApp from "./components/layout/FullPageWebApp";
 
 class App extends Component {
   // width 1105
@@ -169,7 +170,7 @@ class App extends Component {
 
     return (
       <div>
-        <div className="tab tab--small-mode">
+        <FullPageWebApp>
           {smallMode && <div className="button-panel">
             <Button
               className={this.state.currentTab === INITIATIVE
@@ -205,7 +206,7 @@ class App extends Component {
               &nbsp;to report issues.</span>
             }
           </div>
-        </div>
+        </FullPageWebApp>
         <div>
           <ModalConductor
             currentModal={this.state.currentModal}
