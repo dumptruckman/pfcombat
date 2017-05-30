@@ -29,54 +29,8 @@ span, p, div {
     user-select: none;
 }
 
-.tab {
-    display: flex;
-    height: 100%;
-    width: 100vw;
-}
-
-.tab--small-mode {
-    flex-direction: column;
-    height: 100%;
-    position: fixed;
-}
-
-.button-panel {
-    display: flex;
-    flex: 0 0 auto;
-    height: auto;
-}
-
-.button-panel--init-roll {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-}
-
 input {
     -webkit-user-drag: none;
-}
-
-.input {
-
-}
-
-.input--initiative {
-    width: 27px;
-    height: 17px;
-    padding: 0;
-    margin: 3px;
-    text-align: center;
-    border: solid 1px black;
-}
-
-.input--max-hp {
-    height: 17px;
-    width: 35px;
-    padding: 0;
-    margin: 3px;
-    text-align: center;
-    border: solid 1px black;
 }
 
 .combat-pane {
