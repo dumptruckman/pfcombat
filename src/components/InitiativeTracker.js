@@ -9,6 +9,7 @@ import CombatantsController from "../controllers/CombatantsController";
 import InitiativeController from "../controllers/InitiativeController";
 import CombatantModel from "../models/CombatantModel";
 import ButtonPanel from "./layout/ButtonPanel";
+import CombatPane from "./layout/CombatPane";
 
 class InitiativeTracker extends Component {
 
@@ -137,8 +138,7 @@ class InitiativeTracker extends Component {
 
   render() {
     return (
-      <div id="init-tracker" className="combat-pane">
-        {!this.props.smallMode && <p className="combat-pane__title">Initiative Tracker</p>}
+      <CombatPane title="Initiative Tracker" smallMode={this.props.smallMode}>
         <ButtonPanel>
           <Button
             grow
@@ -186,7 +186,7 @@ class InitiativeTracker extends Component {
             </Button>
           </ButtonPanel>
         </ButtonPanel>
-      </div>
+      </CombatPane>
     );
   }
 }

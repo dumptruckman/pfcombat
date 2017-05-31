@@ -6,12 +6,10 @@ import { CombatantType, PARTY } from "../CombatantType";
 import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
 import ButtonPanel from "./layout/ButtonPanel";
+import CombatPane from "./layout/CombatPane";
 
 const CombatantsEditor = ({ combatantsController, showModal, smallMode, combatantType }) => (
-  <div id="party-editor" className="combat-pane">
-    {!smallMode && <p className="combat-pane__title">
-      {combatantType === PARTY ? "Party" : "Enemy"} Editor
-    </p>}
+  <CombatPane smallMode={smallMode} title={`${combatantType === PARTY ? "Party" : "Enemy"} Editor`}>
     <ButtonPanel>
       <Button
         grow
@@ -40,7 +38,7 @@ const CombatantsEditor = ({ combatantsController, showModal, smallMode, combatan
         onClick={() => combatantsController.removeCombatants(combatantType === PARTY)}
       >Clear</Button>
     </ButtonPanel>
-  </div>
+  </CombatPane>
 );
 
 CombatantsEditor.propTypes = {

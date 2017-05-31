@@ -33,22 +33,6 @@ input {
     -webkit-user-drag: none;
 }
 
-.combat-pane {
-    /*width: 33vw;*/
-    min-width: 360px;
-    margin: 4px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.combat-pane__title {
-    text-align: center;
-    /*font-family: Broadway;*/
-    font-size: 30px;
-
-}
-
 .combatant-list-container {
     margin: 3px;
     margin-top: 6px;
