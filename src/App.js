@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import sizeMe from "react-sizeme";
 import "./App.css";
 import InitiativeTracker from "./components/InitiativeTracker";
-import PartyEditor from "./components/PartyEditor";
-import EnemyEditor from "./components/EnemyEditor";
+import CombatantsEditor from "./components/CombatantsEditor";
 import CombatantsController from "./controllers/CombatantsController";
 import ModalConductor from "./ModalConductor";
 import CombatantModel from "./models/CombatantModel";
@@ -137,15 +136,17 @@ class App extends Component {
       combatantsController={this.combatantsController}
       smallMode={smallMode}
     />);
-    const partyPane = (<PartyEditor
+    const partyPane = (<CombatantsEditor
       combatantsController={this.combatantsController}
       showModal={this.showModal}
       smallMode={smallMode}
+      combatantType={PARTY}
     />);
-    const enemiesPane = (<EnemyEditor
+    const enemiesPane = (<CombatantsEditor
       combatantsController={this.combatantsController}
       showModal={this.showModal}
       smallMode={smallMode}
+      combatantType={ENEMY}
     />);
 
     let panesToShow = (<WebAppFrame>
