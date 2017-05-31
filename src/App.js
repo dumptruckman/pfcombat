@@ -177,18 +177,21 @@ class App extends Component {
             <Button
               large
               grow
+              style={{ flexBasis: 0 }}
               disabled={this.state.currentTab === INITIATIVE}
               onClick={() => { this.setTab(INITIATIVE); }}
             >Initiative Tracker</Button>
             <Button
               large
               grow
+              style={{ flexBasis: 0 }}
               disabled={this.state.currentTab === PARTY}
               onClick={() => { this.setTab(PARTY); }}
             >Party Editor</Button>
             <Button
               large
               grow
+              style={{ flexBasis: 0 }}
               disabled={this.state.currentTab === ENEMY}
               onClick={() => { this.setTab(ENEMY); }}
             >Enemy Editor</Button>
