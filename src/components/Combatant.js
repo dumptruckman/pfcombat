@@ -10,6 +10,7 @@ import InitiativeController from "../controllers/InitiativeController";
 import HPButton from "./HPButton";
 import CombatantValueBox from "./CombatantValueBox";
 import CombatantStatusIndicator from "./CombatantStatusIndicator";
+import CombatantWrapper from "./CombatantWrapper";
 
 const Combatant = ({ index, combatant, combatantType, selected, onClick, combatantsController,
                      initController }) => {
@@ -113,23 +114,14 @@ const Combatant = ({ index, combatant, combatantType, selected, onClick, combata
         ready={combatant.ready}
         turn={initController.getTurnIndex() === index}
       />)}
-      { // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-        <div
-          role="presentation"
-          className="combatant"
-          onClick={() => {
-            onClick(index);
-          }}
-          onContextMenu={e => e.preventDefault()}
-        >
-          {topSection}
-          <CombatantExtraInfo
-            combatant={combatant}
-            selected={selected}
-            combatantsController={combatantsController}
-          />
-        </div>
-      }
+      <CombatantWrapper index={index} onClick={onClick}>
+        {topSection}
+        <CombatantExtraInfo
+          combatant={combatant}
+          selected={selected}
+          combatantsController={combatantsController}
+        />
+      </CombatantWrapper>
     </li>
   );
 };
