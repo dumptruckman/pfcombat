@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Combatant from "../components/Combatant";
 import CombatantModel from "../models/CombatantModel";
-import { CombatantType } from "../CombatantType";
+import {CombatantType, INITIATIVE} from "../CombatantType";
 import CombatantsController from "../controllers/CombatantsController";
 import InitiativeController from "../controllers/InitiativeController";
+import InitiativeCombatantHeader from "../components/InitiativeCombatantHeader";
+import EditorCombatantHeader from "../components/EditorCombatantHeader";
 
 class CombatantContainer extends Component {
 
@@ -30,7 +32,18 @@ class CombatantContainer extends Component {
   }
 
   render() {
-    return <Combatant {...this.props} />;
+    return (<Combatant
+      header={this.props.combatantType === INITIATIVE
+        ? <InitiativeCombatantHeader
+          combatantsController={this.props.combatantsController}
+          combatant={this.props.combatant}
+        />
+        : <EditorCombatantHeader
+          combatantsController={this.props.combatantsController}
+          combatant={this.props.combatant}
+        />}
+      {...this.props}
+    />);
   }
 }
 

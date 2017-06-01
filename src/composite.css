@@ -43,54 +43,6 @@ input {
     flex-basis: content;
 }
 
-.combatant-list {
-
-}
-
-.combatant-list__element:hover {
-    background: #4598CD
-}
-
-.combatant-list__element {
-    /*background-color: #D6EBF7;*/
-    /*border: solid 1px black;*/
-    margin: 1px;
-    display: flex;
-
-    text-decoration: none;
-    text-rendering: optimizeLegibility;
-    list-style: none;
-
-
-    /*-webkit-margin-before: 1em;*/
-    /*-webkit-margin-after: 1em;*/
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    -webkit-padding-start: 0px;
-
-    background: #fff;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
-.combatant-list__element--init {
-    -webkit-user-drag: element;
-}
-
-.combatant-list__element--selected-init {
-    background-color: #ADD7F0;
-}
-
-.combatant-list__element--editor {
-    background-color: #F5ECB6;
-}
-
-.combatant-list__element--selected-editor {
-    background-color: #E4CC37;
-}
-
 .combatant__name {
     vertical-align: middle;
     font-size: 18px;
