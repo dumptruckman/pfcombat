@@ -9,6 +9,7 @@ import CombatantsController from "../controllers/CombatantsController";
 import InitiativeController from "../controllers/InitiativeController";
 import HPButton from "./HPButton";
 import CombatantValueBox from "./CombatantValueBox";
+import CombatantStatusIndicator from "./CombatantStatusIndicator";
 
 const Combatant = ({ index, combatant, combatantType, selected, onClick, combatantsController,
                      initController }) => {
@@ -107,11 +108,11 @@ const Combatant = ({ index, combatant, combatantType, selected, onClick, combata
 
   return (
     <li className={elementClass}>
-      {(combatantType === INITIATIVE && <div className="combatant__turn-arrow">
-        {initController.getTurnIndex() === index ? <i className="fa fa-play" /> : ""}
-        {combatant.delay ? <i className="fa fa-hourglass-half" /> : ""}
-        {combatant.ready ? <i className="fa fa-bullseye" /> : ""}
-      </div>)}
+      {(combatantType === INITIATIVE && <CombatantStatusIndicator
+        delay={combatant.delay}
+        ready={combatant.ready}
+        turn={initController.getTurnIndex() === index}
+      />)}
       { // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
           role="presentation"
