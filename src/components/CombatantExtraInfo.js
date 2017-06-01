@@ -5,13 +5,11 @@ import CombatantModel from "../models/CombatantModel";
 import Button from "./Button";
 import CombatantsController from "../controllers/CombatantsController";
 import HPButton from "./HPButton";
+import FlexBox from "./layout/FlexBox";
 
 const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
-  <div
-    className="combatant__info combatant__info--extras combatant__info--vertical"
-    style={!selected ? { display: "none" } : {}}
-  >
-    <div className="combatant__info combatant__info--space-around">
+  <FlexBox vertical style={{ backgroundColor: "#76A530", borderRadius: 3 }} hidden={!selected}>
+    <FlexBox spaceAround>
       <HPButton
         text="Temp HP:"
         value={combatant.tempHp}
@@ -24,8 +22,8 @@ const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
         controller={combatantsController}
         combatant={combatant}
       />
-    </div>
-    <div className="combatant__info">
+    </FlexBox>
+    <FlexBox>
       <Button
         onClick={() => {
           const c = new CombatantModel(combatant);
@@ -59,20 +57,20 @@ const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
         }}
       >{combatant.delay ? "Act Now" : "Delay"}</Button>
 
-    </div>
-    <div className="combatant__info combatant__info--vertical" style={{ display: "none" }}>
+    </FlexBox>
+    <FlexBox vertical hidden>
       <span>Conditions</span>
-      <div className="combatant__info combatant__info--space-around">
+      <FlexBox spaceAround>
         <span className="combatant__condition-label">Blinded</span>
         <span className="combatant__condition-label">Confused</span>
         <span className="combatant__condition-label">Grappled</span>
         <span className="combatant__condition-label">Dazed</span>
-      </div>
-    </div>
+      </FlexBox>
+    </FlexBox>
 
     <Button style={{ display: "none" }} disabled>Edit Combatant</Button>
-  </div>
-    );
+  </FlexBox>
+);
 
 CombatantExtraInfo.propTypes = {
   combatant: PropTypes.instanceOf(CombatantModel).isRequired,

@@ -50,41 +50,6 @@ input {
     display: inline-flex;
 }
 
-.combatant__info {
-    display: flex;
-    align-content: center;
-}
-
-.combatant__info--extras {
-    background-color: #76A530;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-}
-
-.combatant__info--space-between {
-    justify-content: space-between;
-}
-
-.combatant__info--space-around {
-    justify-content: space-around;
-}
-
-.combatant__info--wrap {
-    flex-wrap: wrap;
-}
-
-.combatant__info--hp {
-    margin-right: 10px;
-}
-
-.combatant__info--hidden {
-    display: none;
-}
-
-.combatant__info--vertical {
-    flex-direction: column;
-}
-
 .combatant__combat-stats-label {
     font-size: 16px;
     align-items: center;

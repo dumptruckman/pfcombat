@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Radium from "radium";
 import "../composite.css";
+import FlexBox from "./layout/FlexBox";
 
 const styles = {
   base: {
@@ -19,7 +20,7 @@ const styles = {
 };
 
 const ValueButton = ({ text, value, onClick, style }) => (
-  <div className="combatant__info">
+  <FlexBox>
     <span className="combatant__combat-stats-label">{text}</span>
     <button
       style={[
@@ -28,7 +29,7 @@ const ValueButton = ({ text, value, onClick, style }) => (
       ]}
       onClick={onClick}
     >{value}</button>
-  </div>
+  </FlexBox>
 );
 
 ValueButton.propTypes = {

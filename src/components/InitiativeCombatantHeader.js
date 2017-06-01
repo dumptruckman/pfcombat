@@ -5,6 +5,7 @@ import CombatantModel from "../models/CombatantModel";
 import CombatantsController from "../controllers/CombatantsController";
 import HPButton from "./HPButton";
 import CombatantValueBox from "./CombatantValueBox";
+import FlexBox from "./layout/FlexBox";
 
 const InitiativeCombatantHeader = ({ combatant, combatantsController }) => {
   let hpStyle;
@@ -15,9 +16,9 @@ const InitiativeCombatantHeader = ({ combatant, combatantsController }) => {
   }
 
   return (
-    <div className="combatant__info">
+    <FlexBox>
       <span className="combatant__name" style={{ flexGrow: 1 }}>{combatant.name}</span>
-      <div className="combatant__info">
+      <FlexBox>
         <HPButton
           text="HP:"
           value={combatant.currentHp}
@@ -35,8 +36,8 @@ const InitiativeCombatantHeader = ({ combatant, combatantsController }) => {
           type="number"
         />
         <div style={{ minWidth: 10 }} />
-      </div>
-    </div>
+      </FlexBox>
+    </FlexBox>
   );
 };
 

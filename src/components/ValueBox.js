@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "../composite.css";
+import FlexBox from "./layout/FlexBox";
 
 class ValueBox extends Component {
 
@@ -61,7 +62,7 @@ class ValueBox extends Component {
       style.minHeight = 30;
     }
     return (
-      <div className="combatant__info" style={this.props.style}>
+      <FlexBox style={this.props.style}>
         <span className="combatant__combat-stats-label">{this.props.text}</span>
         <input
           title={this.props.title}
@@ -85,7 +86,7 @@ class ValueBox extends Component {
           onMouseDown={this.scrollClick}
           onMouseUp={this.scrollMouseUp}
         ><i className="fa fa-sort fa-1" /></button>
-      </div>
+      </FlexBox>
     );
   }
 

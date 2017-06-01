@@ -6,10 +6,11 @@ import CombatantsController from "../controllers/CombatantsController";
 import HPButton from "./HPButton";
 import CombatantValueBox from "./CombatantValueBox";
 import Button from "./Button";
+import FlexBox from "./layout/FlexBox";
 
 const EditorCombatantHeader = ({ combatant, combatantsController }) => (
-  <div className="combatant__info combatant__info--vertical">
-    <div className="combatant__info">
+  <FlexBox vertical>
+    <FlexBox>
       <CombatantValueBox
         title="creature name"
         placeholder="Enter name"
@@ -35,8 +36,8 @@ const EditorCombatantHeader = ({ combatant, combatantsController }) => (
           combatantsController.removeCombatant(combatant.id);
         }}
       >X</Button>
-    </div>
-    <div className="combatant__info">
+    </FlexBox>
+    <FlexBox>
       <HPButton
         text="HP:"
         value={combatant.currentHp}
@@ -53,8 +54,8 @@ const EditorCombatantHeader = ({ combatant, combatantsController }) => (
         controller={combatantsController}
         prop={"maxHp"}
       />
-    </div>
-  </div>
+    </FlexBox>
+  </FlexBox>
   );
 
 EditorCombatantHeader.propTypes = {
