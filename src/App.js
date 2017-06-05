@@ -11,6 +11,7 @@ import { ENEMY, INITIATIVE, PARTY } from "./CombatantType";
 import Button from "./components/Button";
 import WebAppFrame from "./components/layout/WebAppFrame";
 import ButtonPanel from "./components/layout/ButtonPanel";
+import packageInfo from "../package.json";
 
 class App extends Component {
   // width 1105
@@ -202,7 +203,7 @@ class App extends Component {
               <span
                 role="presentation"
                 style={smallMode ? { fontSize: 10 } : {}}
-              >[BETA]&nbsp;
+              >v{packageInfo.version} [BETA]&nbsp;
                 {// eslint-disable-next-line jsx-a11y/href-no-hash
                   <a
                     href="#"
