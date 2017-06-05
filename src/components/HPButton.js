@@ -4,7 +4,7 @@ import ValueButton from "./ValueButton";
 import CombatantsController from "../controllers/CombatantsController";
 import CombatantModel from "../models/CombatantModel";
 
-const HPButton = ({ text, value, style, controller, combatant }) => {
+const HPButton = ({ text, value, style, controller, combatant, type }) => {
   const actualStyle = style;
   actualStyle.minHeight = 30;
   actualStyle.minWidth = 30;
@@ -14,7 +14,7 @@ const HPButton = ({ text, value, style, controller, combatant }) => {
       value={value}
       style={actualStyle}
       onClick={() => {
-        controller.showCurrentHpDialog(combatant);
+        controller.showCurrentHpDialog(combatant, type);
       }}
     />
   );
@@ -26,10 +26,12 @@ HPButton.propTypes = {
   controller: PropTypes.instanceOf(CombatantsController).isRequired,
   combatant: PropTypes.instanceOf(CombatantModel).isRequired,
   style: PropTypes.objectOf(PropTypes.node),
+  type: PropTypes.string,
 };
 
 HPButton.defaultProps = {
   style: {},
+  type: "normal",
 };
 
 export default HPButton;

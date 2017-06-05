@@ -43,6 +43,7 @@ const EditorCombatantHeader = ({ combatant, combatantsController }) => (
         value={combatant.currentHp}
         controller={combatantsController}
         combatant={combatant}
+        type="normal"
       />
       <CombatantValueBox
         text="Max HP:"

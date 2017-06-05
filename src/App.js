@@ -67,6 +67,7 @@ class App extends Component {
       combatants: initialCombatants,
       currentModal: null,
       modalTarget: null,
+      modalData: null,
       currentTab: INITIATIVE,
     };
   }
@@ -111,13 +112,15 @@ class App extends Component {
     this.setState({
       modalTarget: null,
       currentModal: null,
+      modalData: null,
     });
   }
 
-  showModal(id, target) {
+  showModal(id, target, data) {
     this.setState({
       modalTarget: target,
       currentModal: id,
+      modalData: data,
     });
   }
 
@@ -226,6 +229,7 @@ class App extends Component {
           <ModalConductor
             currentModal={this.state.currentModal}
             modalTarget={this.state.modalTarget}
+            modalData={this.state.modalData}
             combatantsController={this.combatantsController}
             hideModal={this.hideModal}
           />

@@ -25,6 +25,7 @@ const InitiativeCombatantHeader = ({ combatant, combatantsController }) => {
           controller={combatantsController}
           combatant={combatant}
           style={hpStyle}
+          type="normal"
         />
         <CombatantValueBox
           text="Init:"

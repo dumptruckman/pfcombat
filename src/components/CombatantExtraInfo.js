@@ -15,12 +15,14 @@ const CombatantExtraInfo = ({ combatant, selected, combatantsController }) => (
         value={combatant.tempHp}
         controller={combatantsController}
         combatant={combatant}
+        type="temp"
       />
       <HPButton
         text="Nonlethal Damage:"
         value={combatant.nonlethalDamage}
         controller={combatantsController}
         combatant={combatant}
+        type="nonlethal"
       />
     </FlexBox>
     <FlexBox>

@@ -121,10 +121,11 @@ class CombatantsController {
     return [...this.state.combatants.values()];
   }
 
-  showCurrentHpDialog(combatant) {
+  showCurrentHpDialog(combatant, type) {
     this.setState({
       currentModal: "CURRENT_HP",
       modalTarget: combatant.id,
+      modalData: type,
     });
   }
 

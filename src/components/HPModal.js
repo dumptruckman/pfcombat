@@ -1,15 +1,31 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Radium from "radium";
 import ModalWrapper from "./ModalWrapper";
 import Button from "./Button";
 import CombatantModel from "../models/CombatantModel";
 import CombatantsController from "../controllers/CombatantsController";
+import FlexBox from "./layout/FlexBox";
+import ButtonPanel from "./layout/ButtonPanel";
+
+const styles = {
+  button: {
+    base: {
+      fontSize: 12,
+    },
+    target: {
+      fontSize: 14,
+      fontWeight: "bold",
+    },
+  },
+};
 
 class HPModal extends Component {
 
   constructor(props) {
     super(props);
     this.getInputValue = this.getInputValue.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   componentDidMount() {
@@ -84,6 +100,37 @@ class HPModal extends Component {
     }
   }
 
+  handleKeyPress(event, combatant) {
+    const keyCode = event.which || event.keyCode;
+    if (keyCode === 13) {
+      switch (this.props.modalData) {
+        case "normal":
+        default:
+          if (event.shiftKey) {
+            this.heal(combatant, this.getInputValue());
+          } else {
+            this.damage(combatant, this.getInputValue());
+          }
+          break;
+        case "nonlethal":
+          if (event.shiftKey) {
+            this.healNonlethal(combatant, this.getInputValue());
+          } else {
+            this.dealNonlethal(combatant, this.getInputValue());
+          }
+          break;
+        case "temp":
+          if (event.shiftKey) {
+            this.removeTemporary(combatant, this.getInputValue());
+          } else {
+            this.addTemporary(combatant, this.getInputValue());
+          }
+          break;
+      }
+      this.props.hideModal();
+    }
+  }
+
   render() {
     const combatant = this.props.combatantsController.getCombatantById(this.props.modalTarget);
 
@@ -94,62 +141,87 @@ class HPModal extends Component {
         width={200}
         showOk={false}
       >
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <FlexBox vertical>
+          <ButtonPanel>
             <input
               type="number"
               size="4"
               ref={(input) => { this.input = input; }}
               style={{ maxWidth: 37 }}
+              onKeyPress={e => this.handleKeyPress(e, combatant)}
             />
             <Button
-              style={{ fontSize: 12 }}
+              style={[
+                styles.button.base,
+                this.props.modalData === "normal" && styles.button.target,
+              ]}
+              grow
               onClick={() => {
                 this.damage(combatant, this.getInputValue());
                 this.props.hideModal();
               }}
             >Damage</Button>
             <Button
-              style={{ fontSize: 12 }}
+              style={[
+                styles.button.base,
+                this.props.modalData === "normal" && styles.button.target,
+              ]}
+              grow
               onClick={() => {
                 this.heal(combatant, this.getInputValue());
                 this.props.hideModal();
               }}
             >Heal</Button>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
+          </ButtonPanel>
+          <ButtonPanel>
             <Button
-              style={{ fontSize: 12 }}
+              style={[
+                styles.button.base,
+                this.props.modalData === "nonlethal" && styles.button.target,
+              ]}
+              grow
               onClick={() => {
                 this.dealNonlethal(combatant, this.getInputValue());
                 this.props.hideModal();
               }}
             >Deal Nonlethal</Button>
             <Button
-              style={{ fontSize: 12 }}
+              style={[
+                styles.button.base,
+                this.props.modalData === "nonlethal" && styles.button.target,
+              ]}
+              grow
               onClick={() => {
                 this.healNonlethal(combatant, this.getInputValue());
                 this.props.hideModal();
               }}
             >Heal Nonlethal</Button>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
+          </ButtonPanel>
+          <ButtonPanel>
             <Button
-              style={{ fontSize: 12 }}
+              style={[
+                styles.button.base,
+                this.props.modalData === "temp" && styles.button.target,
+              ]}
+              grow
               onClick={() => {
                 this.addTemporary(combatant, this.getInputValue());
                 this.props.hideModal();
               }}
             >Add Temp</Button>
             <Button
-              style={{ fontSize: 12 }}
+              style={[
+                styles.button.base,
+                this.props.modalData === "temp" && styles.button.target,
+              ]}
+              grow
               onClick={() => {
                 this.removeTemporary(combatant, this.getInputValue());
                 this.props.hideModal();
               }}
             >Remove Temp</Button>
-          </div>
-        </div>
+          </ButtonPanel>
+        </FlexBox>
       </ModalWrapper>
     );
   }
@@ -159,6 +231,7 @@ HPModal.propTypes = {
   combatantsController: PropTypes.instanceOf(CombatantsController).isRequired,
   modalTarget: PropTypes.string.isRequired,
   hideModal: PropTypes.func.isRequired,
+  modalData: PropTypes.string.isRequired,
 };
 
-export default HPModal;
+export default Radium(HPModal);
