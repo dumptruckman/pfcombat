@@ -45,8 +45,19 @@ class InitiativeTracker extends Component {
     this.shiftSelection = this.shiftSelection.bind(this);
     this.componentDidUpdate = this.componentDidUpdate.bind(this);
     this.componentCleanup = this.componentCleanup.bind(this);
+    this.componentWillMount = this.componentWillMount.bind(this);
 
     this.componentCleanup();
+  }
+
+  componentWillMount() {
+    // initialize the init order array
+    this.setState(prevState => ({
+      initiative: {
+        ...prevState.initiative,
+        order: this.props.activeCombatants.map(c => c.id),
+      },
+    }));
   }
 
   componentWillReceiveProps(nextProps) {
