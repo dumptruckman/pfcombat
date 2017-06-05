@@ -53,7 +53,7 @@ class InitiativeTracker extends Component {
     if (this.state.initiative.turnIndex >= 0) {
       const id = this.state.initiative.order[this.state.initiative.turnIndex];
       const combatant = nextProps.combatantsController.getCombatantById(id);
-      if (combatant.ready || combatant.delay) {
+      if (combatant !== undefined && (combatant.ready || combatant.delay)) {
         this.initiativeController.nextTurn();
       }
     }
