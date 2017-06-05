@@ -202,13 +202,22 @@ class App extends Component {
               <span
                 role="presentation"
                 style={smallMode ? { fontSize: 10 } : {}}
-              >This app is in beta. If you want to help make it better,&nbsp;
+              >[BETA]&nbsp;
+                {// eslint-disable-next-line jsx-a11y/href-no-hash
+                  <a
+                    href="#"
+                    onClick={() => {
+                      window.localStorage.clear();
+                      window.location.reload();
+                    }}
+                  >Reset App</a>
+                } - To submit feedback&nbsp;
                 <a
                   href="https://github.com/dumptruckman/pfcombat/issues"
                   target="_blank"
                   rel="noopener noreferrer"
-                >click here</a>
-              &nbsp;to report issues.</span>
+                >click here</a>.
+              </span>
             }
           </div>
         </WebAppFrame>
